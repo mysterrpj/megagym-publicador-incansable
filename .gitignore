@@ -1,0 +1,14 @@
+# Claves API - NO subir al repositorio
+settings.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db

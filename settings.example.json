@@ -1,0 +1,13 @@
+{
+    "social_publisher": {
+        "publer": {
+            "access_token": "TU_TOKEN_DE_PUBLER_AQUI"
+        }
+    },
+    "gemini": {
+        "api_key": "TU_API_KEY_DE_GEMINI_AQUI"
+    },
+    "openai": {
+        "api_key": "TU_API_KEY_DE_OPENAI_AQUI"
+    }
+}
