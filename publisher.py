@@ -85,18 +85,25 @@ def generar_imagen_dalle(cliente_openai, tema):
     # Preparamos un prompt especifico en ingles para DALL-E para los mejores resultados
     prompt_visual = f"A highly realistic, gritty, and raw photography representing this fitness topic: '{tema}'. The image should be professional gym photography, dark and moody lighting, real people, no text whatsoever, no overlays."
     
-    try:
-        response = cliente_openai.images.generate(
-            model="dall-e-3",
-            prompt=prompt_visual,
-            size="1024x1024",
-            quality="standard",
-            n=1,
-        )
-        return response.data[0].url
-    except Exception as e:
-        print(f"Error generando imagen con DALL-E: {e}")
-        sys.exit(1)
+    MAX_INTENTOS = 3
+    for intento in range(1, MAX_INTENTOS + 1):
+        try:
+            response = cliente_openai.images.generate(
+                model="dall-e-3",
+                prompt=prompt_visual,
+                size="1024x1024",
+                quality="standard",
+                n=1,
+            )
+            return response.data[0].url
+        except Exception as e:
+            print(f"[Intento {intento}/{MAX_INTENTOS}] Error generando imagen con DALL-E: {e}")
+            if intento < MAX_INTENTOS:
+                print(f"Esperando 10 segundos antes de reintentar...")
+                time.sleep(10)
+            else:
+                print("Se agotaron los intentos. No se pudo generar la imagen.")
+                sys.exit(1)
 
 def send_to_make(network, text, image_url=None):
     print(f"Enviando post para {network} a Make.com...")
