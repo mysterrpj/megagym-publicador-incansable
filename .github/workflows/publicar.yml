@@ -6,7 +6,7 @@ on:
     # Para cambiar la hora, modifica el valor cron:
     # Formato: minuto hora dia mes dia_semana
     # Herramienta util: https://crontab.guru
-    - cron: '15 17 * * *'  # 12:15 PM hora Perú / Colombia (UTC-5)
+    - cron: '0 13 * * *'  # 8:00 AM hora Perú / Colombia (UTC-5)
 
   # Permite ejecutar manualmente desde la interfaz de GitHub
   workflow_dispatch:
