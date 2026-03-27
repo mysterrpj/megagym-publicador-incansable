@@ -105,6 +105,45 @@ def generar_imagen_dalle(cliente_openai, tema):
                 print("Se agotaron los intentos. No se pudo generar la imagen.")
                 sys.exit(1)
 
+def seleccionar_imagen_fotorreal(modelo, tema_post):
+    carpeta = "fotos_reales"
+    if not os.path.exists(carpeta):
+        return None
+        
+    fotos = [f for f in os.listdir(carpeta) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    if not fotos:
+        return None
+        
+    print(f"Analizando {len(fotos)} fotos reales para ver si alguna coincide con el tema...")
+    
+    prompt = f"""
+    Tengo las siguientes fotos en mi biblioteca: {fotos}
+    He escrito un post sobre el siguiente tema: "{tema_post}"
+    
+    ¿Cuál de estas fotos encaja mejor con el tema del post? 
+    REGLAS:
+    1. Responde ÚNICAMENTE con el nombre del archivo (ejemplo: entrenamiento_mujer.png).
+    2. Si NINGUNA foto coincide realmente con el tema (ejemplo: el post es de nutricion y solo tengo fotos de maquinas), responde ÚNICAMENTE con la palabra: NONE
+    """
+    
+    try:
+        respuesta = modelo.generate_content(prompt).text.strip()
+        # Limpiar posibles comillas o espacios extras
+        respuesta = respuesta.replace('"', '').replace("'", "").strip()
+        
+        if respuesta.upper() == "NONE" or respuesta not in fotos:
+            print("No se encontro una foto real que coincida. Se usara IA.")
+            return None
+            
+        print(f"¡Coincidencia encontrada! Usando foto real: {respuesta}")
+        
+        # Generar URL de GitHub Raw para que Make.com pueda acceder
+        repo_url = "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master"
+        return f"{repo_url}/fotos_reales/{respuesta}"
+    except Exception as e:
+        print(f"Error en seleccion hibrida: {e}")
+        return None
+
 def send_to_make(network, text, image_url=None):
     print(f"Enviando post para {network} a Make.com...")
     
@@ -161,9 +200,14 @@ def main():
     print(ig_text)
     print("----------------------------------------------\n")
     
-    # 3. Generar Imagen con DALL-E
-    imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
-    print(f"URL de imagen generada: {imagen_principal}")
+    # 3. Seleccionar Imagen (Híbrido: Real o IA)
+    imagen_principal = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia)
+    
+    if not imagen_principal:
+        # Si no hay foto real, generar con DALL-E
+        imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+    
+    print(f"URL de imagen final a publicar: {imagen_principal}")
 
     print("\n--- Accion 1: Enviando Post a Facebook ---")
     send_to_make("facebook", ig_text, image_url=imagen_principal)

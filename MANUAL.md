@@ -4,6 +4,23 @@ Sistema de publicación automática de contenido en Facebook e Instagram mediant
 
 ---
 
+## ✅ Estado actual del sistema
+
+El sistema tiene **3 formas de ejecutarse**:
+
+| Método | ¿Cuándo se usa? | ¿Requiere PC encendida? |
+|---|---|---|
+| **GitHub Actions** | Automático, todos los días a la hora programada | ❌ No |
+| **`python auto_scheduler.py`** | Solo si tú lo inicias manualmente desde la terminal | ✅ Sí |
+| **`python publisher.py`** | Cuando quieres publicar ahora mismo sin esperar | ✅ Sí |
+
+**Recomendación:**
+- Usa **GitHub Actions** como sistema principal — ya está activo y no necesitas hacer nada.
+- Usa **`python publisher.py`** solo si quieres publicar algo en el momento.
+- Ya **no necesitas correr `auto_scheduler.py`** para nada.
+
+---
+
 ## ¿Cómo funciona el sistema?
 
 El flujo es el siguiente:
@@ -42,22 +59,60 @@ Haz clic en la ventana de la consola y presiona **Ctrl + C**.
 
 ## ⏰ Cómo cambiar el horario de publicación
 
-Abre `auto_scheduler.py` y busca la **línea 25**:
+El horario se controla desde el archivo `.github/workflows/publicar.yml`. Puedes editarlo de dos formas:
 
-```python
-HORA_PUBLICACION = "10:00"
+### Opción A — Desde tu PC (VS Code)
+
+Abre `.github/workflows/publicar.yml` y busca esta línea:
+
+```yaml
+- cron: '0 15 * * *'
 ```
 
-Cambia `"10:00"` por la hora que quieras en **formato 24 horas**:
+Cambia el número `15` por la hora UTC que quieras (**hora Perú/Colombia + 5 = UTC**):
 
-| Publicar a... | Escribir |
-|---|---|
-| 9:00 AM | `"09:00"` |
-| 12:00 PM | `"12:00"` |
-| 6:00 PM | `"18:00"` |
-| 8:30 PM | `"20:30"` |
+| Publicar a... | Hora UTC | Cron |
+|---|---|---|
+| 8:00 AM | 13:00 UTC | `'0 13 * * *'` |
+| 10:00 AM | 15:00 UTC | `'0 15 * * *'` (actual) |
+| 6:00 PM | 23:00 UTC | `'0 23 * * *'` |
+| 8:00 PM | 01:00 UTC | `'0 1 * * *'` |
 
-Guarda el archivo, detén el programador (`Ctrl+C`) y vuelve a iniciarlo.
+Para publicar **varias veces al día**, agrega más líneas cron:
+
+```yaml
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 8:00 AM hora Perú
+    - cron: '0 1 * * *'    # 8:00 PM hora Perú
+```
+
+Luego guarda y sube los cambios a GitHub desde la terminal:
+
+```bash
+git add .
+git commit -m "cambiar hora de publicacion"
+git push origin master
+```
+
+### Opción B — Directamente desde GitHub (sin abrir VS Code)
+
+1. Ve a tu repo → carpeta `.github/workflows/` → clic en `publicar.yml`
+2. Clic en el ícono del **lápiz ✏️** (editar)
+3. Cambia el valor del cron
+4. Clic en **"Commit changes"**
+
+---
+
+## ⏸️ Cómo pausar o detener el sistema en GitHub
+
+1. Ve a tu repo: https://github.com/mysterrpj/megagym-publicador-incansable
+2. Haz clic en la pestaña **Actions**
+3. En el menú izquierdo haz clic en **"Publicador Automatico MEGAGYM"**
+4. Haz clic en el botón **`...`** en la esquina superior derecha de esa página
+5. Selecciona **"Disable workflow"** para pausarlo
+
+Para reactivarlo, repite los pasos y selecciona **"Enable workflow"**.
 
 ---
 
