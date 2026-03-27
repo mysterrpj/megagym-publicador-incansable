@@ -69,7 +69,7 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
        - Desarrollo del valor educativo/motivador.
        - Un CTA (llamado a la acción) al final.
     3. NO uses hashtags excesivos, máximo 3.
-    4. El resultado debe ser solo el copy listo para copiar y pegar.
+    4. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
     """
     
     try:
@@ -122,8 +122,10 @@ def seleccionar_imagen_fotorreal(modelo, tema_post):
     
     ¿Cuál de estas fotos encaja mejor con el tema del post? 
     REGLAS:
-    1. Responde ÚNICAMENTE con el nombre del archivo (ejemplo: entrenamiento_mujer.png).
-    2. Si NINGUNA foto coincide realmente con el tema (ejemplo: el post es de nutricion y solo tengo fotos de maquinas), responde ÚNICAMENTE con la palabra: NONE
+    1. Si el tema es de entrenamiento (fuerza, cardio, ejercicios, sudor, pesas), ELIGE la foto que más se acerque, aunque no sea exacta.
+    2. Responde ÚNICAMENTE con el nombre del archivo (ejemplo: entrenamiento_mujer.png).
+    3. NO incluyas introducciones ni explicaciones.
+    4. Usa "NONE" solo si el tema es de nutricion, descanso o algo totalmente distinto y no tenemos fotos.
     """
     
     try:
