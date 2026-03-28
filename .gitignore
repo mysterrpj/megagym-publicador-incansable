@@ -1,5 +1,6 @@
 # Claves API - NO subir al repositorio
 settings.json
+*credentials*.json
 
 # Python
 __pycache__/

@@ -6,7 +6,99 @@ import json
 import random
 import google.generativeai as genai
 import openai
-MAKE_WEBHOOK_URL = "https://hook.us2.make.com/dqk1g8iiakkqngfn3mjhnq79lt468fhi"
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+def get_webhook_url():
+    url = os.environ.get("MAKE_WEBHOOK_URL")
+    if not url:
+        try:
+            with open('settings.json', 'r') as f:
+                settings = json.load(f)
+                url = settings.get('make', {}).get('webhook_url')
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass
+    if not url:
+        print("Error: No se encontro MAKE_WEBHOOK_URL en variables de entorno ni en settings.json.")
+        sys.exit(1)
+    return url
+
+def setup_drive():
+    creds_json = os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
+    folder_id = os.environ.get("GOOGLE_DRIVE_FOLDER_ID")
+
+    if not creds_json:
+        try:
+            with open('settings.json', 'r') as f:
+                settings = json.load(f)
+                drive_cfg = settings.get('google_drive', {})
+                folder_id = folder_id or drive_cfg.get('folder_id')
+                creds_path = drive_cfg.get('credentials_path')
+                if creds_path:
+                    with open(creds_path, 'r') as cf:
+                        creds_json = cf.read()
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass
+
+    if not creds_json or not folder_id:
+        print("Advertencia: Credenciales de Google Drive no encontradas. Se omitira Drive.")
+        return None, None
+
+    creds_data = json.loads(creds_json)
+    credentials = service_account.Credentials.from_service_account_info(
+        creds_data,
+        scopes=['https://www.googleapis.com/auth/drive.readonly']
+    )
+    service = build('drive', 'v3', credentials=credentials)
+    return service, folder_id
+
+def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
+    try:
+        results = drive_service.files().list(
+            q=f"'{folder_id}' in parents and mimeType contains 'image/' and trashed=false",
+            fields="files(id, name)",
+            pageSize=500
+        ).execute()
+        fotos = results.get('files', [])
+    except Exception as e:
+        print(f"Error listando fotos de Drive: {e}")
+        return None
+
+    if not fotos:
+        print("No se encontraron fotos en Drive.")
+        return None
+
+    print(f"Analizando {len(fotos)} fotos en Drive...")
+    nombres = [f['name'] for f in fotos]
+
+    prompt = f"""
+    Tengo las siguientes fotos en mi biblioteca de Google Drive: {nombres}
+    He escrito un post sobre el siguiente tema: "{tema_post}"
+
+    ¿Cuál de estas fotos encaja mejor con el tema del post?
+    REGLAS:
+    1. Si el tema es de entrenamiento (fuerza, cardio, ejercicios, sudor, pesas), ELIGE la foto que más se acerque.
+    2. Responde ÚNICAMENTE con el nombre del archivo exacto.
+    3. NO incluyas introducciones ni explicaciones.
+    4. Usa "NONE" solo si ninguna foto tiene relación con el tema.
+    """
+
+    try:
+        respuesta = modelo.generate_content(prompt).text.strip()
+        respuesta = respuesta.replace('"', '').replace("'", "").strip()
+
+        foto = next((f for f in fotos if f['name'] == respuesta), None)
+        if not foto or respuesta.upper() == "NONE":
+            print("No coincidio ninguna foto de Drive. Se usara fallback.")
+            return None
+
+        file_id = foto['id']
+        print(f"Foto seleccionada de Drive: {respuesta} (id: {file_id})")
+        # Requiere que la carpeta de Drive sea publica ("Cualquier persona con el enlace puede ver")
+        return f"https://drive.google.com/uc?export=download&id={file_id}"
+    except Exception as e:
+        print(f"Error seleccionando foto de Drive: {e}")
+        return None
 
 def setup_gemini():
     api_key = os.environ.get("GOOGLE_API_KEY")
@@ -146,7 +238,7 @@ def seleccionar_imagen_fotorreal(modelo, tema_post):
         print(f"Error en seleccion hibrida: {e}")
         return None
 
-def send_to_make(network, text, image_url=None):
+def send_to_make(webhook_url, network, text, image_url=None):
     print(f"Enviando post para {network} a Make.com...")
     
     payload = {
@@ -158,7 +250,7 @@ def send_to_make(network, text, image_url=None):
         payload["image_url"] = image_url
     
     try:
-        response = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=10)
+        response = requests.post(webhook_url, json=payload, timeout=10)
         if response.status_code == 200:
             print(f"[Exito] Post de {network} recibido por Make.com.")
         else:
@@ -178,6 +270,8 @@ def main():
     modelo_gemini = setup_gemini()
     cliente_openai = setup_openai()
     memoria_marca = get_memory_context()
+    webhook_url = get_webhook_url()
+    drive_service, drive_folder_id = setup_drive()
     
     # 2. Elegir Tema Aleatorio
     lista_temas = [
@@ -202,23 +296,28 @@ def main():
     print(ig_text)
     print("----------------------------------------------\n")
     
-    # 3. Seleccionar Imagen (Híbrido: Real o IA)
-    imagen_principal = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia)
-    
+    # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales > DALL-E)
+    imagen_principal = None
+
+    if drive_service:
+        imagen_principal = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id)
+
     if not imagen_principal:
-        # Si no hay foto real, generar con DALL-E
+        imagen_principal = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia)
+
+    if not imagen_principal:
         imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
     
     print(f"URL de imagen final a publicar: {imagen_principal}")
 
     print("\n--- Accion 1: Enviando Post a Facebook ---")
-    send_to_make("facebook", ig_text, image_url=imagen_principal)
-    
+    send_to_make(webhook_url, "facebook", ig_text, image_url=imagen_principal)
+
     print("\n[Esperando 3 segundos para que Make procese el primer post...]")
     time.sleep(3)
-    
+
     print("\n--- Accion 2: Enviando Post a Instagram ---")
-    send_to_make("instagram", ig_text, image_url=imagen_principal)
+    send_to_make(webhook_url, "instagram", ig_text, image_url=imagen_principal)
 
 if __name__ == '__main__':
     main()

@@ -25,10 +25,13 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar dependencias
-        run: pip install requests google-generativeai openai
+        run: pip install requests google-generativeai openai google-api-python-client google-auth
 
       - name: Ejecutar el publicador
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          GOOGLE_DRIVE_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
+          GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: python publisher.py
