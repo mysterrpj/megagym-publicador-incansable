@@ -175,6 +175,55 @@ def setup_drive():
     return service, folder_id
 
 def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
+    # Intentar usar el índice inteligente si existe
+    try:
+        with open('indice_fotos.json', 'r', encoding='utf-8') as f:
+            indice = json.load(f)
+        if indice:
+            print(f"Usando índice inteligente ({len(indice)} fotos indexadas)...")
+            return _seleccionar_por_indice(modelo, tema_post, indice)
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    # Fallback: selección por nombres de archivo
+    print("Índice no encontrado. Usando selección por nombres...")
+    return _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id)
+
+
+def _seleccionar_por_indice(modelo, tema_post, indice):
+    descripciones = [f"{item['nombre']}: {item['descripcion']}" for item in indice]
+
+    prompt = f"""
+    Tengo las siguientes fotos indexadas de mi gimnasio: {descripciones}
+    El post de hoy es sobre: "{tema_post}"
+
+    ¿Cuál foto encaja mejor con el tema del post?
+    REGLAS:
+    1. PRIORIZA fotos de personas entrenando, ejercitándose o en el gimnasio.
+    2. NUNCA elijas imágenes descritas como logo, fondo transparente, watermark o removebg.
+    3. Flyers y banners promocionales SÍ son válidos si el tema lo justifica.
+    4. Responde ÚNICAMENTE con el nombre del archivo exacto.
+    5. NO incluyas introducciones ni explicaciones.
+    6. Usa "NONE" solo si TODAS son logos o fondos transparentes.
+    """
+
+    try:
+        respuesta = modelo.generate_content(prompt).text.strip()
+        respuesta = respuesta.replace('"', '').replace("'", "").strip()
+
+        foto = next((item for item in indice if item['nombre'] == respuesta), None)
+        if not foto or respuesta.upper() == "NONE":
+            print("No se encontró coincidencia en el índice. Se usará fallback.")
+            return None
+
+        print(f"Foto seleccionada del índice: {respuesta}")
+        return f"https://lh3.googleusercontent.com/d/{foto['id']}"
+    except Exception as e:
+        print(f"Error seleccionando foto del índice: {e}")
+        return None
+
+
+def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id):
     try:
         results = drive_service.files().list(
             q=f"'{folder_id}' in parents and mimeType contains 'image/' and trashed=false",
@@ -190,7 +239,7 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
         print("No se encontraron fotos en Drive.")
         return None
 
-    print(f"Analizando {len(fotos)} fotos en Drive...")
+    print(f"Analizando {len(fotos)} fotos en Drive por nombre...")
     nombres = [f['name'] for f in fotos]
 
     prompt = f"""
@@ -218,7 +267,6 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
 
         file_id = foto['id']
         print(f"Foto seleccionada de Drive: {respuesta} (id: {file_id})")
-        # URL directa compatible con Instagram (requiere carpeta publica)
         return f"https://lh3.googleusercontent.com/d/{file_id}"
     except Exception as e:
         print(f"Error seleccionando foto de Drive: {e}")

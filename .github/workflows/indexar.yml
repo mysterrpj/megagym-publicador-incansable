@@ -1,0 +1,42 @@
+name: Indexar Fotos Drive
+
+on:
+  schedule:
+    # Cada domingo a las 6:00 AM hora Perú (11:00 UTC)
+    - cron: '0 11 * * 0'
+
+  # Permite ejecutar manualmente desde GitHub
+  workflow_dispatch:
+
+jobs:
+  indexar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install google-generativeai google-api-python-client google-auth Pillow
+
+      - name: Ejecutar indexador
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_DRIVE_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
+          GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+        run: python indexar_fotos.py
+
+      - name: Guardar índice actualizado en el repositorio
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions"
+          git add indice_fotos.json
+          git diff --staged --quiet || git commit -m "chore: actualizar indice de fotos Drive"
+          git push
