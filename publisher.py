@@ -94,8 +94,8 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
 
         file_id = foto['id']
         print(f"Foto seleccionada de Drive: {respuesta} (id: {file_id})")
-        # Requiere que la carpeta de Drive sea publica ("Cualquier persona con el enlace puede ver")
-        return f"https://drive.google.com/uc?export=download&id={file_id}"
+        # URL directa compatible con Instagram (requiere carpeta publica)
+        return f"https://lh3.googleusercontent.com/d/{file_id}"
     except Exception as e:
         print(f"Error seleccionando foto de Drive: {e}")
         return None
