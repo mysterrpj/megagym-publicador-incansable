@@ -77,10 +77,12 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
 
     ¿Cuál de estas fotos encaja mejor con el tema del post?
     REGLAS:
-    1. Si el tema es de entrenamiento (fuerza, cardio, ejercicios, sudor, pesas), ELIGE la foto que más se acerque.
-    2. Responde ÚNICAMENTE con el nombre del archivo exacto.
-    3. NO incluyas introducciones ni explicaciones.
-    4. Usa "NONE" solo si ninguna foto tiene relación con el tema.
+    1. PRIORIZA fotos de personas entrenando, ejercitándose o en el gimnasio.
+    2. NUNCA elijas archivos que contengan en su nombre: "logo", "removebg", "watermark" o "megagym-remove". Son logos con fondo transparente, no imágenes publicables.
+    3. Si el tema es de entrenamiento (fuerza, cardio, ejercicios, sudor, pesas), ELIGE la foto de persona que más se acerque, aunque no sea exacta.
+    4. Responde ÚNICAMENTE con el nombre del archivo exacto.
+    5. NO incluyas introducciones ni explicaciones.
+    6. Usa "NONE" solo si TODAS las fotos son logos o imágenes con fondo transparente.
     """
 
     try:
