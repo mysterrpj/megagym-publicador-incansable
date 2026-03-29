@@ -125,7 +125,7 @@ def seleccionar_temas_del_dia():
     categorias = list(TEMAS_POR_CATEGORIA.keys())
     random.shuffle(categorias)
     for categoria in categorias:
-        if len(temas) >= 2:
+        if len(temas) >= 1:
             break
         temas.append(random.choice(TEMAS_POR_CATEGORIA[categoria]))
 
