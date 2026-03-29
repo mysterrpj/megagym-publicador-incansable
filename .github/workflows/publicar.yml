@@ -2,11 +2,8 @@ name: Publicador Automatico MEGAGYM
 
 on:
   schedule:
-    # Corre todos los dias a las 15:00 UTC (10:00 AM hora Peru/Colombia/Lima)
-    # Para cambiar la hora, modifica el valor cron:
-    # Formato: minuto hora dia mes dia_semana
-    # Herramienta util: https://crontab.guru
-    - cron: '0 13 * * *'  # 8:00 AM hora Perú / Colombia (UTC-5)
+    - cron: '0 13 * * *'   # 8:00 AM hora Perú (UTC-5)
+    - cron: '0 1 * * *'    # 8:00 PM hora Perú (UTC-5)
 
   # Permite ejecutar manualmente desde la interfaz de GitHub
   workflow_dispatch:
