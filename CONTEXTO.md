@@ -53,8 +53,20 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 *   [x] Webhook URL movido a variable de entorno (seguridad).
 *   [x] Credenciales de Drive protegidas con `.gitignore` y GitHub Secrets.
 
+## ⚠️ Problema conocido: Token OAuth de Make.com
+El token de conexión entre Make.com y Meta (Facebook/Instagram) expira aproximadamente cada **60 días**.
+Cuando expira:
+1. Make.com lanza error `Media ID is not available (9007, OAuthException)`
+2. Make.com **pausa el escenario automáticamente**
+3. Las publicaciones se detienen hasta reconectar manualmente
+
+**Solución temporal:** Ir a Make.com → Credentials → Connections → "Conexión MEGAGYM" → **Reauthorize** (y también "My instagram connection").
+**Próxima reconexión:** 28 de mayo de 2026
+
+**Solución definitiva (pendiente):** Verificar el negocio en Meta Business Suite para crear un System User con token permanente. Ver `plan_implementacion.md`.
+
 ## 🚀 Próximos Pasos
-1. **Ejecutar indexador por primera vez** — correr manualmente desde GitHub Actions → "Indexar Fotos Drive" → "Run workflow". Tarda ~20 min, solo se hace una vez.
+1. **Token permanente de Meta** — verificar el negocio en Meta Business Suite (requiere RUC) para crear System User. Ver `plan_implementacion.md`.
 2. **Registro de fotos usadas** — evitar repetir la misma imagen en días cercanos.
 3. **Soporte para videos/Reels** — publicar videos cortos desde Drive.
 4. **Ampliar temas** — agregar más temas a las categorías existentes según tendencias.
@@ -80,4 +92,4 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 | `fotos_reales/` | Galería local de fotos (fallback de Drive) |
 
 ---
-*Última actualización: 29 de marzo de 2026*
+*Última actualización: 30 de marzo de 2026*
