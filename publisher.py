@@ -10,6 +10,34 @@ import openai
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
+# ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
+DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
+
+def cargar_historial():
+    """Carga el historial de fotos usadas. Devuelve (lista_completa, set_de_ids_recientes)."""
+    try:
+        with open('historial_fotos.json', 'r', encoding='utf-8') as f:
+            historial = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        historial = []
+
+    hoy = date.today()
+    limite = hoy - timedelta(days=DIAS_HISTORIAL)
+    ids_usados = {h['id'] for h in historial if date.fromisoformat(h['fecha']) >= limite}
+    print(f"[Historial] {len(ids_usados)} fotos usadas en los últimos {DIAS_HISTORIAL} días.")
+    return historial, ids_usados
+
+def guardar_historial(historial, foto_id, foto_nombre):
+    """Agrega una foto al historial y guarda el archivo. Devuelve la lista actualizada."""
+    historial.append({"id": foto_id, "nombre": foto_nombre, "fecha": date.today().isoformat()})
+    # Limpiar entradas más antiguas que 60 días para no crecer infinitamente
+    limite = date.today() - timedelta(days=60)
+    historial = [h for h in historial if date.fromisoformat(h['fecha']) >= limite]
+    with open('historial_fotos.json', 'w', encoding='utf-8') as f:
+        json.dump(historial, f, ensure_ascii=False, indent=2)
+    print(f"[Historial] Foto guardada: {foto_nombre}")
+    return historial
+
 # ─── FECHAS ESPECIALES (Perú) ───────────────────────────────────────────────
 FECHAS_ESPECIALES = {
     (1, 1):  "Año Nuevo: el mejor momento para empezar a entrenar es hoy — bienvenido al primer día de tu mejor año en MEGAGYM",
@@ -174,24 +202,31 @@ def setup_drive():
     service = build('drive', 'v3', credentials=credentials)
     return service, folder_id
 
-def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id):
+def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id, ids_usados=None):
     # Intentar usar el índice inteligente si existe
     try:
         with open('indice_fotos.json', 'r', encoding='utf-8') as f:
             indice = json.load(f)
         if indice:
             print(f"Usando índice inteligente ({len(indice)} fotos indexadas)...")
-            return _seleccionar_por_indice(modelo, tema_post, indice)
+            return _seleccionar_por_indice(modelo, tema_post, indice, ids_usados)
     except (FileNotFoundError, json.JSONDecodeError):
         pass
 
     # Fallback: selección por nombres de archivo
     print("Índice no encontrado. Usando selección por nombres...")
-    return _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id)
+    return _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_usados)
 
 
-def _seleccionar_por_indice(modelo, tema_post, indice):
-    descripciones = [f"{item['nombre']}: {item['descripcion']}" for item in indice]
+def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
+    indice_filtrado = [item for item in indice if item['id'] not in ids_usados] if ids_usados else indice
+    if not indice_filtrado:
+        print("Todas las fotos del índice fueron usadas recientemente. Usando índice completo.")
+        indice_filtrado = indice
+    else:
+        print(f"Índice filtrado: {len(indice_filtrado)} fotos disponibles (de {len(indice)} totales).")
+
+    descripciones = [f"{item['nombre']}: {item['descripcion']}" for item in indice_filtrado]
 
     prompt = f"""
     Tengo las siguientes fotos indexadas de mi gimnasio: {descripciones}
@@ -211,19 +246,19 @@ def _seleccionar_por_indice(modelo, tema_post, indice):
         respuesta = modelo.generate_content(prompt).text.strip()
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
 
-        foto = next((item for item in indice if item['nombre'] == respuesta), None)
+        foto = next((item for item in indice_filtrado if item['nombre'] == respuesta), None)
         if not foto or respuesta.upper() == "NONE":
             print("No se encontró coincidencia en el índice. Se usará fallback.")
             return None
 
         print(f"Foto seleccionada del índice: {respuesta}")
-        return f"https://lh3.googleusercontent.com/d/{foto['id']}"
+        return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'])
     except Exception as e:
         print(f"Error seleccionando foto del índice: {e}")
         return None
 
 
-def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id):
+def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_usados=None):
     try:
         results = drive_service.files().list(
             q=f"'{folder_id}' in parents and mimeType contains 'image/' and trashed=false",
@@ -239,8 +274,15 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id):
         print("No se encontraron fotos en Drive.")
         return None
 
-    print(f"Analizando {len(fotos)} fotos en Drive por nombre...")
-    nombres = [f['name'] for f in fotos]
+    fotos_filtradas = [f for f in fotos if f['id'] not in ids_usados] if ids_usados else fotos
+    if not fotos_filtradas:
+        print("Todas las fotos de Drive fueron usadas recientemente. Usando todas.")
+        fotos_filtradas = fotos
+    else:
+        print(f"Drive filtrado: {len(fotos_filtradas)} fotos disponibles (de {len(fotos)} totales).")
+
+    print(f"Analizando {len(fotos_filtradas)} fotos en Drive por nombre...")
+    nombres = [f['name'] for f in fotos_filtradas]
 
     prompt = f"""
     Tengo las siguientes fotos en mi biblioteca de Google Drive: {nombres}
@@ -260,14 +302,14 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id):
         respuesta = modelo.generate_content(prompt).text.strip()
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
 
-        foto = next((f for f in fotos if f['name'] == respuesta), None)
+        foto = next((f for f in fotos_filtradas if f['name'] == respuesta), None)
         if not foto or respuesta.upper() == "NONE":
             print("No coincidio ninguna foto de Drive. Se usara fallback.")
             return None
 
         file_id = foto['id']
         print(f"Foto seleccionada de Drive: {respuesta} (id: {file_id})")
-        return f"https://lh3.googleusercontent.com/d/{file_id}"
+        return (f"https://lh3.googleusercontent.com/d/{file_id}", file_id, foto['name'])
     except Exception as e:
         print(f"Error seleccionando foto de Drive: {e}")
         return None
@@ -369,43 +411,47 @@ def generar_imagen_dalle(cliente_openai, tema):
                 print("Se agotaron los intentos. No se pudo generar la imagen.")
                 sys.exit(1)
 
-def seleccionar_imagen_fotorreal(modelo, tema_post):
+def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
     carpeta = "fotos_reales"
     if not os.path.exists(carpeta):
         return None
-        
+
     fotos = [f for f in os.listdir(carpeta) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
     if not fotos:
         return None
-        
-    print(f"Analizando {len(fotos)} fotos reales para ver si alguna coincide con el tema...")
-    
+
+    fotos_filtradas = [f for f in fotos if f not in ids_usados] if ids_usados else fotos
+    if not fotos_filtradas:
+        print("Todas las fotos reales fueron usadas recientemente. Usando todas.")
+        fotos_filtradas = fotos
+
+    print(f"Analizando {len(fotos_filtradas)} fotos reales para ver si alguna coincide con el tema...")
+
     prompt = f"""
-    Tengo las siguientes fotos en mi biblioteca: {fotos}
+    Tengo las siguientes fotos en mi biblioteca: {fotos_filtradas}
     He escrito un post sobre el siguiente tema: "{tema_post}"
-    
-    ¿Cuál de estas fotos encaja mejor con el tema del post? 
+
+    ¿Cuál de estas fotos encaja mejor con el tema del post?
     REGLAS:
     1. Si el tema es de entrenamiento (fuerza, cardio, ejercicios, sudor, pesas), ELIGE la foto que más se acerque, aunque no sea exacta.
     2. Responde ÚNICAMENTE con el nombre del archivo (ejemplo: entrenamiento_mujer.png).
     3. NO incluyas introducciones ni explicaciones.
     4. Usa "NONE" solo si el tema es de nutricion, descanso o algo totalmente distinto y no tenemos fotos.
     """
-    
+
     try:
         respuesta = modelo.generate_content(prompt).text.strip()
-        # Limpiar posibles comillas o espacios extras
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
-        
-        if respuesta.upper() == "NONE" or respuesta not in fotos:
+
+        if respuesta.upper() == "NONE" or respuesta not in fotos_filtradas:
             print("No se encontro una foto real que coincida. Se usara IA.")
             return None
-            
+
         print(f"¡Coincidencia encontrada! Usando foto real: {respuesta}")
-        
+
         # Generar URL de GitHub Raw para que Make.com pueda acceder
         repo_url = "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master"
-        return f"{repo_url}/fotos_reales/{respuesta}"
+        return (f"{repo_url}/fotos_reales/{respuesta}", respuesta, respuesta)
     except Exception as e:
         print(f"Error en seleccion hibrida: {e}")
         return None
@@ -444,7 +490,10 @@ def main():
     memoria_marca = get_memory_context()
     webhook_url = get_webhook_url()
     drive_service, drive_folder_id = setup_drive()
-    
+
+    # Cargar historial de fotos usadas
+    historial, ids_usados = cargar_historial()
+
     # 2. Elegir Temas del Día (2 publicaciones, fechas especiales + categorías)
     temas_del_dia = seleccionar_temas_del_dia()
     print(f"\n[INFO] Temas del día: {temas_del_dia}")
@@ -461,15 +510,19 @@ def main():
         print("----------------------------------------------\n")
 
         # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales > DALL-E)
-        imagen_principal = None
+        imagen_resultado = None
 
         if drive_service:
-            imagen_principal = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id)
+            imagen_resultado = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id, ids_usados)
 
-        if not imagen_principal:
-            imagen_principal = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia)
+        if not imagen_resultado:
+            imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
 
-        if not imagen_principal:
+        if imagen_resultado:
+            imagen_principal, foto_id, foto_nombre = imagen_resultado
+            historial = guardar_historial(historial, foto_id, foto_nombre)
+            ids_usados.add(foto_id)  # Evitar repetir en la misma ejecución (2 posts/día)
+        else:
             imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
 
         print(f"URL de imagen final a publicar: {imagen_principal}")

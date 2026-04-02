@@ -11,6 +11,8 @@ on:
 jobs:
   publicar:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Clonar repositorio
@@ -32,3 +34,11 @@ jobs:
           GOOGLE_DRIVE_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: python publisher.py
+
+      - name: Guardar historial de fotos en el repositorio
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions"
+          git add historial_fotos.json
+          git diff --staged --quiet || git commit -m "chore: actualizar historial de fotos usadas"
+          git push
