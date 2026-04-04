@@ -52,6 +52,7 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 *   [x] Limpieza de "conversación" en los textos (va directo al copy).
 *   [x] Webhook URL movido a variable de entorno (seguridad).
 *   [x] Credenciales de Drive protegidas con `.gitignore` y GitHub Secrets.
+*   [x] Registro de fotos usadas — evita repetir la misma imagen en días cercanos.
 
 ## ⚠️ Problema conocido: Token OAuth de Make.com
 El token de conexión entre Make.com y Meta (Facebook/Instagram) expira aproximadamente cada **60 días**.
@@ -67,8 +68,7 @@ Cuando expira:
 
 ## 🚀 Próximos Pasos
 1. **Token permanente de Meta** — verificar el negocio en Meta Business Suite (requiere RUC) para crear System User. Ver `plan_implementacion.md`.
-2. **Registro de fotos usadas** — evitar repetir la misma imagen en días cercanos.
-3. **Soporte para videos/Reels** — publicar videos cortos desde Drive.
+2. **Soporte para videos/Reels** — publicar videos cortos desde Drive.
 4. **Ampliar temas** — agregar más temas a las categorías existentes según tendencias.
 
 ## 🛠️ Tecnologías en uso
@@ -92,4 +92,4 @@ Cuando expira:
 | `fotos_reales/` | Galería local de fotos (fallback de Drive) |
 
 ---
-*Última actualización: 30 de marzo de 2026*
+*Última actualización: 4 de abril de 2026*

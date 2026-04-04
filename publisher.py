@@ -1,4 +1,6 @@
 import os
+import io
+import base64
 import requests
 import sys
 import time
@@ -9,6 +11,7 @@ import google.generativeai as genai
 import openai
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
 
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
@@ -456,6 +459,65 @@ def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
         print(f"Error en seleccion hibrida: {e}")
         return None
 
+def descargar_foto_drive(drive_service, file_id):
+    """Descarga una foto de Drive y devuelve sus bytes."""
+    try:
+        request = drive_service.files().get_media(fileId=file_id)
+        fh = io.BytesIO()
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while not done:
+            _, done = downloader.next_chunk()
+        print(f"[Drive] Imagen descargada ({len(fh.getvalue())} bytes).")
+        return fh.getvalue()
+    except Exception as e:
+        print(f"[Drive] Error descargando imagen: {e}")
+        return None
+
+def subir_imagen_a_github(imagen_bytes):
+    """Sube la imagen a GitHub y devuelve la URL raw pública."""
+    token = os.environ.get('GITHUB_TOKEN')
+    if not token:
+        print("[GitHub] GITHUB_TOKEN no disponible.")
+        return None
+
+    repo = os.environ.get('GITHUB_REPOSITORY', 'mysterrpj/megagym-publicador-incansable')
+    filename = "imagen_post.jpg"
+    api_url = f"https://api.github.com/repos/{repo}/contents/{filename}"
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    # Obtener SHA si el archivo ya existe (necesario para actualizarlo)
+    sha = None
+    try:
+        r = requests.get(api_url, headers=headers, timeout=10)
+        if r.status_code == 200:
+            sha = r.json().get('sha')
+    except Exception:
+        pass
+
+    payload = {
+        'message': 'chore: actualizar imagen del post',
+        'content': base64.b64encode(imagen_bytes).decode('utf-8')
+    }
+    if sha:
+        payload['sha'] = sha
+
+    try:
+        r = requests.put(api_url, headers=headers, json=payload, timeout=30)
+        if r.status_code in (200, 201):
+            raw_url = f"https://raw.githubusercontent.com/{repo}/master/{filename}"
+            print(f"[GitHub] Imagen subida: {raw_url}")
+            return raw_url
+        else:
+            print(f"[GitHub] Error subiendo imagen: HTTP {r.status_code}")
+            return None
+    except Exception as e:
+        print(f"[GitHub] Error subiendo imagen: {e}")
+        return None
+
 def send_to_make(webhook_url, network, text, image_url=None):
     print(f"Enviando post para {network} a Make.com...")
     
@@ -519,9 +581,28 @@ def main():
             imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
 
         if imagen_resultado:
-            imagen_principal, foto_id, foto_nombre = imagen_resultado
+            imagen_url_original, foto_id, foto_nombre = imagen_resultado
             historial = guardar_historial(historial, foto_id, foto_nombre)
             ids_usados.add(foto_id)  # Evitar repetir en la misma ejecución (2 posts/día)
+
+            # Si la imagen viene de Drive, descargarla y subirla a GitHub
+            # (Instagram no acepta URLs de Drive directamente)
+            if 'lh3.googleusercontent.com' in imagen_url_original:
+                print("[Drive→GitHub] Descargando imagen de Drive para publicar via GitHub...")
+                bytes_imagen = descargar_foto_drive(drive_service, foto_id)
+                if bytes_imagen:
+                    imagen_principal = subir_imagen_a_github(bytes_imagen)
+                    if imagen_principal:
+                        print("[CDN] Esperando 20 segundos para propagación de GitHub CDN...")
+                        time.sleep(20)
+                    else:
+                        print("[Fallback] GitHub falló. Usando DALL-E...")
+                        imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+                else:
+                    print("[Fallback] Descarga de Drive falló. Usando DALL-E...")
+                    imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+            else:
+                imagen_principal = imagen_url_original
         else:
             imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
 
