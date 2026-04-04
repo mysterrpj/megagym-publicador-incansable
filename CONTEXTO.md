@@ -53,6 +53,16 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 *   [x] Webhook URL movido a variable de entorno (seguridad).
 *   [x] Credenciales de Drive protegidas con `.gitignore` y GitHub Secrets.
 *   [x] Registro de fotos usadas — evita repetir la misma imagen en días cercanos.
+*   [x] Fix imágenes Drive→GitHub — el publisher descarga la foto via Service Account y la sube a GitHub raw antes de enviarla a Make (Instagram bloquea URLs de Drive directamente).
+
+## ⚠️ Problema conocido: Make.com se desactiva ante errores
+Si Make.com encuentra un error en una ejecución (ej. imagen inaccesible), **pausa el escenario automáticamente**. Make envía un email de alerta rojo al correo configurado.
+
+**Solución cuando ocurre:**
+1. Ir a Make.com → escenario → **Show queue** → eliminar registros fallidos
+2. Reactivar el escenario (toggle Inactive → Active)
+
+**Nota:** El email de alerta llega desde Make (no desde GitHub). Revisar correo ante ausencia de publicaciones.
 
 ## ⚠️ Problema conocido: Token OAuth de Make.com
 El token de conexión entre Make.com y Meta (Facebook/Instagram) expira aproximadamente cada **60 días**.
@@ -92,4 +102,4 @@ Cuando expira:
 | `fotos_reales/` | Galería local de fotos (fallback de Drive) |
 
 ---
-*Última actualización: 4 de abril de 2026*
+*Última actualización: 4 de abril de 2026 (fix Drive→GitHub + documentación Make)*
