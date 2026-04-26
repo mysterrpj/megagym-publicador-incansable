@@ -282,45 +282,6 @@ TEMAS_POR_CATEGORIA = {
 }
 
 
-def cargar_referencias_redes():
-    try:
-        with open('referencias_redes.json', 'r', encoding='utf-8') as f:
-            referencias = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []
-
-    if not isinstance(referencias, list):
-        return []
-
-    validas = []
-    for ref in referencias:
-        if not isinstance(ref, dict):
-            continue
-        idea = str(ref.get('idea') or ref.get('caption') or '').strip()
-        if not idea:
-            continue
-        validas.append({
-            "fuente": str(ref.get('fuente', 'redes sociales')).strip(),
-            "url": str(ref.get('url', '')).strip(),
-            "tema": str(ref.get('tema', 'tendencia fitness')).strip(),
-            "idea": idea[:900],
-        })
-    return validas
-
-
-def tema_desde_referencia(ref):
-    fuente = ref.get('fuente', 'redes sociales')
-    tema = ref.get('tema', 'tendencia fitness')
-    idea = ref.get('idea', '')
-    url = ref.get('url', '')
-    return (
-        f"Tendencia de {fuente}: {tema}. "
-        f"Referencia para inspirarse, NO copiar literal: {idea}. "
-        f"Adaptar a MEGAGYM con voz propia, enfoque local y CTA claro."
-        + (f" Fuente: {url}" if url else "")
-    )
-
-
 def seleccionar_temas_del_dia():
     hoy = date.today()
     temas = []
@@ -346,10 +307,6 @@ def seleccionar_temas_del_dia():
 
     if tema_especial:
         temas.append(tema_especial)
-
-    referencias = cargar_referencias_redes()
-    if referencias and len(temas) < 1 and random.random() < 0.45:
-        temas.append(tema_desde_referencia(random.choice(referencias)))
 
     # Rellenar hasta 2 temas con categorías distintas al azar
     categorias = list(TEMAS_POR_CATEGORIA.keys())
@@ -622,7 +579,7 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
        - Un gancho fuerte en la primera línea.
        - Desarrollo del valor educativo/motivador.
        - Un CTA (llamado a la acción) al final.
-    3. Si el tema incluye una referencia de Instagram, Facebook, TikTok u otra red, úsala como referencia creativa y de tendencia. NO copies frases, estructura exacta ni promesas virales; reescribe todo como contenido original de MEGAGYM.
+    3. Si el tema está inspirado en tendencias actuales, úsalo como punto de partida. NO copies frases, estructura exacta ni promesas virales; reescribe todo como contenido original de MEGAGYM.
     4. Máximo 1,500 caracteres en total. Sé directo y evita explicaciones largas.
     5. NO uses hashtags excesivos, máximo 3.
     6. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
