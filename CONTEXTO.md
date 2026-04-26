@@ -1,4 +1,4 @@
-# Contexto del Proyecto: MEGAGYM Publicador Incansable
+﻿# Contexto del Proyecto: MEGAGYM Publicador Incansable
 
 Este archivo sirve para que cualquier IA (como Claude Code) entienda el estado actual, la arquitectura y los objetivos de este proyecto de automatización.
 

@@ -69,6 +69,22 @@ def guardar_indice(indice):
         json.dump(list(indice.values()), f, ensure_ascii=False, indent=2)
 
 
+def listar_fotos_drive(drive_service, folder_id):
+    fotos = []
+    page_token = None
+    while True:
+        results = drive_service.files().list(
+            q=f"'{folder_id}' in parents and mimeType contains 'image/' and trashed=false",
+            fields="nextPageToken, files(id, name)",
+            pageSize=1000,
+            pageToken=page_token
+        ).execute()
+        fotos.extend(results.get('files', []))
+        page_token = results.get('nextPageToken')
+        if not page_token:
+            return fotos
+
+
 def describir_imagen(modelo, drive_service, file_id, nombre):
     try:
         request = drive_service.files().get_media(fileId=file_id)
@@ -103,13 +119,8 @@ def main():
     indice = cargar_indice()
     print(f"Índice existente: {len(indice)} fotos")
 
-    # Obtener lista de fotos de Drive
-    results = drive_service.files().list(
-        q=f"'{folder_id}' in parents and mimeType contains 'image/' and trashed=false",
-        fields="files(id, name)",
-        pageSize=1000
-    ).execute()
-    fotos_drive = results.get('files', [])
+    # Obtener lista completa de fotos de Drive
+    fotos_drive = listar_fotos_drive(drive_service, folder_id)
     print(f"Fotos en Drive: {len(fotos_drive)}")
 
     # Detectar fotos nuevas (no están en el índice)

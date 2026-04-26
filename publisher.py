@@ -6,7 +6,8 @@ import sys
 import time
 import json
 import random
-from datetime import date, timedelta
+import re
+from datetime import date, datetime, timedelta
 import google.generativeai as genai
 import openai
 from google.oauth2 import service_account
@@ -15,6 +16,11 @@ from googleapiclient.http import MediaIoBaseDownload
 
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
+
+def foto_ya_usada(foto_id=None, foto_nombre=None, ids_usados=None):
+    if not ids_usados:
+        return False
+    return bool((foto_id and foto_id in ids_usados) or (foto_nombre and foto_nombre in ids_usados))
 
 def cargar_historial():
     """Carga el historial de fotos usadas. Devuelve (lista_completa, set_de_ids_recientes)."""
@@ -26,7 +32,14 @@ def cargar_historial():
 
     hoy = date.today()
     limite = hoy - timedelta(days=DIAS_HISTORIAL)
-    ids_usados = {h['id'] for h in historial if date.fromisoformat(h['fecha']) >= limite}
+    ids_usados = set()
+    for h in historial:
+        if date.fromisoformat(h['fecha']) < limite:
+            continue
+        if h.get('id'):
+            ids_usados.add(h['id'])
+        if h.get('nombre'):
+            ids_usados.add(h['nombre'])
     print(f"[Historial] {len(ids_usados)} fotos usadas en los últimos {DIAS_HISTORIAL} días.")
     return historial, ids_usados
 
@@ -222,10 +235,13 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id, ids_usad
 
 
 def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
-    indice_filtrado = [item for item in indice if item['id'] not in ids_usados] if ids_usados else indice
+    indice_filtrado = [
+        item for item in indice
+        if not foto_ya_usada(item.get('id'), item.get('nombre'), ids_usados)
+    ] if ids_usados else indice
     if not indice_filtrado:
-        print("Todas las fotos del índice fueron usadas recientemente. Usando índice completo.")
-        indice_filtrado = indice
+        print("Todas las fotos del índice fueron usadas recientemente. Se usará fallback.")
+        return None
     else:
         print(f"Índice filtrado: {len(indice_filtrado)} fotos disponibles (de {len(indice)} totales).")
 
@@ -253,6 +269,9 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
         if not foto or respuesta.upper() == "NONE":
             print("No se encontró coincidencia en el índice. Se usará fallback.")
             return None
+        if foto_ya_usada(foto.get('id'), foto.get('nombre'), ids_usados):
+            print("La foto elegida ya fue usada recientemente. Se usará fallback.")
+            return None
 
         print(f"Foto seleccionada del índice: {respuesta}")
         return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'])
@@ -277,10 +296,13 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_us
         print("No se encontraron fotos en Drive.")
         return None
 
-    fotos_filtradas = [f for f in fotos if f['id'] not in ids_usados] if ids_usados else fotos
+    fotos_filtradas = [
+        f for f in fotos
+        if not foto_ya_usada(f.get('id'), f.get('name'), ids_usados)
+    ] if ids_usados else fotos
     if not fotos_filtradas:
-        print("Todas las fotos de Drive fueron usadas recientemente. Usando todas.")
-        fotos_filtradas = fotos
+        print("Todas las fotos de Drive fueron usadas recientemente. Se usara fallback.")
+        return None
     else:
         print(f"Drive filtrado: {len(fotos_filtradas)} fotos disponibles (de {len(fotos)} totales).")
 
@@ -308,6 +330,9 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_us
         foto = next((f for f in fotos_filtradas if f['name'] == respuesta), None)
         if not foto or respuesta.upper() == "NONE":
             print("No coincidio ninguna foto de Drive. Se usara fallback.")
+            return None
+        if foto_ya_usada(foto.get('id'), foto.get('name'), ids_usados):
+            print("La foto elegida ya fue usada recientemente. Se usara fallback.")
             return None
 
         file_id = foto['id']
@@ -423,10 +448,13 @@ def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
     if not fotos:
         return None
 
-    fotos_filtradas = [f for f in fotos if f not in ids_usados] if ids_usados else fotos
+    fotos_filtradas = [
+        f for f in fotos
+        if not foto_ya_usada(foto_nombre=f, ids_usados=ids_usados)
+    ] if ids_usados else fotos
     if not fotos_filtradas:
-        print("Todas las fotos reales fueron usadas recientemente. Usando todas.")
-        fotos_filtradas = fotos
+        print("Todas las fotos reales fueron usadas recientemente. Se usara IA.")
+        return None
 
     print(f"Analizando {len(fotos_filtradas)} fotos reales para ver si alguna coincide con el tema...")
 
@@ -474,7 +502,13 @@ def descargar_foto_drive(drive_service, file_id):
         print(f"[Drive] Error descargando imagen: {e}")
         return None
 
-def subir_imagen_a_github(imagen_bytes):
+def nombre_archivo_publicacion(foto_nombre=None):
+    base = os.path.splitext(os.path.basename(foto_nombre or "imagen_post"))[0]
+    base = re.sub(r'[^a-zA-Z0-9_-]+', '-', base).strip('-').lower()[:60] or "imagen-post"
+    timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+    return f"posts/{timestamp}-{base}.jpg"
+
+def subir_imagen_a_github(imagen_bytes, foto_nombre=None):
     """Sube la imagen a GitHub y devuelve la URL raw pública."""
     token = os.environ.get('GITHUB_TOKEN')
     if not token:
@@ -482,7 +516,7 @@ def subir_imagen_a_github(imagen_bytes):
         return None
 
     repo = os.environ.get('GITHUB_REPOSITORY', 'mysterrpj/megagym-publicador-incansable')
-    filename = "imagen_post.jpg"
+    filename = nombre_archivo_publicacion(foto_nombre)
     api_url = f"https://api.github.com/repos/{repo}/contents/{filename}"
     headers = {
         'Authorization': f'token {token}',
@@ -499,7 +533,7 @@ def subir_imagen_a_github(imagen_bytes):
         pass
 
     payload = {
-        'message': 'chore: actualizar imagen del post',
+        'message': f'chore: subir imagen del post {filename}',
         'content': base64.b64encode(imagen_bytes).decode('utf-8')
     }
     if sha:
@@ -591,7 +625,7 @@ def main():
                 print("[Drive→GitHub] Descargando imagen de Drive para publicar via GitHub...")
                 bytes_imagen = descargar_foto_drive(drive_service, foto_id)
                 if bytes_imagen:
-                    imagen_principal = subir_imagen_a_github(bytes_imagen)
+                    imagen_principal = subir_imagen_a_github(bytes_imagen, foto_nombre)
                     if imagen_principal:
                         print("[CDN] Esperando 20 segundos para propagación de GitHub CDN...")
                         time.sleep(20)

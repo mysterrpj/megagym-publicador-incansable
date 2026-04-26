@@ -8,6 +8,10 @@ on:
   # Permite ejecutar manualmente desde la interfaz de GitHub
   workflow_dispatch:
 
+concurrency:
+  group: publicador-megagym
+  cancel-in-progress: false
+
 jobs:
   publicar:
     runs-on: ubuntu-latest
@@ -17,6 +21,8 @@ jobs:
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Instalar Python 3.11
         uses: actions/setup-python@v5
@@ -25,6 +31,9 @@ jobs:
 
       - name: Instalar dependencias
         run: pip install requests google-generativeai openai google-api-python-client google-auth
+
+      - name: Sincronizar historial antes de publicar
+        run: git pull --rebase origin master
 
       - name: Ejecutar el publicador
         env:
@@ -41,7 +50,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
+          git pull --rebase origin master
           git add historial_fotos.json
           git diff --staged --quiet || git commit -m "chore: actualizar historial de fotos usadas"
-          git pull --rebase
+          git pull --rebase origin master
           git push
