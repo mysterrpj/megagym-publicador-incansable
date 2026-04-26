@@ -205,6 +205,80 @@ TEMAS_POR_CATEGORIA = {
         "La semana de descarga: qué es y por qué deberías hacerla",
         "Cómo recuperarte más rápido entre sesiones de entrenamiento",
     ],
+    "tendencias_2026": [
+        "Wearables en el gym: cómo usar pasos, sueño y frecuencia cardiaca sin obsesionarte",
+        "Entrenamientos cortos tipo snack: 20 minutos bien hechos valen más que 2 horas sin plan",
+        "Fuerza funcional: entrena para verte mejor y moverte mejor en la vida real",
+        "Core, equilibrio y movilidad: la base que muchos ignoran hasta que se lesionan",
+        "Entrenar por datos: cómo saber si hoy toca pesado o toca bajar la intensidad",
+        "Longevidad fitness: por qué levantar pesas también es cuidar tu futuro",
+        "Fitness social: entrenar acompañado aumenta la constancia y baja las excusas",
+        "Sueño y recuperación medidos: cuándo los números ayudan y cuándo solo distraen",
+    ],
+    "tecnica_y_errores": [
+        "Tres errores que arruinan tu sentadilla y cómo corregirlos",
+        "Por qué no sientes el pecho en press banca y qué ajustar",
+        "Remo con mancuerna: el detalle que cambia toda la espalda",
+        "Hip thrust bien hecho: menos ego y más control",
+        "Peso muerto sin destruir tu espalda: claves simples antes de cargar más",
+        "Curl de bíceps: por qué balancearte te roba resultados",
+        "Prensa de piernas: profundidad, pies y control para entrenar mejor",
+        "Jalón al pecho: cómo activar la espalda sin convertirlo en bíceps",
+        "Calentamiento inteligente: qué hacer antes de tocar pesos pesados",
+        "Rango de movimiento: por qué las repeticiones a medias frenan tu progreso",
+    ],
+    "rutinas_practicas": [
+        "Rutina de piernas para volver al gym después de una pausa",
+        "Rutina de espalda y bíceps para construir una base fuerte",
+        "Rutina full body para personas con poco tiempo",
+        "Rutina de glúteos sin inventos raros: básicos que sí funcionan",
+        "Rutina push pull legs: cuándo te conviene y cómo empezar",
+        "Entrenamiento de 45 minutos: cómo aprovechar cada serie",
+        "Plan simple para principiantes: máquinas, mancuernas y constancia",
+        "Rutina para quemar grasa sin abandonar las pesas",
+        "Día de torso: ejercicios clave para verte más fuerte",
+        "Día de piernas: cómo entrenar cuádriceps, femorales y glúteos con orden",
+    ],
+    "principiantes": [
+        "Tu primer mes en el gym: qué esperar y qué no exigirle a tu cuerpo",
+        "Cómo perder el miedo a las máquinas si recién empiezas",
+        "Cuánto peso usar cuando no sabes por dónde comenzar",
+        "Por qué copiar la rutina de otro puede frenarte",
+        "La técnica primero: el atajo real para progresar más rápido",
+        "Cómo saber si estás entrenando fuerte o solo cansándote",
+        "Lo que nadie te dice cuando vuelves al gym después de años",
+        "Constancia mínima efectiva: cuántos días necesitas para empezar bien",
+    ],
+    "comunidad_megagym": [
+        "La energía del gym también entrena tu disciplina",
+        "Entrenar rodeado de gente enfocada cambia tu mentalidad",
+        "No necesitas empezar perfecto: necesitas empezar acompañado",
+        "El ambiente importa: por qué elegir un gimnasio donde sí te provoque volver",
+        "Historias reales de progreso: el cambio empieza con una decisión repetida",
+        "Entrenar en MEGAGYM: máquinas, ambiente y gente con ganas de avanzar",
+        "De principiante a constante: el progreso que no siempre se ve en la balanza",
+        "La disciplina se contagia cuando entrenas en el lugar correcto",
+    ],
+    "promociones_y_conversion": [
+        "Por qué pagar el gym no basta: ven y úsalo con un plan real",
+        "Empieza hoy en MEGAGYM: deja de esperar el lunes perfecto",
+        "Tres meses pueden cambiar tu rutina si entrenas con constancia",
+        "El mejor momento para inscribirte fue antes; el segundo mejor es hoy",
+        "Ven a entrenar, conoce el ambiente y decide con hechos",
+        "Promoción activa: convierte tu intención en entrenamiento real",
+        "No compres motivación: compra compromiso y ven a entrenar",
+        "Tu próxima transformación empieza con una visita al gym",
+    ],
+    "nutricion_actual": [
+        "Proteína simple: cómo llegar a tu meta diaria sin complicarte",
+        "Creatina sin mitos: qué hace y qué no hace por tu cuerpo",
+        "Bebidas proteicas y snacks fitness: cómo elegir sin caer en puro marketing",
+        "Fibra y músculo: por qué tu digestión también afecta tu rendimiento",
+        "Comer para entrenar: qué hacer si llegas sin energía al gym",
+        "Déficit calórico sin pasar hambre: estrategia antes que castigo",
+        "Volumen limpio: cómo subir masa sin convertirlo en excusa para comer de todo",
+        "Pre-entreno real: comida, sueño y agua antes que estimulantes",
+    ],
 }
 
 
@@ -505,9 +579,10 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
        - Un gancho fuerte en la primera línea.
        - Desarrollo del valor educativo/motivador.
        - Un CTA (llamado a la acción) al final.
-    3. Máximo 1,500 caracteres en total. Sé directo y evita explicaciones largas.
-    4. NO uses hashtags excesivos, máximo 3.
-    5. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
+    3. Si el tema viene de una tendencia de redes, úsala solo como inspiración. NO copies frases, estructuras exactas ni promesas virales; adapta la idea a MEGAGYM con contenido original.
+    4. Máximo 1,500 caracteres en total. Sé directo y evita explicaciones largas.
+    5. NO uses hashtags excesivos, máximo 3.
+    6. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
     """
     
     try:
