@@ -16,6 +16,7 @@ from googleapiclient.http import MediaIoBaseDownload
 
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
+MAX_INSTAGRAM_CAPTION_CHARS = 1800
 
 def foto_ya_usada(foto_id=None, foto_nombre=None, ids_usados=None):
     if not ids_usados:
@@ -386,6 +387,26 @@ def get_memory_context():
         print("Error: No se encontro el archivo memory.md con la voz de la marca.")
         sys.exit(1)
 
+def limitar_caption_instagram(texto, max_chars=MAX_INSTAGRAM_CAPTION_CHARS):
+    texto = texto.strip()
+    if len(texto) <= max_chars:
+        return texto
+
+    limite = max_chars - 3
+    corte = max(
+        texto.rfind("\n\n", 0, limite),
+        texto.rfind(". ", 0, limite),
+        texto.rfind("! ", 0, limite),
+        texto.rfind("? ", 0, limite),
+        texto.rfind(" ", 0, limite),
+    )
+    if corte < int(max_chars * 0.65):
+        corte = limite
+
+    texto_recortado = texto[:corte].rstrip()
+    print(f"[Caption] Texto recortado de {len(texto)} a {len(texto_recortado)} caracteres.")
+    return texto_recortado + "..."
+
 def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para ocupados"):
     print(f"Generando nuevo post de Instagram sobre: '{tema}'...")
     
@@ -402,13 +423,14 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
        - Un gancho fuerte en la primera línea.
        - Desarrollo del valor educativo/motivador.
        - Un CTA (llamado a la acción) al final.
-    3. NO uses hashtags excesivos, máximo 3.
-    4. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
+    3. Máximo 1,500 caracteres en total. Sé directo y evita explicaciones largas.
+    4. NO uses hashtags excesivos, máximo 3.
+    5. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
     """
     
     try:
         respuesta = modelo.generate_content(prompt)
-        return respuesta.text.strip()
+        return limitar_caption_instagram(respuesta.text)
     except Exception as e:
         print(f"Error generando contenido con Gemini: {e}")
         sys.exit(1)
