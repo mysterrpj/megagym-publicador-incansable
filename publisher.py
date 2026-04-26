@@ -31,6 +31,16 @@ def normalizar_texto(texto):
     texto = "".join(c for c in texto if not unicodedata.combining(c))
     return texto.lower()
 
+def texto_visual_indice(item):
+    partes = [
+        item.get('nombre_sugerido'),
+        item.get('categoria_visual'),
+        item.get('tipo_visual'),
+        item.get('descripcion'),
+        item.get('nombre'),
+    ]
+    return " ".join(str(p) for p in partes if p)
+
 def firma_visual(descripcion=None, nombre=None):
     base = normalizar_texto(descripcion or nombre or "")
     tokens = re.findall(r"[a-z0-9]+", base)
@@ -52,7 +62,7 @@ def cargar_firmas_indice():
 
     firmas = {}
     for item in indice:
-        firma = firma_visual(item.get('descripcion'), item.get('nombre'))
+        firma = firma_visual(texto_visual_indice(item), item.get('nombre'))
         if not firma:
             continue
         if item.get('id'):
@@ -300,7 +310,7 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
             item.get('id'),
             item.get('nombre'),
             ids_usados,
-            firma_visual(item.get('descripcion'), item.get('nombre'))
+            firma_visual(texto_visual_indice(item), item.get('nombre'))
         )
     ] if ids_usados else indice
     if not indice_filtrado:
@@ -309,7 +319,15 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
     else:
         print(f"Índice filtrado: {len(indice_filtrado)} fotos disponibles (de {len(indice)} totales).")
 
-    descripciones = [f"{item['nombre']}: {item['descripcion']}" for item in indice_filtrado]
+    descripciones = [
+        (
+            f"{item['nombre']} | sugerido: {item.get('nombre_sugerido', 'sin-nombre')} "
+            f"| categoria: {item.get('categoria_visual', 'otro')} "
+            f"| tipo: {item.get('tipo_visual', 'otro')} "
+            f"| descripcion: {item.get('descripcion', '')}"
+        )
+        for item in indice_filtrado
+    ]
 
     prompt = f"""
     Tengo las siguientes fotos indexadas de mi gimnasio: {descripciones}
@@ -333,13 +351,13 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
         if not foto or respuesta.upper() == "NONE":
             print("No se encontró coincidencia en el índice. Se usará fallback.")
             return None
-        foto_firma = firma_visual(foto.get('descripcion'), foto.get('nombre'))
+        foto_firma = firma_visual(texto_visual_indice(foto), foto.get('nombre'))
         if foto_ya_usada(foto.get('id'), foto.get('nombre'), ids_usados, foto_firma):
             print("La foto elegida ya fue usada recientemente. Se usará fallback.")
             return None
 
         print(f"Foto seleccionada del índice: {respuesta}")
-        return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'], foto.get('descripcion'))
+        return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'], texto_visual_indice(foto))
     except Exception as e:
         print(f"Error seleccionando foto del índice: {e}")
         return None

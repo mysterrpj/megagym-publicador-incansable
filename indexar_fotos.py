@@ -2,6 +2,8 @@ import os
 import sys
 import json
 import io
+import re
+import unicodedata
 import google.generativeai as genai
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -69,6 +71,46 @@ def guardar_indice(indice):
         json.dump(list(indice.values()), f, ensure_ascii=False, indent=2)
 
 
+def slugify(texto):
+    texto = unicodedata.normalize("NFKD", texto or "")
+    texto = "".join(c for c in texto if not unicodedata.combining(c))
+    texto = texto.lower()
+    texto = re.sub(r"[^a-z0-9]+", "-", texto).strip("-")
+    return texto[:70] or "foto-gimnasio"
+
+
+def normalizar_categoria(categoria):
+    permitidas = {
+        "entrenamiento", "fuerza", "cardio", "nutricion", "recuperacion",
+        "promocion", "transformacion", "selfie", "ambiente", "staff", "logo", "otro"
+    }
+    categoria = slugify(categoria).replace("-", "_")
+    return categoria if categoria in permitidas else "otro"
+
+
+def parsear_metadata(texto, nombre_original):
+    try:
+        data = json.loads(texto)
+    except json.JSONDecodeError:
+        return {
+            "descripcion": texto.strip(),
+            "nombre_sugerido": slugify(nombre_original),
+            "categoria_visual": "otro",
+            "tipo_visual": "otro"
+        }
+
+    tipo_visual = slugify(data.get("tipo_visual", "otro")).replace("-", "_")
+    if tipo_visual not in {"foto_real", "flyer", "logo", "otro"}:
+        tipo_visual = "otro"
+
+    return {
+        "descripcion": str(data.get("descripcion", "")).strip(),
+        "nombre_sugerido": slugify(data.get("nombre_sugerido") or nombre_original),
+        "categoria_visual": normalizar_categoria(data.get("categoria_visual", "otro")),
+        "tipo_visual": tipo_visual
+    }
+
+
 def listar_fotos_drive(drive_service, folder_id):
     fotos = []
     page_token = None
@@ -85,7 +127,7 @@ def listar_fotos_drive(drive_service, folder_id):
             return fotos
 
 
-def describir_imagen(modelo, drive_service, file_id, nombre):
+def analizar_imagen(modelo, drive_service, file_id, nombre):
     try:
         request = drive_service.files().get_media(fileId=file_id)
         buffer = io.BytesIO()
@@ -97,16 +139,39 @@ def describir_imagen(modelo, drive_service, file_id, nombre):
         imagen = PIL.Image.open(buffer)
 
         respuesta = modelo.generate_content([
-            "Describe esta imagen de gimnasio en UNA sola oración corta en español. "
-            "Menciona: qué hay en la imagen (persona, ejercicio, equipo, flyer, logo), "
-            "si es foto real o diseño gráfico, y el contexto general. "
-            "Solo la descripción, sin introducciones.",
+            """
+            Analiza esta imagen de gimnasio y responde SOLO con JSON valido, sin markdown.
+            Campos:
+            - descripcion: una sola oracion corta en espanol. Menciona persona, ejercicio, equipo, flyer/logo si aplica y contexto.
+            - nombre_sugerido: slug corto en minusculas, sin extension, 3 a 7 palabras separadas por guiones.
+            - categoria_visual: una de entrenamiento, fuerza, cardio, nutricion, recuperacion, promocion, transformacion, selfie, ambiente, staff, logo, otro.
+            - tipo_visual: una de foto_real, flyer, logo, otro.
+            """,
             imagen
         ])
-        return respuesta.text.strip()
+        return parsear_metadata(respuesta.text.strip(), nombre)
     except Exception as e:
-        print(f"  Error describiendo {nombre}: {e}")
+        print(f"  Error analizando {nombre}: {e}")
         return None
+
+
+def completar_metadata_existente(modelo, drive_service, indice):
+    pendientes = [
+        item for item in indice.values()
+        if not item.get('nombre_sugerido') or not item.get('categoria_visual') or not item.get('tipo_visual')
+    ]
+    if not pendientes:
+        return False
+
+    print(f"Fotos existentes con metadata incompleta: {len(pendientes)}")
+    for i, item in enumerate(pendientes, 1):
+        print(f"[metadata {i}/{len(pendientes)}] Analizando: {item['nombre']}...")
+        metadata = analizar_imagen(modelo, drive_service, item['id'], item['nombre'])
+        if not metadata:
+            continue
+        item.update(metadata)
+        print(f"  -> {metadata['nombre_sugerido']} ({metadata['categoria_visual']}, {metadata['tipo_visual']})")
+    return True
 
 
 def main():
@@ -137,21 +202,23 @@ def main():
 
     print(f"Fotos nuevas a indexar: {len(fotos_nuevas)}")
 
-    if not fotos_nuevas and not eliminadas:
+    metadata_actualizada = completar_metadata_existente(modelo, drive_service, indice)
+
+    if not fotos_nuevas and not eliminadas and not metadata_actualizada:
         print("El índice ya está actualizado. No hay cambios.")
         return
 
     # Indexar fotos nuevas
     for i, foto in enumerate(fotos_nuevas, 1):
         print(f"[{i}/{len(fotos_nuevas)}] Analizando: {foto['name']}...")
-        descripcion = describir_imagen(modelo, drive_service, foto['id'], foto['name'])
-        if descripcion:
+        metadata = analizar_imagen(modelo, drive_service, foto['id'], foto['name'])
+        if metadata:
             indice[foto['id']] = {
                 'id': foto['id'],
                 'nombre': foto['name'],
-                'descripcion': descripcion
+                **metadata
             }
-            print(f"  -> {descripcion}")
+            print(f"  -> {metadata['nombre_sugerido']} ({metadata['categoria_visual']}, {metadata['tipo_visual']})")
 
     guardar_indice(indice)
     print(f"\nÍndice actualizado: {len(indice)} fotos en total.")
