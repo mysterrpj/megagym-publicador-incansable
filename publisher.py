@@ -7,6 +7,7 @@ import time
 import json
 import random
 import re
+import unicodedata
 from datetime import date, datetime, timedelta
 import google.generativeai as genai
 import openai
@@ -17,11 +18,57 @@ from googleapiclient.http import MediaIoBaseDownload
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
 MAX_INSTAGRAM_CAPTION_CHARS = 1800
+PALABRAS_FIRMA_IGNORADAS = {
+    "foto", "fotografia", "real", "imagen", "muestra", "gimnasio", "megagym",
+    "mega", "gym", "persona", "hombre", "mujer", "joven", "atletica", "deportiva",
+    "deportivo", "ropa", "equipo", "fondo", "contexto", "donde", "esta", "este",
+    "esta", "una", "uno", "unos", "unas", "con", "del", "las", "los", "para",
+    "por", "que", "sin", "junto", "sobre", "tipo", "diseno", "grafico"
+}
 
-def foto_ya_usada(foto_id=None, foto_nombre=None, ids_usados=None):
+def normalizar_texto(texto):
+    texto = unicodedata.normalize("NFKD", texto or "")
+    texto = "".join(c for c in texto if not unicodedata.combining(c))
+    return texto.lower()
+
+def firma_visual(descripcion=None, nombre=None):
+    base = normalizar_texto(descripcion or nombre or "")
+    tokens = re.findall(r"[a-z0-9]+", base)
+    utiles = []
+    for token in tokens:
+        if len(token) < 4 or token in PALABRAS_FIRMA_IGNORADAS:
+            continue
+        utiles.append(token)
+        if len(utiles) >= 10:
+            break
+    return "|".join(utiles) if utiles else None
+
+def cargar_firmas_indice():
+    try:
+        with open('indice_fotos.json', 'r', encoding='utf-8') as f:
+            indice = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+    firmas = {}
+    for item in indice:
+        firma = firma_visual(item.get('descripcion'), item.get('nombre'))
+        if not firma:
+            continue
+        if item.get('id'):
+            firmas[item['id']] = firma
+        if item.get('nombre'):
+            firmas[item['nombre']] = firma
+    return firmas
+
+def foto_ya_usada(foto_id=None, foto_nombre=None, ids_usados=None, foto_firma=None):
     if not ids_usados:
         return False
-    return bool((foto_id and foto_id in ids_usados) or (foto_nombre and foto_nombre in ids_usados))
+    return bool(
+        (foto_id and foto_id in ids_usados)
+        or (foto_nombre and foto_nombre in ids_usados)
+        or (foto_firma and foto_firma in ids_usados)
+    )
 
 def cargar_historial():
     """Carga el historial de fotos usadas. Devuelve (lista_completa, set_de_ids_recientes)."""
@@ -34,19 +81,30 @@ def cargar_historial():
     hoy = date.today()
     limite = hoy - timedelta(days=DIAS_HISTORIAL)
     ids_usados = set()
+    firmas_indice = cargar_firmas_indice()
     for h in historial:
         if date.fromisoformat(h['fecha']) < limite:
             continue
         if h.get('id'):
             ids_usados.add(h['id'])
+            if h['id'] in firmas_indice:
+                ids_usados.add(firmas_indice[h['id']])
         if h.get('nombre'):
             ids_usados.add(h['nombre'])
+            if h['nombre'] in firmas_indice:
+                ids_usados.add(firmas_indice[h['nombre']])
+        if h.get('firma'):
+            ids_usados.add(h['firma'])
     print(f"[Historial] {len(ids_usados)} fotos usadas en los últimos {DIAS_HISTORIAL} días.")
     return historial, ids_usados
 
-def guardar_historial(historial, foto_id, foto_nombre):
+def guardar_historial(historial, foto_id, foto_nombre, descripcion=None):
     """Agrega una foto al historial y guarda el archivo. Devuelve la lista actualizada."""
-    historial.append({"id": foto_id, "nombre": foto_nombre, "fecha": date.today().isoformat()})
+    entrada = {"id": foto_id, "nombre": foto_nombre, "fecha": date.today().isoformat()}
+    firma = firma_visual(descripcion, foto_nombre)
+    if firma:
+        entrada["firma"] = firma
+    historial.append(entrada)
     # Limpiar entradas más antiguas que 60 días para no crecer infinitamente
     limite = date.today() - timedelta(days=60)
     historial = [h for h in historial if date.fromisoformat(h['fecha']) >= limite]
@@ -238,7 +296,12 @@ def seleccionar_foto_drive(modelo, tema_post, drive_service, folder_id, ids_usad
 def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
     indice_filtrado = [
         item for item in indice
-        if not foto_ya_usada(item.get('id'), item.get('nombre'), ids_usados)
+        if not foto_ya_usada(
+            item.get('id'),
+            item.get('nombre'),
+            ids_usados,
+            firma_visual(item.get('descripcion'), item.get('nombre'))
+        )
     ] if ids_usados else indice
     if not indice_filtrado:
         print("Todas las fotos del índice fueron usadas recientemente. Se usará fallback.")
@@ -270,12 +333,13 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
         if not foto or respuesta.upper() == "NONE":
             print("No se encontró coincidencia en el índice. Se usará fallback.")
             return None
-        if foto_ya_usada(foto.get('id'), foto.get('nombre'), ids_usados):
+        foto_firma = firma_visual(foto.get('descripcion'), foto.get('nombre'))
+        if foto_ya_usada(foto.get('id'), foto.get('nombre'), ids_usados, foto_firma):
             print("La foto elegida ya fue usada recientemente. Se usará fallback.")
             return None
 
         print(f"Foto seleccionada del índice: {respuesta}")
-        return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'])
+        return (f"https://lh3.googleusercontent.com/d/{foto['id']}", foto['id'], foto['nombre'], foto.get('descripcion'))
     except Exception as e:
         print(f"Error seleccionando foto del índice: {e}")
         return None
@@ -338,7 +402,7 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_us
 
         file_id = foto['id']
         print(f"Foto seleccionada de Drive: {respuesta} (id: {file_id})")
-        return (f"https://lh3.googleusercontent.com/d/{file_id}", file_id, foto['name'])
+        return (f"https://lh3.googleusercontent.com/d/{file_id}", file_id, foto['name'], None)
     except Exception as e:
         print(f"Error seleccionando foto de Drive: {e}")
         return None
@@ -504,7 +568,7 @@ def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
 
         # Generar URL de GitHub Raw para que Make.com pueda acceder
         repo_url = "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master"
-        return (f"{repo_url}/fotos_reales/{respuesta}", respuesta, respuesta)
+        return (f"{repo_url}/fotos_reales/{respuesta}", respuesta, respuesta, None)
     except Exception as e:
         print(f"Error en seleccion hibrida: {e}")
         return None
@@ -637,9 +701,14 @@ def main():
             imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
 
         if imagen_resultado:
-            imagen_url_original, foto_id, foto_nombre = imagen_resultado
-            historial = guardar_historial(historial, foto_id, foto_nombre)
+            imagen_url_original, foto_id, foto_nombre = imagen_resultado[:3]
+            foto_descripcion = imagen_resultado[3] if len(imagen_resultado) > 3 else None
+            historial = guardar_historial(historial, foto_id, foto_nombre, foto_descripcion)
             ids_usados.add(foto_id)  # Evitar repetir en la misma ejecución (2 posts/día)
+            ids_usados.add(foto_nombre)
+            foto_firma = firma_visual(foto_descripcion, foto_nombre)
+            if foto_firma:
+                ids_usados.add(foto_firma)
 
             # Si la imagen viene de Drive, descargarla y subirla a GitHub
             # (Instagram no acepta URLs de Drive directamente)
