@@ -23,7 +23,7 @@ No necesitas tener la PC encendida. Todo corre en la nube.
 2. El sistema elige un tema del día (de 56 temas en 5 categorías, o fecha especial si aplica).
 3. **Gemini AI** genera el texto del post.
 4. El sistema elige la mejor imagen de tu Google Drive usando el **índice inteligente**.
-5. Si no encuentra imagen adecuada, usa **ChatGPT Images** para generarla.
+5. Si no encuentra imagen adecuada, no genera imagen por IA salvo que se active `PERMITIR_IMAGENES_IA=true`.
 6. Envía todo a **Make.com**, que publica en Facebook e Instagram.
 
 ---

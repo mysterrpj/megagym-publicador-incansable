@@ -19,6 +19,7 @@ from googleapiclient.http import MediaIoBaseDownload
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
 MAX_INSTAGRAM_CAPTION_CHARS = 1800
 OPENAI_IMAGE_MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "chatgpt-image-latest")
+PERMITIR_IMAGENES_IA = os.environ.get("PERMITIR_IMAGENES_IA", "false").lower() == "true"
 PALABRAS_FIRMA_IGNORADAS = {
     "foto", "fotografia", "real", "imagen", "muestra", "gimnasio", "megagym",
     "mega", "gym", "persona", "hombre", "mujer", "joven", "atletica", "deportiva",
@@ -818,7 +819,7 @@ def main():
         print(ig_text)
         print("----------------------------------------------\n")
 
-        # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales > ChatGPT Images)
+        # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales; IA desactivada por defecto)
         imagen_resultado = None
 
         if drive_service:
@@ -848,15 +849,19 @@ def main():
                         print("[CDN] Esperando 20 segundos para propagación de GitHub CDN...")
                         time.sleep(20)
                     else:
-                        print("[Fallback] GitHub falló. Usando ChatGPT Images...")
-                        imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
+                        print("[Fallback] GitHub falló. Se omitirá la imagen generada por IA.")
+                        imagen_principal = None
                 else:
-                    print("[Fallback] Descarga de Drive falló. Usando ChatGPT Images...")
-                    imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
+                    print("[Fallback] Descarga de Drive falló. Se omitirá la imagen generada por IA.")
+                    imagen_principal = None
             else:
                 imagen_principal = imagen_url_original
         else:
-            imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
+            if PERMITIR_IMAGENES_IA:
+                imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
+            else:
+                print("[Imagen] No se encontró imagen adecuada y la generación con IA está desactivada.")
+                imagen_principal = None
 
         print(f"URL de imagen final a publicar: {imagen_principal}")
 

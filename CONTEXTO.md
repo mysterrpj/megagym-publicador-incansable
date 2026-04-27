@@ -13,7 +13,7 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
         1. Busca en el **índice inteligente** (`indice_fotos.json`) — descripciones visuales generadas por Gemini de cada foto de Drive.
         2. Si no hay índice, busca por nombres de archivo en **Google Drive** (carpeta MEGAGYM con +400 fotos).
         3. Si no hay coincidencia, busca en la carpeta local `fotos_reales/`.
-        4. Si tampoco hay coincidencia, usa **ChatGPT Images** (`chatgpt-image-latest` por defecto) para generar una imagen fotorrealista.
+        4. Si tampoco hay coincidencia, no genera imagen por IA salvo que `PERMITIR_IMAGENES_IA=true`.
     *   Envía los datos (imagen + texto) a un Webhook de **Make.com** para la publicación final en Facebook e Instagram.
 2.  **Automatización (GitHub Actions):**
     *   El flujo se dispara automáticamente **2 veces al día**:
@@ -35,7 +35,7 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 | Secret | Descripción |
 |--------|-------------|
 | `GOOGLE_API_KEY` | API Key de Gemini (proyecto: megagym-publicador-incansable) |
-| `OPENAI_API_KEY` | API Key de OpenAI para ChatGPT Images |
+| `OPENAI_API_KEY` | API Key de OpenAI (solo necesaria si se reactivan imágenes IA) |
 | `MAKE_WEBHOOK_URL` | URL del webhook de Make.com |
 | `GOOGLE_DRIVE_CREDENTIALS` | JSON de la Service Account para acceder a Drive |
 | `GOOGLE_DRIVE_FOLDER_ID` | ID de la carpeta MEGAGYM en Drive |
@@ -43,7 +43,7 @@ Automatizar al 100% la creación y publicación de contenido para las redes soci
 ## ✅ Logros Alcanzados
 *   [x] Publicación automática desde la nube funcionando (Facebook + Instagram).
 *   [x] 2 publicaciones diarias automáticas (8 AM y 8 PM hora Perú).
-*   [x] Motor híbrido: Índice inteligente > Drive > fotos_reales > ChatGPT Images.
+*   [x] Motor híbrido: Índice inteligente > Drive > fotos_reales. Imágenes IA desactivadas por defecto.
 *   [x] 56 temas organizados en 5 categorías (fuerza, cardio, nutrición, mentalidad, recuperación).
 *   [x] Fechas especiales peruanas hardcodeadas (Fiestas Patrias, Día de la Madre, etc.).
 *   [x] Indexación visual automática de fotos con Gemini (sin renombrar archivos).
@@ -85,7 +85,7 @@ Cuando expira:
 *   Python 3.11
 *   Google Generative AI (Gemini 2.5 Flash) — texto e imagen visual
 *   Google Drive API v3 (Service Account)
-*   OpenAI API (ChatGPT Images / `chatgpt-image-latest`)
+*   OpenAI API opcional (ChatGPT Images / `chatgpt-image-latest`, desactivado por defecto)
 *   GitHub Actions
 *   Make.com (integración con Meta Business Suite)
 
