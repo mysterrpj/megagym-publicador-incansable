@@ -18,6 +18,7 @@ from googleapiclient.http import MediaIoBaseDownload
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
 DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
 MAX_INSTAGRAM_CAPTION_CHARS = 1800
+OPENAI_IMAGE_MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "chatgpt-image-latest")
 PALABRAS_FIRMA_IGNORADAS = {
     "foto", "fotografia", "real", "imagen", "muestra", "gimnasio", "megagym",
     "mega", "gym", "persona", "hombre", "mujer", "joven", "atletica", "deportiva",
@@ -592,25 +593,58 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
         print(f"Error generando contenido con Gemini: {e}")
         sys.exit(1)
 
-def generar_imagen_dalle(cliente_openai, tema):
-    print(f"Generando imagen con DALL-E para el tema: '{tema}'...")
+def descargar_imagen_url(url):
+    try:
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        return response.content
+    except Exception as e:
+        print(f"[Imagen] Error descargando imagen generada: {e}")
+        return None
+
+def generar_imagen_chatgpt(cliente_openai, tema):
+    print(f"Generando imagen con {OPENAI_IMAGE_MODEL} para el tema: '{tema}'...")
     
-    # Preparamos un prompt especifico en ingles para DALL-E para los mejores resultados
-    prompt_visual = f"A highly realistic, gritty, and raw photography representing this fitness topic: '{tema}'. The image should be professional gym photography, dark and moody lighting, real people, no text whatsoever, no overlays."
+    prompt_visual = f"""
+    Create a highly realistic professional gym photo for MEGAGYM in Peru.
+    Topic: {tema}
+
+    Style: authentic fitness photography, real people, modern black and yellow gym atmosphere,
+    energetic but natural lighting, Instagram-ready composition, no fake text, no captions,
+    no logos unless they are subtle gym branding, no watermarks, no distorted hands or faces.
+    """
     
     MAX_INTENTOS = 3
     for intento in range(1, MAX_INTENTOS + 1):
         try:
             response = cliente_openai.images.generate(
-                model="dall-e-3",
+                model=OPENAI_IMAGE_MODEL,
                 prompt=prompt_visual,
                 size="1024x1024",
-                quality="standard",
+                quality="high",
                 n=1,
             )
-            return response.data[0].url
+            image = response.data[0]
+            imagen_bytes = None
+            if getattr(image, "b64_json", None):
+                imagen_bytes = base64.b64decode(image.b64_json)
+            elif getattr(image, "url", None):
+                imagen_bytes = descargar_imagen_url(image.url)
+                if not imagen_bytes:
+                    return image.url
+
+            if not imagen_bytes:
+                print("[OpenAI] No se recibio imagen en base64 ni URL.")
+                sys.exit(1)
+
+            imagen_url = subir_imagen_a_github(imagen_bytes, f"{OPENAI_IMAGE_MODEL}-{tema}.jpg")
+            if imagen_url:
+                return imagen_url
+
+            print("[OpenAI] No se pudo subir la imagen generada a GitHub.")
+            sys.exit(1)
         except Exception as e:
-            print(f"[Intento {intento}/{MAX_INTENTOS}] Error generando imagen con DALL-E: {e}")
+            print(f"[Intento {intento}/{MAX_INTENTOS}] Error generando imagen con {OPENAI_IMAGE_MODEL}: {e}")
             if intento < MAX_INTENTOS:
                 print(f"Esperando 10 segundos antes de reintentar...")
                 time.sleep(10)
@@ -784,7 +818,7 @@ def main():
         print(ig_text)
         print("----------------------------------------------\n")
 
-        # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales > DALL-E)
+        # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales > ChatGPT Images)
         imagen_resultado = None
 
         if drive_service:
@@ -814,15 +848,15 @@ def main():
                         print("[CDN] Esperando 20 segundos para propagación de GitHub CDN...")
                         time.sleep(20)
                     else:
-                        print("[Fallback] GitHub falló. Usando DALL-E...")
-                        imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+                        print("[Fallback] GitHub falló. Usando ChatGPT Images...")
+                        imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
                 else:
-                    print("[Fallback] Descarga de Drive falló. Usando DALL-E...")
-                    imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+                    print("[Fallback] Descarga de Drive falló. Usando ChatGPT Images...")
+                    imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
             else:
                 imagen_principal = imagen_url_original
         else:
-            imagen_principal = generar_imagen_dalle(cliente_openai, tema_dia)
+            imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
 
         print(f"URL de imagen final a publicar: {imagen_principal}")
 
