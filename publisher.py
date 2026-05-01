@@ -8,8 +8,10 @@ import json
 import random
 import re
 import unicodedata
+import csv
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
+from urllib.parse import quote
 import google.generativeai as genai
 import openai
 from google.oauth2 import service_account
@@ -17,10 +19,17 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 
 # ─── HISTORIAL DE FOTOS ─────────────────────────────────────────────────────
-DIAS_HISTORIAL = 30  # No repetir fotos usadas en los últimos N días
+DIAS_HISTORIAL = int(os.environ.get("DIAS_HISTORIAL_FOTOS", "45"))
+MAX_CANDIDATAS_IA = int(os.environ.get("MAX_CANDIDATAS_IA", "18"))
+CALENDARIO_PUBLICACIONES = os.environ.get("CALENDARIO_PUBLICACIONES", "calendario_publicaciones.csv")
+CARPETA_POSTS_PROGRAMADOS = os.environ.get("CARPETA_POSTS_PROGRAMADOS", "posts_programados")
 MAX_INSTAGRAM_CAPTION_CHARS = 1800
 OPENAI_IMAGE_MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "chatgpt-image-latest")
 PERMITIR_IMAGENES_IA = os.environ.get("PERMITIR_IMAGENES_IA", "false").lower() == "true"
+DEFAULT_IMAGE_URL = os.environ.get(
+    "DEFAULT_IMAGE_URL",
+    "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master/fotos_reales/flyer_personalizado_1.jpg"
+)
 PALABRAS_FIRMA_IGNORADAS = {
     "foto", "fotografia", "real", "imagen", "muestra", "gimnasio", "megagym",
     "mega", "gym", "persona", "hombre", "mujer", "joven", "atletica", "deportiva",
@@ -33,6 +42,11 @@ def normalizar_texto(texto):
     texto = unicodedata.normalize("NFKD", texto or "")
     texto = "".join(c for c in texto if not unicodedata.combining(c))
     return texto.lower()
+
+def clave_archivo(nombre):
+    base = os.path.splitext(os.path.basename(nombre or ""))[0]
+    base = normalizar_texto(base)
+    return re.sub(r"[^a-z0-9]+", "", base)
 
 def texto_visual_indice(item):
     partes = [
@@ -77,9 +91,11 @@ def cargar_firmas_indice():
 def foto_ya_usada(foto_id=None, foto_nombre=None, ids_usados=None, foto_firma=None):
     if not ids_usados:
         return False
+    foto_clave = clave_archivo(foto_nombre)
     return bool(
         (foto_id and foto_id in ids_usados)
         or (foto_nombre and foto_nombre in ids_usados)
+        or (foto_clave and foto_clave in ids_usados)
         or (foto_firma and foto_firma in ids_usados)
     )
 
@@ -91,6 +107,7 @@ def cargar_historial():
     except (FileNotFoundError, json.JSONDecodeError):
         historial = []
 
+    historial = deduplicar_historial(historial)
     hoy = date.today()
     limite = hoy - timedelta(days=DIAS_HISTORIAL)
     ids_usados = set()
@@ -104,23 +121,51 @@ def cargar_historial():
                 ids_usados.add(firmas_indice[h['id']])
         if h.get('nombre'):
             ids_usados.add(h['nombre'])
+            clave = clave_archivo(h['nombre'])
+            if clave:
+                ids_usados.add(clave)
             if h['nombre'] in firmas_indice:
                 ids_usados.add(firmas_indice[h['nombre']])
         if h.get('firma'):
             ids_usados.add(h['firma'])
+        if h.get('clave'):
+            ids_usados.add(h['clave'])
     print(f"[Historial] {len(ids_usados)} fotos usadas en los últimos {DIAS_HISTORIAL} días.")
     return historial, ids_usados
+
+def deduplicar_historial(historial):
+    vistos = set()
+    depurado = []
+    for entrada in sorted(historial, key=lambda h: h.get("fecha", ""), reverse=True):
+        claves = [
+            entrada.get("id"),
+            entrada.get("nombre"),
+            entrada.get("clave") or clave_archivo(entrada.get("nombre")),
+            entrada.get("firma"),
+        ]
+        claves = [clave for clave in claves if clave]
+        if any(clave in vistos for clave in claves):
+            continue
+        vistos.update(claves)
+        if entrada.get("nombre") and not entrada.get("clave"):
+            entrada["clave"] = clave_archivo(entrada.get("nombre"))
+        depurado.append(entrada)
+    return sorted(depurado, key=lambda h: h.get("fecha", ""))
 
 def guardar_historial(historial, foto_id, foto_nombre, descripcion=None):
     """Agrega una foto al historial y guarda el archivo. Devuelve la lista actualizada."""
     entrada = {"id": foto_id, "nombre": foto_nombre, "fecha": date.today().isoformat()}
+    clave = clave_archivo(foto_nombre)
+    if clave:
+        entrada["clave"] = clave
     firma = firma_visual(descripcion, foto_nombre)
     if firma:
         entrada["firma"] = firma
     historial.append(entrada)
     # Limpiar entradas más antiguas que 60 días para no crecer infinitamente
-    limite = date.today() - timedelta(days=60)
+    limite = date.today() - timedelta(days=max(DIAS_HISTORIAL, 60))
     historial = [h for h in historial if date.fromisoformat(h['fecha']) >= limite]
+    historial = deduplicar_historial(historial)
     with open('historial_fotos.json', 'w', encoding='utf-8') as f:
         json.dump(historial, f, ensure_ascii=False, indent=2)
     print(f"[Historial] Foto guardada: {foto_nombre}")
@@ -321,6 +366,63 @@ def seleccionar_temas_del_dia():
 
     return temas
 
+def slot_publicacion_actual(ahora=None):
+    ahora = ahora or datetime.now(ZoneInfo("America/Lima"))
+    if ahora.hour < 14:
+        return "08:00"
+    return "20:00"
+
+def url_imagen_programada(imagen_archivo):
+    imagen_archivo = (imagen_archivo or "").strip()
+    if not imagen_archivo:
+        return None
+    if imagen_archivo.startswith(("http://", "https://")):
+        return imagen_archivo
+
+    repo = os.environ.get("GITHUB_REPOSITORY", "mysterrpj/megagym-publicador-incansable")
+    branch = os.environ.get("GITHUB_REF_NAME", "master")
+    ruta = f"{CARPETA_POSTS_PROGRAMADOS}/{imagen_archivo}".replace("\\", "/")
+    return f"https://raw.githubusercontent.com/{repo}/{branch}/{quote(ruta, safe='/')}"
+
+def cargar_publicacion_programada():
+    if not os.path.exists(CALENDARIO_PUBLICACIONES):
+        return None
+
+    ahora = datetime.now(ZoneInfo("America/Lima"))
+    fecha_objetivo = os.environ.get("PUBLICACION_FECHA", ahora.date().isoformat())
+    hora_objetivo = os.environ.get("PUBLICACION_HORA", slot_publicacion_actual(ahora))
+
+    try:
+        with open(CALENDARIO_PUBLICACIONES, "r", encoding="utf-8-sig", newline="") as f:
+            filas = list(csv.DictReader(f))
+    except Exception as e:
+        print(f"[Calendario] No se pudo leer {CALENDARIO_PUBLICACIONES}: {e}")
+        return None
+
+    for fila in filas:
+        estado = (fila.get("estado") or "").strip().lower()
+        if estado not in {"lista", "programada", "ready"}:
+            continue
+        if (fila.get("fecha") or "").strip() != fecha_objetivo:
+            continue
+        if (fila.get("hora") or "").strip() != hora_objetivo:
+            continue
+
+        imagen_archivo = (fila.get("imagen_archivo") or "").strip()
+        publicacion = {
+            "fecha": fecha_objetivo,
+            "hora": hora_objetivo,
+            "tema": (fila.get("tema") or "").strip(),
+            "copy": (fila.get("copy") or "").strip(),
+            "imagen_archivo": imagen_archivo,
+            "imagen_url": url_imagen_programada(imagen_archivo),
+        }
+        print(f"[Calendario] Publicacion programada encontrada: {fecha_objetivo} {hora_objetivo}")
+        return publicacion
+
+    print(f"[Calendario] No hay publicacion lista para {fecha_objetivo} {hora_objetivo}. Se usara el flujo automatico.")
+    return None
+
 def get_webhook_url():
     url = os.environ.get("MAKE_WEBHOOK_URL")
     if not url:
@@ -396,6 +498,10 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
     else:
         print(f"Índice filtrado: {len(indice_filtrado)} fotos disponibles (de {len(indice)} totales).")
 
+    random.shuffle(indice_filtrado)
+    indice_candidatas = indice_filtrado[:MAX_CANDIDATAS_IA]
+    print(f"Seleccion IA limitada a {len(indice_candidatas)} candidatas aleatorias para variar publicaciones.")
+
     descripciones = [
         (
             f"{item['nombre']} | sugerido: {item.get('nombre_sugerido', 'sin-nombre')} "
@@ -403,7 +509,7 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
             f"| tipo: {item.get('tipo_visual', 'otro')} "
             f"| descripcion: {item.get('descripcion', '')}"
         )
-        for item in indice_filtrado
+        for item in indice_candidatas
     ]
 
     prompt = f"""
@@ -424,7 +530,7 @@ def _seleccionar_por_indice(modelo, tema_post, indice, ids_usados=None):
         respuesta = modelo.generate_content(prompt).text.strip()
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
 
-        foto = next((item for item in indice_filtrado if item['nombre'] == respuesta), None)
+        foto = next((item for item in indice_candidatas if item['nombre'] == respuesta), None)
         if not foto or respuesta.upper() == "NONE":
             print("No se encontró coincidencia en el índice. Se usará fallback.")
             return None
@@ -466,8 +572,10 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_us
     else:
         print(f"Drive filtrado: {len(fotos_filtradas)} fotos disponibles (de {len(fotos)} totales).")
 
-    print(f"Analizando {len(fotos_filtradas)} fotos en Drive por nombre...")
-    nombres = [f['name'] for f in fotos_filtradas]
+    random.shuffle(fotos_filtradas)
+    fotos_candidatas = fotos_filtradas[:MAX_CANDIDATAS_IA]
+    print(f"Analizando {len(fotos_candidatas)} fotos candidatas en Drive por nombre...")
+    nombres = [f['name'] for f in fotos_candidatas]
 
     prompt = f"""
     Tengo las siguientes fotos en mi biblioteca de Google Drive: {nombres}
@@ -487,7 +595,7 @@ def _seleccionar_por_nombres(modelo, tema_post, drive_service, folder_id, ids_us
         respuesta = modelo.generate_content(prompt).text.strip()
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
 
-        foto = next((f for f in fotos_filtradas if f['name'] == respuesta), None)
+        foto = next((f for f in fotos_candidatas if f['name'] == respuesta), None)
         if not foto or respuesta.upper() == "NONE":
             print("No coincidio ninguna foto de Drive. Se usara fallback.")
             return None
@@ -671,10 +779,12 @@ def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
         print("Todas las fotos reales fueron usadas recientemente. Se usara IA.")
         return None
 
-    print(f"Analizando {len(fotos_filtradas)} fotos reales para ver si alguna coincide con el tema...")
+    random.shuffle(fotos_filtradas)
+    fotos_candidatas = fotos_filtradas[:MAX_CANDIDATAS_IA]
+    print(f"Analizando {len(fotos_candidatas)} fotos reales candidatas para ver si alguna coincide con el tema...")
 
     prompt = f"""
-    Tengo las siguientes fotos en mi biblioteca: {fotos_filtradas}
+    Tengo las siguientes fotos en mi biblioteca: {fotos_candidatas}
     He escrito un post sobre el siguiente tema: "{tema_post}"
 
     ¿Cuál de estas fotos encaja mejor con el tema del post?
@@ -689,7 +799,7 @@ def seleccionar_imagen_fotorreal(modelo, tema_post, ids_usados=None):
         respuesta = modelo.generate_content(prompt).text.strip()
         respuesta = respuesta.replace('"', '').replace("'", "").strip()
 
-        if respuesta.upper() == "NONE" or respuesta not in fotos_filtradas:
+        if respuesta.upper() == "NONE" or respuesta not in fotos_candidatas:
             print("No se encontro una foto real que coincida. Se usara IA.")
             return None
 
@@ -767,6 +877,39 @@ def subir_imagen_a_github(imagen_bytes, foto_nombre=None):
         print(f"[GitHub] Error subiendo imagen: {e}")
         return None
 
+def validar_imagen_publica(image_url):
+    """Verifica que Make/Meta podran descargar la imagen antes de enviarla."""
+    if not image_url:
+        return None
+
+    headers = {"User-Agent": "MEGAGYM-Publisher/1.0"}
+    try:
+        response = requests.get(image_url, headers=headers, stream=True, timeout=20)
+        response.raise_for_status()
+        content_type = response.headers.get("Content-Type", "").lower()
+        if "image/" not in content_type:
+            print(f"[Imagen] URL descartada: Content-Type no es imagen ({content_type or 'sin tipo'}).")
+            return None
+
+        first_chunk = next(response.iter_content(chunk_size=1024), b"")
+        if not first_chunk:
+            print("[Imagen] URL descartada: la imagen respondio vacia.")
+            return None
+
+        print(f"[Imagen] URL publica validada ({content_type}).")
+        return image_url
+    except Exception as e:
+        print(f"[Imagen] URL descartada: no se pudo descargar antes de enviar a Make ({e}).")
+        return None
+
+def imagen_publica_o_respaldo(image_url):
+    imagen_validada = validar_imagen_publica(image_url)
+    if imagen_validada:
+        return imagen_validada
+
+    print("[Imagen] Usando imagen de respaldo para evitar enviar URL vacia a Make.")
+    return validar_imagen_publica(DEFAULT_IMAGE_URL)
+
 def send_to_make(webhook_url, network, text, image_url=None):
     print(f"Enviando post para {network} a Make.com...")
     
@@ -778,15 +921,25 @@ def send_to_make(webhook_url, network, text, image_url=None):
     if image_url:
         payload["image_url"] = image_url
     
-    try:
-        response = requests.post(webhook_url, json=payload, timeout=10)
-        if response.status_code == 200:
-            print(f"[Exito] Post de {network} recibido por Make.com.")
-        else:
+    for intento in range(1, 4):
+        try:
+            response = requests.post(webhook_url, json=payload, timeout=20)
+            if 200 <= response.status_code < 300:
+                print(f"[Exito] Post de {network} recibido por Make.com.")
+                return True
+
             print(f"[Error] Fallo la conexion con Make.com: HTTP {response.status_code}")
             print(response.text)
-    except requests.exceptions.RequestException as e:
-        print(f"[Error] Excepcion al intentar conectar con Make.com: {e}")
+            if response.status_code < 500:
+                return False
+        except requests.exceptions.RequestException as e:
+            print(f"[Error] Excepcion al intentar conectar con Make.com: {e}")
+
+        if intento < 3:
+            print(f"[Make] Reintentando envio de {network} en 10 segundos...")
+            time.sleep(10)
+
+    return False
 
 def get_whatsapp_import_config():
     url = os.environ.get("WHATSAPP_IMPORT_URL")
@@ -902,15 +1055,23 @@ def main():
     historial, ids_usados = cargar_historial()
 
     # 2. Elegir Temas del Día (2 publicaciones, fechas especiales + categorías)
-    temas_del_dia = seleccionar_temas_del_dia()
-    print(f"\n[INFO] Temas del día: {temas_del_dia}")
+    publicacion_programada = cargar_publicacion_programada()
+    if publicacion_programada:
+        publicaciones_del_dia = [publicacion_programada]
+    else:
+        publicaciones_del_dia = [
+            {"tema": tema, "copy": "", "imagen_archivo": "", "imagen_url": None}
+            for tema in seleccionar_temas_del_dia()
+        ]
+    print(f"\n[INFO] Publicaciones a procesar: {[p['tema'] for p in publicaciones_del_dia]}")
 
-    for i, tema_dia in enumerate(temas_del_dia, 1):
+    for i, publicacion in enumerate(publicaciones_del_dia, 1):
+        tema_dia = publicacion["tema"]
         print(f"\n{'='*50}")
-        print(f"[PUBLICACIÓN {i} de {len(temas_del_dia)}] Tema: {tema_dia}")
+        print(f"[PUBLICACION {i} de {len(publicaciones_del_dia)}] Tema: {tema_dia}")
         print(f"{'='*50}")
 
-        ig_text = generar_post_con_ia(modelo_gemini, memoria_marca, tema=tema_dia)
+        ig_text = publicacion.get("copy") or generar_post_con_ia(modelo_gemini, memoria_marca, tema=tema_dia)
 
         print("\n---------------- POST GENERADO ---------------")
         print(ig_text)
@@ -918,11 +1079,14 @@ def main():
 
         # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales; IA desactivada por defecto)
         imagen_resultado = None
+        imagen_principal = publicacion.get("imagen_url")
+        if imagen_principal:
+            print(f"[Calendario] Usando imagen planificada: {publicacion.get('imagen_archivo')}")
 
-        if drive_service:
+        if not imagen_principal and drive_service:
             imagen_resultado = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id, ids_usados)
 
-        if not imagen_resultado:
+        if not imagen_principal and not imagen_resultado:
             imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
 
         if imagen_resultado:
@@ -931,6 +1095,9 @@ def main():
             historial = guardar_historial(historial, foto_id, foto_nombre, foto_descripcion)
             ids_usados.add(foto_id)  # Evitar repetir en la misma ejecución (2 posts/día)
             ids_usados.add(foto_nombre)
+            foto_clave = clave_archivo(foto_nombre)
+            if foto_clave:
+                ids_usados.add(foto_clave)
             foto_firma = firma_visual(foto_descripcion, foto_nombre)
             if foto_firma:
                 ids_usados.add(foto_firma)
@@ -953,13 +1120,22 @@ def main():
                     imagen_principal = None
             else:
                 imagen_principal = imagen_url_original
-        else:
+        elif not imagen_principal:
             if PERMITIR_IMAGENES_IA:
                 imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
             else:
                 print("[Imagen] No se encontró imagen adecuada y la generación con IA está desactivada.")
                 imagen_principal = None
 
+        imagen_programada_url = publicacion.get("imagen_url")
+        imagen_principal = imagen_publica_o_respaldo(imagen_principal)
+        if imagen_programada_url and imagen_principal == imagen_programada_url:
+            historial = guardar_historial(
+                historial,
+                f"calendario:{publicacion.get('imagen_archivo')}",
+                publicacion.get("imagen_archivo"),
+                tema_dia,
+            )
         print(f"URL de imagen final a publicar: {imagen_principal}")
 
         print(f"\n--- Enviando Post {i} a Facebook ---")
@@ -974,7 +1150,7 @@ def main():
         print(f"\n--- Enviando Post {i} a WhatsApp ---")
         send_to_whatsapp_import(whatsapp_import_config, i, ig_text, image_url=imagen_principal)
 
-        if i < len(temas_del_dia):
+        if i < len(publicaciones_del_dia):
             print("\n[Esperando 10 segundos antes de la siguiente publicación...]")
             time.sleep(10)
 

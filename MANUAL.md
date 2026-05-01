@@ -50,6 +50,26 @@ No necesitas tener la PC encendida. Todo corre en la nube.
 
 ---
 
+## Calendario de 30 días con fotos exactas
+
+El archivo `calendario_publicaciones.csv` permite planificar 2 publicaciones diarias por 30 días.
+
+Columnas principales:
+```
+fecha,hora,estado,tema,imagen_archivo,copy
+```
+
+Uso recomendado:
+1. Revisa el tema de cada fila.
+2. Prepara la foto adecuada con el nombre indicado en `imagen_archivo`.
+3. Coloca la foto en la carpeta `posts_programados/`.
+4. Cambia `estado` de `pendiente` a `lista`.
+5. Si llenas `copy`, el sistema publicará ese texto exacto. Si lo dejas vacío, Gemini genera el texto usando el tema.
+
+El publicador solo usa filas con estado `lista`, `programada` o `ready`. Las filas `pendiente` no se publican todavía, así el sistema actual sigue funcionando mientras preparas las 60 fotos.
+
+---
+
 ## ▶️ Cómo publicar ahora mismo (manual)
 
 Ve a GitHub → pestaña **Actions** → **"Publicador Automatico MEGAGYM"** → **"Run workflow"**.
@@ -145,6 +165,14 @@ Sí. Agrega más líneas cron en `.github/workflows/publicar.yml`.
 
 **¿Qué pasa si hay un error?**
 GitHub Actions muestra el error en el log. Al siguiente horario intenta de nuevo automáticamente.
+
+**Si Make.com desactiva el escenario**
+1. En Make.com abre el escenario → **History** → ejecución en rojo → **Details**.
+2. Si el error menciona OAuth, token, permissions o Facebook Pages, ve a **Connections** y usa **Reauthorize** en la conexión de Facebook/Instagram.
+3. Ve a **Show queue** o **Incomplete executions**, elimina o resuelve las ejecuciones fallidas y reactiva el escenario.
+4. Para que no vuelva a tumbarse por un error aislado, agrega un **Error handler** en los módulos de Facebook/Instagram y termina esa ruta con **Ignore/Resume** o guardando el fallo en una tabla/log.
+
+El publicador valida la URL de imagen antes de enviarla a Make. Si la imagen no es pública o no responde como imagen, la descarta para no mandar a Make una URL que pueda romper la ejecución.
 
 **¿Cómo sé que publicó correctamente?**
 Ve a GitHub → Actions → clic en la última ejecución. Deberías ver:
