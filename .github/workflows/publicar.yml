@@ -44,6 +44,10 @@ jobs:
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          WHATSAPP_IMPORT_URL: ${{ secrets.WHATSAPP_IMPORT_URL }}
+          WHATSAPP_IMPORT_KEY: ${{ secrets.WHATSAPP_IMPORT_KEY }}
+          WHATSAPP_IMPORT_USER_ID: ${{ secrets.WHATSAPP_IMPORT_USER_ID }}
+          WHATSAPP_STATUS_TIMES: "12:00,21:00"
         run: python publisher.py
 
       - name: Guardar historial de fotos en el repositorio

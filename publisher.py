@@ -9,6 +9,7 @@ import random
 import re
 import unicodedata
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 import google.generativeai as genai
 import openai
 from google.oauth2 import service_account
@@ -787,6 +788,101 @@ def send_to_make(webhook_url, network, text, image_url=None):
     except requests.exceptions.RequestException as e:
         print(f"[Error] Excepcion al intentar conectar con Make.com: {e}")
 
+def get_whatsapp_import_config():
+    url = os.environ.get("WHATSAPP_IMPORT_URL")
+    key = os.environ.get("WHATSAPP_IMPORT_KEY")
+    user_id = os.environ.get("WHATSAPP_IMPORT_USER_ID")
+    schedule_times = [
+        value.strip()
+        for value in os.environ.get("WHATSAPP_STATUS_TIMES", "12:00,21:00").split(",")
+        if value.strip()
+    ]
+
+    if not url or not key:
+        print("[WhatsApp] Importacion desactivada: faltan WHATSAPP_IMPORT_URL o WHATSAPP_IMPORT_KEY.")
+        return None
+
+    return {
+        "url": url,
+        "key": key,
+        "user_id": user_id,
+        "schedule_times": schedule_times,
+    }
+
+def build_external_post_id(post_index):
+    run_id = os.environ.get("GITHUB_RUN_ID")
+    if run_id:
+        return f"github-run-{run_id}-post-{post_index}"
+
+    return f"local-{datetime.now(ZoneInfo('America/Lima')).strftime('%Y%m%d-%H%M%S')}-post-{post_index}"
+
+def schedule_time_for_whatsapp(config, post_index):
+    lima_now = datetime.now(ZoneInfo("America/Lima"))
+    schedule_times = config.get("schedule_times") or ["12:00", "21:00"]
+    candidates = []
+
+    for slot in schedule_times:
+        try:
+            hour_text, minute_text = slot.split(":", 1)
+            candidates.append(
+                lima_now.replace(
+                    hour=int(hour_text),
+                    minute=int(minute_text),
+                    second=0,
+                    microsecond=0,
+                )
+            )
+        except ValueError:
+            print(f"[WhatsApp] Horario invalido '{slot}'. Se omitira.")
+
+    if not candidates:
+        candidates.append(lima_now.replace(hour=12, minute=0, second=0, microsecond=0))
+        candidates.append(lima_now.replace(hour=21, minute=0, second=0, microsecond=0))
+
+    future_candidates = sorted(candidate for candidate in candidates if candidate > lima_now)
+    if future_candidates:
+        return future_candidates[0]
+
+    return min(candidates) + timedelta(days=1)
+
+def send_to_whatsapp_import(config, post_index, text, image_url=None):
+    if not config:
+        return
+
+    schedule_time = schedule_time_for_whatsapp(config, post_index)
+    payload = {
+        "source": "megagym-auto-redes",
+        "externalPostId": build_external_post_id(post_index),
+        "message": text,
+        "assetUrl": image_url,
+        "assetType": "image" if image_url else None,
+        "scheduleTime": schedule_time.isoformat(),
+    }
+
+    if config.get("user_id"):
+        payload["userId"] = config["user_id"]
+
+    headers = {
+        "Content-Type": "application/json",
+        "x-import-key": config["key"],
+    }
+
+    try:
+        print(f"[WhatsApp] Enviando post al importador de estados para {schedule_time.strftime('%Y-%m-%d %H:%M')}...")
+        response = requests.post(config["url"], json=payload, headers=headers, timeout=15)
+        data = response.json() if response.text else {}
+        if response.status_code == 200 and data.get("ok"):
+            estado = "ya existia" if data.get("duplicate") else "programado"
+            print(f"[WhatsApp] Estado {estado}. taskId={data.get('taskId')}")
+        else:
+            print(f"[WhatsApp] Error importando estado: HTTP {response.status_code}")
+            print(response.text)
+    except requests.exceptions.RequestException as e:
+        print(f"[WhatsApp] Excepcion conectando con el importador: {e}")
+    except ValueError:
+        print(f"[WhatsApp] Respuesta no JSON del importador: HTTP {response.status_code}")
+        print(response.text)
+
 def main():
     # Fix para imprimir emojis en consola de Windows
     if sys.platform == "win32":
@@ -799,6 +895,7 @@ def main():
     cliente_openai = setup_openai()
     memoria_marca = get_memory_context()
     webhook_url = get_webhook_url()
+    whatsapp_import_config = get_whatsapp_import_config()
     drive_service, drive_folder_id = setup_drive()
 
     # Cargar historial de fotos usadas
@@ -873,6 +970,9 @@ def main():
 
         print(f"\n--- Enviando Post {i} a Instagram ---")
         send_to_make(webhook_url, "instagram", ig_text, image_url=imagen_principal)
+
+        print(f"\n--- Enviando Post {i} a WhatsApp ---")
+        send_to_whatsapp_import(whatsapp_import_config, i, ig_text, image_url=imagen_principal)
 
         if i < len(temas_del_dia):
             print("\n[Esperando 10 segundos antes de la siguiente publicación...]")

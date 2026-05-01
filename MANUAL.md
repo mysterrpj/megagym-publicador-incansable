@@ -158,3 +158,36 @@ No. El sistema usa el **índice inteligente** — Gemini analiza visualmente cad
 
 **¿Puedo subir fotos desde el móvil?**
 Sí. Súbelas a Google Drive y luego ejecuta el indexador desde GitHub Actions → "Indexar Fotos Drive" → "Run workflow".
+---
+
+## Enviar tambien a estados de WhatsApp
+
+El publicador puede reenviar cada post generado al proyecto `create-next-app` para que quede como tarea de estado de WhatsApp.
+
+Secrets necesarios en GitHub:
+```
+WHATSAPP_IMPORT_URL=https://us-central1-status-architect-stitch.cloudfunctions.net/importExternalPost
+WHATSAPP_IMPORT_KEY=la_misma_clave_configurada_en_firebase
+WHATSAPP_IMPORT_USER_ID=uid_del_usuario_dueno_de_las_tareas
+```
+
+Opcional:
+```
+WHATSAPP_STATUS_TIMES=12:00,21:00
+```
+
+Por defecto, cada post se programa en el proximo horario libre: `12:00` o `21:00`, hora Peru. Asi el post de Facebook/Instagram de las `08:00` queda para WhatsApp a las `12:00`, y el de las `20:00` queda para WhatsApp a las `21:00`.
+
+Grilla resultante:
+```
+08:00 megagym
+10:30 streaming
+12:00 megagym importado
+13:00 streaming
+16:30 megagym
+19:30 streaming
+21:00 megagym importado
+22:00 streaming
+```
+
+Si faltan `WHATSAPP_IMPORT_URL` o `WHATSAPP_IMPORT_KEY`, el publicador sigue enviando a Facebook/Instagram y omite WhatsApp.
