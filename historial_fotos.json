@@ -1,187 +1,153 @@
 [
   {
-    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
-    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "fecha": "2026-04-03"
-  },
-  {
-    "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
-    "nombre": "file_00000000bedc71f5967307b616c7232f.png",
-    "fecha": "2026-04-03"
-  },
-  {
     "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
     "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
-    "fecha": "2026-04-04"
-  },
-  {
-    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
-    "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "fecha": "2026-04-04"
-  },
-  {
-    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
-    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-04-06"
+    "fecha": "2026-04-04",
+    "clave": "file0000000066b871f5bbdedca6560aa598"
   },
   {
     "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
     "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
-    "fecha": "2026-04-06"
+    "fecha": "2026-04-06",
+    "clave": "file00000000294c71f5b9c0a68ea443b218"
   },
   {
     "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
     "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
-    "fecha": "2026-04-07"
+    "fecha": "2026-04-07",
+    "clave": "file00000000478c720ea7678a31f1dd4d13"
   },
   {
     "id": "1y5vkLbeWV6esVWPnXrd6Ot61FT2Ju2gL",
     "nombre": "file_00000000298871f596e37ca867546d7a.png",
-    "fecha": "2026-04-07"
+    "fecha": "2026-04-07",
+    "clave": "file00000000298871f596e37ca867546d7a"
   },
   {
     "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
     "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
-    "fecha": "2026-04-08"
-  },
-  {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-04-09"
-  },
-  {
-    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
-    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-04-10"
+    "fecha": "2026-04-08",
+    "clave": "file000000000cd071f5b5cbb30108a19066"
   },
   {
     "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
     "nombre": "file_000000002dc471f59ca589d473676fb9.png",
-    "fecha": "2026-04-11"
+    "fecha": "2026-04-11",
+    "clave": "file000000002dc471f59ca589d473676fb9"
   },
   {
     "id": "1tJWJNcf3kRV-MEGE2TscZq1b0boBHYnT",
     "nombre": "file_00000000a72871f5ac37a544941aa4a0.png",
-    "fecha": "2026-04-11"
+    "fecha": "2026-04-11",
+    "clave": "file00000000a72871f5ac37a544941aa4a0"
   },
   {
     "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
     "nombre": "file_000000007e14720ea6d07a291750be85.png",
-    "fecha": "2026-04-12"
-  },
-  {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-12"
+    "fecha": "2026-04-12",
+    "clave": "file000000007e14720ea6d07a291750be85"
   },
   {
     "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
     "nombre": "dianaalopezh-20260331-0002.jpg",
-    "fecha": "2026-04-13"
+    "fecha": "2026-04-13",
+    "clave": "dianaalopezh202603310002"
   },
   {
     "id": "128k7sQJLFNu8rA_0PezbFf2E2dygYtCc",
     "nombre": "file_000000006e4c720ebd2615da24ab7e51.png",
-    "fecha": "2026-04-13"
+    "fecha": "2026-04-13",
+    "clave": "file000000006e4c720ebd2615da24ab7e51"
   },
   {
     "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
     "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
-    "fecha": "2026-04-14"
+    "fecha": "2026-04-14",
+    "clave": "file00000000d61071f58bd9f8c09ec51c96"
   },
   {
     "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
     "nombre": "file_00000000422471f58b87dd30219afa0f.png",
-    "fecha": "2026-04-14"
+    "fecha": "2026-04-14",
+    "clave": "file00000000422471f58b87dd30219afa0f"
   },
   {
     "id": "1lCzAvQcQ2E42NFeOtfifSrinm_QTx0aU",
     "nombre": "file_00000000f754720e95e29c906df78cdd.png",
-    "fecha": "2026-04-15"
+    "fecha": "2026-04-15",
+    "clave": "file00000000f754720e95e29c906df78cdd"
   },
   {
     "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
     "nombre": "file_0000000023a471f59d86082de291dba4.png",
-    "fecha": "2026-04-16"
+    "fecha": "2026-04-16",
+    "clave": "file0000000023a471f59d86082de291dba4"
   },
   {
     "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
     "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
-    "fecha": "2026-04-17"
+    "fecha": "2026-04-17",
+    "clave": "file000000004300720eb4e7f55c4b563e14"
   },
   {
     "id": "1dvOreRIjS5jk_wfYEemFMcoZkqGJFfbS",
     "nombre": "file_000000003c3c720ebe6bcd30e239e75a.png",
-    "fecha": "2026-04-18"
-  },
-  {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-04-18"
+    "fecha": "2026-04-18",
+    "clave": "file000000003c3c720ebe6bcd30e239e75a"
   },
   {
     "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
     "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-04-19"
+    "fecha": "2026-04-19",
+    "clave": "file00000000fed071f5a922b4de72830ef1"
   },
   {
     "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
     "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-04-19"
-  },
-  {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-04-20"
+    "fecha": "2026-04-19",
+    "clave": "file0000000099dc720ebd2a29250bdd8f00"
   },
   {
     "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
     "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "fecha": "2026-04-21"
-  },
-  {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-22"
-  },
-  {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-23"
+    "fecha": "2026-04-21",
+    "clave": "file000000003e0071f59a4b69ceb7ad7f94"
   },
   {
     "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
     "nombre": "file_00000000bedc71f5967307b616c7232f.png",
-    "fecha": "2026-04-23"
+    "fecha": "2026-04-23",
+    "clave": "file00000000bedc71f5967307b616c7232f"
   },
   {
     "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
     "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "fecha": "2026-04-24"
+    "fecha": "2026-04-24",
+    "clave": "file000000005998720ebf1114b16d482560"
   },
   {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-04-24"
+    "fecha": "2026-04-24",
+    "clave": "file00000000f17471f58b7d27ba421351e0"
   },
   {
     "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
     "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-25"
-  },
-  {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-25"
-  },
-  {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-26"
+    "fecha": "2026-04-26",
+    "clave": "file00000000c8fc720ea57411b6c719027d"
   },
   {
     "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
     "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
-    "fecha": "2026-04-26"
+    "fecha": "2026-04-26",
+    "clave": "chatgptimage21abr2026185833"
+  },
+  {
+    "id": "calendario:2026-05-01_2000.jpg",
+    "nombre": "2026-05-01_2000.jpg",
+    "fecha": "2026-05-02",
+    "clave": "202605012000",
+    "firma": "disciplina|contagia|cuando|entrenas|lugar|correcto"
   }
 ]
