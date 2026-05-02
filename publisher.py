@@ -400,13 +400,20 @@ def cargar_publicacion_programada():
         return None
 
     for fila in filas:
-        estado = (fila.get("estado") or "").strip().lower()
-        if estado not in {"lista", "programada", "ready"}:
-            continue
         if (fila.get("fecha") or "").strip() != fecha_objetivo:
             continue
         if (fila.get("hora") or "").strip() != hora_objetivo:
             continue
+
+        estado = (fila.get("estado") or "").strip().lower()
+        if estado not in {"lista", "programada", "ready"}:
+            print(f"[Calendario] Publicacion {fecha_objetivo} {hora_objetivo} esta en estado '{estado or 'sin estado'}'. No se publicara fallback automatico.")
+            return {
+                "skip": True,
+                "fecha": fecha_objetivo,
+                "hora": hora_objetivo,
+                "estado": estado,
+            }
 
         imagen_archivo = (fila.get("imagen_archivo") or "").strip()
         publicacion = {
@@ -1079,6 +1086,10 @@ def main():
 
     # 2. Elegir Temas del Día (2 publicaciones, fechas especiales + categorías)
     publicacion_programada = cargar_publicacion_programada()
+    if publicacion_programada and publicacion_programada.get("skip"):
+        print("[Calendario] Ejecucion omitida para evitar una publicacion no planificada.")
+        return
+
     if publicacion_programada:
         publicaciones_del_dia = [publicacion_programada]
     else:
