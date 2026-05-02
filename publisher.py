@@ -969,8 +969,15 @@ def build_external_post_id(post_index):
 
     return f"local-{datetime.now(ZoneInfo('America/Lima')).strftime('%Y%m%d-%H%M%S')}-post-{post_index}"
 
-def schedule_time_for_whatsapp(config, post_index):
+def schedule_time_for_whatsapp(config, post_index, source_date=None, source_time=None):
     lima_now = datetime.now(ZoneInfo("America/Lima"))
+    base_date = lima_now.date()
+    if source_date:
+        try:
+            base_date = date.fromisoformat(str(source_date))
+        except ValueError:
+            print(f"[WhatsApp] Fecha de origen invalida '{source_date}'. Se usara la fecha actual.")
+
     schedule_times = config.get("schedule_times") or ["12:00", "21:00"]
     candidates = []
 
@@ -978,7 +985,7 @@ def schedule_time_for_whatsapp(config, post_index):
         try:
             hour_text, minute_text = slot.split(":", 1)
             candidates.append(
-                lima_now.replace(
+                datetime.combine(base_date, datetime.min.time(), tzinfo=ZoneInfo("America/Lima")).replace(
                     hour=int(hour_text),
                     minute=int(minute_text),
                     second=0,
@@ -992,17 +999,33 @@ def schedule_time_for_whatsapp(config, post_index):
         candidates.append(lima_now.replace(hour=12, minute=0, second=0, microsecond=0))
         candidates.append(lima_now.replace(hour=21, minute=0, second=0, microsecond=0))
 
+    candidates = sorted(candidates)
+
+    if source_time:
+        try:
+            source_hour = int(str(source_time).split(":", 1)[0])
+            slot_index = 0 if source_hour < 12 else min(1, len(candidates) - 1)
+            return candidates[slot_index]
+        except (ValueError, TypeError):
+            print(f"[WhatsApp] Hora de origen invalida '{source_time}'. Se usara el proximo horario disponible.")
+
+    if 1 <= post_index <= len(candidates):
+        selected = candidates[post_index - 1]
+        if selected <= lima_now:
+            selected = selected + timedelta(days=1)
+        return selected
+
     future_candidates = sorted(candidate for candidate in candidates if candidate > lima_now)
     if future_candidates:
         return future_candidates[0]
 
     return min(candidates) + timedelta(days=1)
 
-def send_to_whatsapp_import(config, post_index, text, image_url=None):
+def send_to_whatsapp_import(config, post_index, text, image_url=None, source_date=None, source_time=None):
     if not config:
         return
 
-    schedule_time = schedule_time_for_whatsapp(config, post_index)
+    schedule_time = schedule_time_for_whatsapp(config, post_index, source_date=source_date, source_time=source_time)
     payload = {
         "source": "megagym-auto-redes",
         "externalPostId": build_external_post_id(post_index),
@@ -1148,7 +1171,14 @@ def main():
         send_to_make(webhook_url, "instagram", ig_text, image_url=imagen_principal)
 
         print(f"\n--- Enviando Post {i} a WhatsApp ---")
-        send_to_whatsapp_import(whatsapp_import_config, i, ig_text, image_url=imagen_principal)
+        send_to_whatsapp_import(
+            whatsapp_import_config,
+            i,
+            ig_text,
+            image_url=imagen_principal,
+            source_date=publicacion.get("fecha"),
+            source_time=publicacion.get("hora"),
+        )
 
         if i < len(publicaciones_del_dia):
             print("\n[Esperando 10 segundos antes de la siguiente publicación...]")
