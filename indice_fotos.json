@@ -2,32 +2,50 @@
   {
     "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
     "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "descripcion": "Fotografía real de dos hombres en un gimnasio Megagym, ambos con ropa deportiva negra y amarilla de la marca y su logo, donde uno con bigote señala al otro que sostiene una mancuerna."
+    "descripcion": "Un hombre con uniforme de Megagym instruye a otro que sostiene una mancuerna en el gimnasio.",
+    "nombre_sugerido": "instruccion-entrenamiento-megagym-mancuerna",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1lCzAvQcQ2E42NFeOtfifSrinm_QTx0aU",
     "nombre": "file_00000000f754720e95e29c906df78cdd.png",
-    "descripcion": "Es un diseño gráfico publicitario para el gimnasio MEGAGYM7, que presenta a una mujer sonriente en ropa deportiva junto a equipo de gimnasio, promocionando una oferta de 3 meses por S/150 para la transformación corporal."
+    "descripcion": "Una mujer sonriente en ropa deportiva posa en un gimnasio con mancuernas de fondo, promocionando la oferta '3 meses S/150' y el logo de MEGAGYM en un flyer publicitario.",
+    "nombre_sugerido": "mujer-promocion-gimnasio-megagym-oferta",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
     "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
-    "descripcion": "Un diseño gráfico publicitario sobre una foto real muestra a una mujer ejercitando glúteos con mancuernas en un gimnasio, con un flyer superpuesto que anuncia \"ACTIVA TUS GLÚTEOS\" y \"Construye un trasero fuerte y definido!\" bajo el logo \"MEGAGYM\"."
+    "descripcion": "Una mujer realiza un ejercicio de glúteos con mancuerna en un gimnasio, como parte de un flyer promocional para \"MEGAGYM\" enfocado en activar los glúteos.",
+    "nombre_sugerido": "activa-gluteos-mujer-mancuerna-megagym",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
     "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
-    "descripcion": "Fotografía real de una mujer realizando un ejercicio con mancuernas en un gimnasio \"MEGAGYM\", con más equipo y otra persona en el fondo."
+    "descripcion": "Una mujer realiza peso muerto rumano con mancuernas en el gimnasio Megagym, rodeada de equipamiento y otras personas.",
+    "nombre_sugerido": "mujer-peso-muerto-mancuernas-megagym",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1dvOreRIjS5jk_wfYEemFMcoZkqGJFfbS",
     "nombre": "file_000000003c3c720ebe6bcd30e239e75a.png",
-    "descripcion": "Publicidad gráfica de MEGAGYM mostrando una mujer en forma posando con su teléfono en un gimnasio real con equipo, junto al texto \"Resultados Reales\" y la invitación \"¡Únete Ahora!\"."
+    "descripcion": "Una mujer atlética se toma una selfie en un gimnasio junto a un banco de pesas, destacando el logo 'MEGAGYM' y el mensaje promocional 'RESULTADOS REALES, ¡ÚNETE AHORA!'.",
+    "nombre_sugerido": "mujer-megagym-selfie-resultados-reales",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
     "nombre": "file_0000000023a471f59d86082de291dba4.png",
-    "descripcion": "Fotografía real de una mujer con shorts amarillos y camiseta negra tomándose una selfie en el espejo de un gimnasio \"MEGAGYM\", que muestra equipo amarillo y negro y a otras personas en el fondo."
+    "descripcion": "Una mujer joven con shorts amarillos y camiseta negra se toma una selfie en el espejo de un gimnasio Megagym, mostrando su físico con equipo de fuerza y otras personas de fondo.",
+    "nombre_sugerido": "mujer-selfie-megagym-shorts-amarillos-espejo",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
@@ -87,32 +105,50 @@
   {
     "id": "128k7sQJLFNu8rA_0PezbFf2E2dygYtCc",
     "nombre": "file_000000006e4c720ebd2615da24ab7e51.png",
-    "descripcion": "Un flyer de diseño gráfico para Megagym presenta con fotos reales la transformación física \"antes y después\" de una mujer en un gimnasio."
+    "descripcion": "Una mujer muestra su transformación física de 'antes' a 'después' entre los 47 y 54 años, destacando los resultados del gimnasio Megagym en un flyer promocional.",
+    "nombre_sugerido": "mujer-transformacion-megagym-antes-despues-7-anos",
+    "categoria_visual": "transformacion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
     "nombre": "dianaalopezh-20260331-0002.jpg",
-    "descripcion": "Fotografía real de las piernas y zapatillas de una persona en el suelo de un gimnasio, junto a dos mancuernas (una de 16), sin flyer ni logo, en contexto de entrenamiento."
+    "descripcion": "Una persona con zapatillas y piernas está de pie junto a dos mancuernas, una de 16kg, en el suelo granulado de un gimnasio.",
+    "nombre_sugerido": "persona-mancuernas-suelo-gimnasio",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "descripcion": "Una foto real muestra a una joven mujer con un atuendo deportivo negro y amarillo de 'MEGAGYM', sentada en un banco de gimnasio con una bebida y una pesa, en un ambiente concurrido de ejercicio."
+    "descripcion": "Una joven sonríe y posa sentada en un banco de pesas, vistiendo un top y shorts con el logo de MEGAGYM y sosteniendo una bebida en un gimnasio.",
+    "nombre_sugerido": "mujer-posando-megagym-banco-bebida",
+    "categoria_visual": "promocion",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
     "nombre": "file_000000007e14720ea6d07a291750be85.png",
-    "descripcion": "En una foto real, una mujer se toma una selfie frente al espejo de un gimnasio con máquinas y mancuernas, donde destaca el logo \"MEGAGYM\"."
+    "descripcion": "Una mujer atlética se toma una selfie frente al espejo en un gimnasio llamado MEGAGYM, destacando sus piernas y el ambiente de entrenamiento.",
+    "nombre_sugerido": "mujer-atletica-selfie-gimnasio-megagym",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
     "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
-    "descripcion": "Una foto real muestra a una mujer atlética con pesas en los tobillos tomándose una selfie en el espejo de un gimnasio llamado \"MEGAGYM\", rodeada de mancuernas y equipamiento."
+    "descripcion": "Una mujer se toma una selfie en el gimnasio Megagym, con pesas y máquinas de fondo.",
+    "nombre_sugerido": "mujer-fitness-selfie-gym-megagym",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
     "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
-    "descripcion": "Una foto real de una mujer con un atuendo deportivo negro de líneas amarillas, tomándose una selfie en un moderno gimnasio con equipamiento como un banco y pesas, dominado por los colores negro y amarillo."
+    "descripcion": "Una mujer posa para una selfie en un gimnasio, sentada en un banco junto a equipo de entrenamiento, luciendo un atuendo negro con líneas amarillas y un estuche de teléfono amarillo.",
+    "nombre_sugerido": "mujer-selfie-gimnasio-atuendo-amarillo",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "109vEC35rMWPDiMRzTr0KM53CLxtTo5CN",
@@ -137,7 +173,10 @@
   {
     "id": "1BMCY4OLBbiS3tzdNq65m7XCbW7bV_k31",
     "nombre": "file_00000000a84871f5aa83b4371c9e2332.png",
-    "descripcion": "Fotografía real de un hombre musculoso concentrado realizando un curl de bíceps en una máquina de gimnasio de estilo industrial, donde solo se aprecia el logo de Nike en sus zapatillas, sin flyers ni otras marcas visibles."
+    "descripcion": "Un hombre sin camisa está realizando un ejercicio de curl de bíceps en una máquina específica en un gimnasio.",
+    "nombre_sugerido": "hombre-sin-camisa-biceps-curl-maquina-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1Vl3xttqCBwlCd8Fy8nMsSUzryMrrGARd",
@@ -152,42 +191,66 @@
   {
     "id": "11XTIwtI3IxttQgUfc35g4d2O_Q8pQfhK",
     "nombre": "file_0000000059d0720e8ced93dfbab53b7f.png",
-    "descripcion": "Foto real de una mujer musculosa con ropa deportiva negra posando en un gimnasio, donde se distingue equipo de entrenamiento difuminado al fondo."
+    "descripcion": "Una mujer con físico atlético posa en un gimnasio con máquinas de fuerza al fondo, mostrando su musculatura.",
+    "nombre_sugerido": "mujer-atleta-posando-gimnasio-fuerza-fisico",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1NYqTFFxHqLlyuHcLSARuJefseky66Rx0",
     "nombre": "file_00000000b70871f5abea18bf1864adf7.png",
-    "descripcion": "En esta foto real, una mujer musculosa con ropa deportiva negra se toma una selfie con su móvil en un gimnasio, con mancuernas en el suelo y máquinas de ejercicio al fondo."
+    "descripcion": "Una mujer con ropa deportiva negra posa para una selfie mostrando sus piernas musculosas en un gimnasio con máquinas de fuerza en el fondo.",
+    "nombre_sugerido": "mujer-fuerte-posando-gimnasio-selfie",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1EQaAY3hYr60Na-UG_jCUJuKrQGbDam24",
     "nombre": "file_000000004d2071f595b29ad9af0e4680.png",
-    "descripcion": "Una foto real captura a una mujer sudorosa realizando un ejercicio de fuerza con una máquina de cable y auriculares inalámbricos en un gimnasio oscuro, reflejando su intenso esfuerzo."
+    "descripcion": "Una mujer sudorosa y concentrada realiza un ejercicio de fuerza con una máquina de poleas en un gimnasio.",
+    "nombre_sugerido": "mujer-entrenando-fuerza-poleas-sudor",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
     "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
-    "descripcion": "Una foto real muestra a una mujer sudorosa y concentrada haciendo un ejercicio de brazos con una barra de máquina de cables en un gimnasio, sin flyers ni logos visibles."
+    "descripcion": "Una mujer sudando intensamente realiza un ejercicio de fuerza con barra en una máquina de cables en el gimnasio.",
+    "nombre_sugerido": "mujer-entrenando-fuerza-cable-barra-brazos",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1GZm4c8bzeuCJHJNBHd2vUj13xc7nGad3",
     "nombre": "file_000000003a3c71f5b0d29188f26a3474.png",
-    "descripcion": "Una foto real muestra a una mujer sudorosa realizando un ejercicio de brazos con una máquina de cables en un gimnasio de tonos oscuros y amarillos, llevando auriculares y una camiseta estampada."
+    "descripcion": "Una mujer sudorosa con guantes y auriculares realiza un ejercicio de bicep curl con barra en una máquina de cables en el gimnasio.",
+    "nombre_sugerido": "mujer-ejercitando-bicep-curl-cable",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1Yc7uq2O0H8HCOlI-7RHhF_GFRutIja7X",
     "nombre": "file_000000009270720e90474ab8c37f68c5.png",
-    "descripcion": "Foto real de una mujer sudorosa con gorra \"NY\" y ropa deportiva burdeos, descansando en un banco de gimnasio con un equipo \"ER\" de fondo."
+    "descripcion": "Una mujer visiblemente sudorosa con gorra y ropa deportiva color burdeos descansa sentada en un banco dentro de un gimnasio.",
+    "nombre_sugerido": "mujer-sudorosa-descansando-en-gimnasio",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1m4yxkBs6IYYJ3KM8RZ6bX7yZfeDnGas2",
     "nombre": "ChatGPT Image 22 abr 2026, 22_12_38.png",
-    "descripcion": "Flyer publicitario de MEGAYGM que combina una foto real de una mujer sudada en ropa deportiva sentada en un banco de gimnasio con elementos de diseño gráfico, texto promocional y el logo de la marca."
+    "descripcion": "Una mujer sudorosa en ropa deportiva roja, sentada en un banco de gimnasio con una bebida, promociona el Megagym en un flyer que enfatiza la disciplina y los resultados.",
+    "nombre_sugerido": "mujer-megagym-banco-bebida-promocion",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "19cfVumu-YRoXzPxOPNNgDGuKt_pBRImq",
     "nombre": "ChatGPT Image 22 abr 2026, 22_12_29.png",
-    "descripcion": "Este es un flyer de diseño gráfico promocional para Megagym, mostrando la foto de una mujer fuerte realizando ejercicio con mancuernas en un gimnasio, junto al logo de la marca y mensajes motivacionales."
+    "descripcion": "Una mujer musculosa entrena con una mancuerna en un gimnasio, formando parte de un flyer promocional de Megagym con mensajes motivacionales.",
+    "nombre_sugerido": "mujer-entrena-mancuerna-gimnasio-flyer-megagym",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
