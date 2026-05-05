@@ -198,5 +198,12 @@
     "fecha": "2026-05-05",
     "clave": "202605042000",
     "firma": "empieza|deja|esperar|lunes|perfecto"
+  },
+  {
+    "id": "calendario:2026-05-05_0800.jpg",
+    "nombre": "2026-05-05_0800.jpg",
+    "fecha": "2026-05-05",
+    "clave": "202605050800",
+    "firma": "tres|errores|arruinan|sentadilla|como|corregirlos"
   }
 ]
