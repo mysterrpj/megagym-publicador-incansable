@@ -205,5 +205,12 @@
     "fecha": "2026-05-05",
     "clave": "202605050800",
     "firma": "tres|errores|arruinan|sentadilla|como|corregirlos"
+  },
+  {
+    "id": "calendario:2026-05-05_2000.jpg",
+    "nombre": "2026-05-05_2000.jpg",
+    "fecha": "2026-05-06",
+    "clave": "202605052000",
+    "firma": "ambiente|importa|elegir|provoque|volver"
   }
 ]
