@@ -26,6 +26,8 @@ CARPETA_POSTS_PROGRAMADOS = os.environ.get("CARPETA_POSTS_PROGRAMADOS", "posts_p
 MAX_INSTAGRAM_CAPTION_CHARS = 1800
 OPENAI_IMAGE_MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "chatgpt-image-latest")
 PERMITIR_IMAGENES_IA = os.environ.get("PERMITIR_IMAGENES_IA", "false").lower() == "true"
+GEMINI_MAX_INTENTOS = int(os.environ.get("GEMINI_MAX_INTENTOS", "3"))
+GEMINI_ESPERA_BASE_SEGUNDOS = int(os.environ.get("GEMINI_ESPERA_BASE_SEGUNDOS", "60"))
 DEFAULT_IMAGE_URL = os.environ.get(
     "DEFAULT_IMAGE_URL",
     "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master/fotos_reales/flyer_personalizado_1.jpg"
@@ -681,6 +683,31 @@ def limitar_caption_instagram(texto, max_chars=MAX_INSTAGRAM_CAPTION_CHARS):
     print(f"[Caption] Texto recortado de {len(texto)} a {len(texto_recortado)} caracteres.")
     return texto_recortado + "..."
 
+def extraer_espera_gemini(error):
+    texto = str(error)
+    patrones = [
+        r"retry_delay\s*\{\s*seconds:\s*(\d+)",
+        r"Please retry in\s+(\d+)",
+    ]
+    for patron in patrones:
+        match = re.search(patron, texto, re.IGNORECASE | re.DOTALL)
+        if match:
+            return int(match.group(1)) + 5
+    return GEMINI_ESPERA_BASE_SEGUNDOS
+
+def generar_post_respaldo(tema):
+    print("[Gemini] Usando copy de respaldo para no detener la publicacion.")
+    texto = f"""¿Listo para entrenar con un plan real?
+
+Hoy hablamos de {tema}. En MEGAGYM creemos que los resultados no salen de la suerte: salen de la constancia, la tecnica y un ambiente que te empuja a volver.
+
+No necesitas hacerlo perfecto desde el primer dia. Necesitas empezar, moverte y sostener el habito.
+
+Ven a MEGAGYM y entrena con nosotros.
+
+#Megagym #FitnessReal #EntrenaHoy"""
+    return limitar_caption_instagram(texto)
+
 def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para ocupados"):
     print(f"Generando nuevo post de Instagram sobre: '{tema}'...")
     
@@ -703,12 +730,22 @@ def generar_post_con_ia(modelo, memoria, tema="rutina de cuerpo completo para oc
     6. El resultado debe ser EXCLUSIVAMENTE el copy final. NO incluyas introducciones como "¡Claro!", "Aquí tienes el post" ni explicaciones. Solo el texto que va en Instagram.
     """
     
-    try:
-        respuesta = modelo.generate_content(prompt)
-        return limitar_caption_instagram(respuesta.text)
-    except Exception as e:
-        print(f"Error generando contenido con Gemini: {e}")
-        sys.exit(1)
+    ultimo_error = None
+    for intento in range(1, GEMINI_MAX_INTENTOS + 1):
+        try:
+            respuesta = modelo.generate_content(prompt)
+            return limitar_caption_instagram(respuesta.text)
+        except Exception as e:
+            ultimo_error = e
+            print(f"Error generando contenido con Gemini (intento {intento}/{GEMINI_MAX_INTENTOS}): {e}")
+            if intento >= GEMINI_MAX_INTENTOS:
+                break
+            espera = extraer_espera_gemini(e)
+            print(f"[Gemini] Esperando {espera} segundos antes de reintentar...")
+            time.sleep(espera)
+
+    print(f"[Gemini] No se pudo generar copy tras {GEMINI_MAX_INTENTOS} intentos. Ultimo error: {ultimo_error}")
+    return generar_post_respaldo(tema)
 
 def descargar_imagen_url(url):
     try:
