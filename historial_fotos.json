@@ -179,13 +179,6 @@
     "firma": "primer|esperar|exigirle|cuerpo"
   },
   {
-    "id": "calendario:2026-05-03_2000.jpg",
-    "nombre": "2026-05-03_2000.jpg",
-    "fecha": "2026-05-04",
-    "clave": "202605032000",
-    "firma": "necesitas|empezar|perfecto|necesitas|empezar|acompanado"
-  },
-  {
     "id": "calendario:2026-05-04_0800.jpg",
     "nombre": "2026-05-04_0800.jpg",
     "fecha": "2026-05-04",
@@ -233,5 +226,12 @@
     "fecha": "2026-05-07",
     "clave": "202605070800",
     "firma": "proteina|simple|como|llegar|meta|diaria|complicarte"
+  },
+  {
+    "id": "calendario:2026-05-07_2000.jpg",
+    "nombre": "2026-05-07_2000.jpg",
+    "fecha": "2026-05-08",
+    "clave": "202605072000",
+    "firma": "necesitas|empezar|perfecto|necesitas|empezar|acompanado"
   }
 ]
