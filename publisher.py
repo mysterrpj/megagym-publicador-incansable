@@ -32,6 +32,8 @@ DEFAULT_IMAGE_URL = os.environ.get(
     "DEFAULT_IMAGE_URL",
     "https://raw.githubusercontent.com/mysterrpj/megagym-publicador-incansable/master/fotos_reales/flyer_personalizado_1.jpg"
 )
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
+VIDEO_EXTENSIONS = {".mp4", ".mov", ".m4v"}
 PALABRAS_FIRMA_IGNORADAS = {
     "foto", "fotografia", "real", "imagen", "muestra", "gimnasio", "megagym",
     "mega", "gym", "persona", "hombre", "mujer", "joven", "atletica", "deportiva",
@@ -374,25 +376,40 @@ def slot_publicacion_actual(ahora=None):
         return "08:00"
     return "20:00"
 
-def url_imagen_programada(imagen_archivo):
-    imagen_archivo = (imagen_archivo or "").strip()
-    if not imagen_archivo:
+def detectar_tipo_asset(archivo, tipo=None):
+    tipo = (tipo or "").strip().lower()
+    if tipo in {"imagen", "image"}:
+        return "image"
+    if tipo in {"video", "reel"}:
+        return "video"
+
+    extension = os.path.splitext((archivo or "").split("?", 1)[0].lower())[1]
+    if extension in VIDEO_EXTENSIONS:
+        return "video"
+    return "image"
+
+def url_asset_programado(asset_archivo):
+    asset_archivo = (asset_archivo or "").strip()
+    if not asset_archivo:
         return None
-    if imagen_archivo.startswith(("http://", "https://")):
-        return imagen_archivo
+    if asset_archivo.startswith(("http://", "https://")):
+        return asset_archivo
 
     repo = os.environ.get("GITHUB_REPOSITORY", "mysterrpj/megagym-publicador-incansable")
     branch = os.environ.get("GITHUB_REF_NAME", "master")
-    ruta = f"{CARPETA_POSTS_PROGRAMADOS}/{imagen_archivo}".replace("\\", "/")
+    ruta = f"{CARPETA_POSTS_PROGRAMADOS}/{asset_archivo}".replace("\\", "/")
     return f"https://raw.githubusercontent.com/{repo}/{branch}/{quote(ruta, safe='/')}"
+
+def url_imagen_programada(imagen_archivo):
+    return url_asset_programado(imagen_archivo)
 
 def cargar_publicacion_programada():
     if not os.path.exists(CALENDARIO_PUBLICACIONES):
         return None
 
     ahora = datetime.now(ZoneInfo("America/Lima"))
-    fecha_objetivo = os.environ.get("PUBLICACION_FECHA", ahora.date().isoformat())
-    hora_objetivo = os.environ.get("PUBLICACION_HORA", slot_publicacion_actual(ahora))
+    fecha_objetivo = os.environ.get("PUBLICACION_FECHA") or ahora.date().isoformat()
+    hora_objetivo = os.environ.get("PUBLICACION_HORA") or slot_publicacion_actual(ahora)
 
     try:
         with open(CALENDARIO_PUBLICACIONES, "r", encoding="utf-8-sig", newline="") as f:
@@ -417,14 +434,19 @@ def cargar_publicacion_programada():
                 "estado": estado,
             }
 
-        imagen_archivo = (fila.get("imagen_archivo") or "").strip()
+        asset_archivo = (fila.get("archivo") or fila.get("imagen_archivo") or "").strip()
+        asset_type = detectar_tipo_asset(asset_archivo, fila.get("tipo"))
+        asset_url = url_asset_programado(asset_archivo)
         publicacion = {
             "fecha": fecha_objetivo,
             "hora": hora_objetivo,
             "tema": (fila.get("tema") or "").strip(),
             "copy": (fila.get("copy") or "").strip(),
-            "imagen_archivo": imagen_archivo,
-            "imagen_url": url_imagen_programada(imagen_archivo),
+            "asset_archivo": asset_archivo,
+            "asset_type": asset_type,
+            "asset_url": asset_url,
+            "imagen_archivo": asset_archivo,
+            "imagen_url": asset_url if asset_type == "image" else None,
         }
         print(f"[Calendario] Publicacion programada encontrada: {fecha_objetivo} {hora_objetivo}")
         return publicacion
@@ -923,27 +945,42 @@ def subir_imagen_a_github(imagen_bytes, foto_nombre=None):
 
 def validar_imagen_publica(image_url):
     """Verifica que Make/Meta podran descargar la imagen antes de enviarla."""
-    if not image_url:
+    return validar_asset_publico(image_url, "image")
+
+def validar_asset_publico(asset_url, asset_type="image"):
+    """Verifica que Make/Meta podran descargar el asset antes de enviarlo."""
+    if not asset_url:
         return None
 
+    asset_type = detectar_tipo_asset(asset_url, asset_type)
     headers = {"User-Agent": "MEGAGYM-Publisher/1.0"}
     try:
-        response = requests.get(image_url, headers=headers, stream=True, timeout=20)
+        response = requests.get(asset_url, headers=headers, stream=True, timeout=20)
         response.raise_for_status()
         content_type = response.headers.get("Content-Type", "").lower()
-        if "image/" not in content_type:
+        if asset_type == "image" and "image/" not in content_type:
             print(f"[Imagen] URL descartada: Content-Type no es imagen ({content_type or 'sin tipo'}).")
+            return None
+        if asset_type == "video" and "video/" not in content_type:
+            extension = os.path.splitext(asset_url.split("?", 1)[0].lower())[1]
+            if extension not in VIDEO_EXTENSIONS or "application/octet-stream" not in content_type:
+                print(f"[Video] URL descartada: Content-Type no es video ({content_type or 'sin tipo'}).")
+                return None
+
+        content_length = response.headers.get("Content-Length")
+        if asset_type == "video" and content_length and int(content_length) <= 0:
+            print("[Video] URL descartada: el video respondio vacio.")
             return None
 
         first_chunk = next(response.iter_content(chunk_size=1024), b"")
         if not first_chunk:
-            print("[Imagen] URL descartada: la imagen respondio vacia.")
+            print(f"[{asset_type.capitalize()}] URL descartada: el archivo respondio vacio.")
             return None
 
-        print(f"[Imagen] URL publica validada ({content_type}).")
-        return image_url
+        print(f"[{asset_type.capitalize()}] URL publica validada ({content_type}).")
+        return asset_url
     except Exception as e:
-        print(f"[Imagen] URL descartada: no se pudo descargar antes de enviar a Make ({e}).")
+        print(f"[{asset_type.capitalize()}] URL descartada: no se pudo descargar antes de enviar a Make ({e}).")
         return None
 
 def imagen_publica_o_respaldo(image_url):
@@ -954,16 +991,40 @@ def imagen_publica_o_respaldo(image_url):
     print("[Imagen] Usando imagen de respaldo para evitar enviar URL vacia a Make.")
     return validar_imagen_publica(DEFAULT_IMAGE_URL)
 
-def send_to_make(webhook_url, network, text, image_url=None):
+def asset_publico_o_respaldo(asset_url, asset_type="image"):
+    asset_type = detectar_tipo_asset(asset_url, asset_type)
+    asset_validado = validar_asset_publico(asset_url, asset_type)
+    if asset_validado:
+        return asset_validado
+
+    if asset_type == "image":
+        print("[Imagen] Usando imagen de respaldo para evitar enviar URL vacia a Make.")
+        return validar_imagen_publica(DEFAULT_IMAGE_URL)
+
+    print("[Video] No se enviara fallback de imagen porque la publicacion fue programada como video.")
+    return None
+
+def send_to_make(webhook_url, network, text, image_url=None, asset_url=None, asset_type="image"):
     print(f"Enviando post para {network} a Make.com...")
+
+    if image_url and not asset_url:
+        asset_url = image_url
+        asset_type = "image"
+
+    asset_type = detectar_tipo_asset(asset_url, asset_type)
     
     payload = {
         "network": network,
-        "text": text
+        "text": text,
+        "asset_type": asset_type
     }
     
-    if image_url:
-        payload["image_url"] = image_url
+    if asset_url:
+        payload["asset_url"] = asset_url
+        if asset_type == "video":
+            payload["video_url"] = asset_url
+        else:
+            payload["image_url"] = asset_url
     
     for intento in range(1, 4):
         try:
@@ -1065,17 +1126,22 @@ def schedule_time_for_whatsapp(config, post_index, source_date=None, source_time
 
     return min(candidates) + timedelta(days=1)
 
-def send_to_whatsapp_import(config, post_index, text, image_url=None, source_date=None, source_time=None):
+def send_to_whatsapp_import(config, post_index, text, image_url=None, asset_url=None, asset_type="image", source_date=None, source_time=None):
     if not config:
         return
 
+    if image_url and not asset_url:
+        asset_url = image_url
+        asset_type = "image"
+
+    asset_type = detectar_tipo_asset(asset_url, asset_type) if asset_url else None
     schedule_time = schedule_time_for_whatsapp(config, post_index, source_date=source_date, source_time=source_time)
     payload = {
         "source": "megagym-auto-redes",
         "externalPostId": build_external_post_id(post_index),
         "message": text,
-        "assetUrl": image_url,
-        "assetType": "image" if image_url else None,
+        "assetUrl": asset_url,
+        "assetType": asset_type,
         "scheduleTime": schedule_time.isoformat(),
     }
 
@@ -1131,7 +1197,15 @@ def main():
         publicaciones_del_dia = [publicacion_programada]
     else:
         publicaciones_del_dia = [
-            {"tema": tema, "copy": "", "imagen_archivo": "", "imagen_url": None}
+            {
+                "tema": tema,
+                "copy": "",
+                "asset_archivo": "",
+                "asset_type": "image",
+                "asset_url": None,
+                "imagen_archivo": "",
+                "imagen_url": None,
+            }
             for tema in seleccionar_temas_del_dia()
         ]
     print(f"\n[INFO] Publicaciones a procesar: {[p['tema'] for p in publicaciones_del_dia]}")
@@ -1148,16 +1222,18 @@ def main():
         print(ig_text)
         print("----------------------------------------------\n")
 
-        # 3. Seleccionar Imagen (Prioridad: Drive > fotos_reales; IA desactivada por defecto)
+        # 3. Seleccionar asset (video programado o imagen con fallback actual)
         imagen_resultado = None
-        imagen_principal = publicacion.get("imagen_url")
-        if imagen_principal:
-            print(f"[Calendario] Usando imagen planificada: {publicacion.get('imagen_archivo')}")
+        asset_type = publicacion.get("asset_type") or detectar_tipo_asset(publicacion.get("asset_archivo") or publicacion.get("imagen_archivo"))
+        asset_principal = publicacion.get("asset_url") or publicacion.get("imagen_url")
+        imagen_principal = asset_principal if asset_type == "image" else None
+        if asset_principal:
+            print(f"[Calendario] Usando {asset_type} planificado: {publicacion.get('asset_archivo') or publicacion.get('imagen_archivo')}")
 
-        if not imagen_principal and drive_service:
+        if asset_type == "image" and not imagen_principal and drive_service:
             imagen_resultado = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id, ids_usados)
 
-        if not imagen_principal and not imagen_resultado:
+        if asset_type == "image" and not imagen_principal and not imagen_resultado:
             imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
 
         if imagen_resultado:
@@ -1191,39 +1267,47 @@ def main():
                     imagen_principal = None
             else:
                 imagen_principal = imagen_url_original
-        elif not imagen_principal:
+            asset_principal = imagen_principal
+        elif asset_type == "image" and not imagen_principal:
             if PERMITIR_IMAGENES_IA:
                 imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
+                asset_principal = imagen_principal
             else:
                 print("[Imagen] No se encontró imagen adecuada y la generación con IA está desactivada.")
                 imagen_principal = None
+                asset_principal = None
 
-        imagen_programada_url = publicacion.get("imagen_url")
-        imagen_principal = imagen_publica_o_respaldo(imagen_principal)
-        if imagen_programada_url and imagen_principal == imagen_programada_url:
+        asset_programado_url = publicacion.get("asset_url") or publicacion.get("imagen_url")
+        asset_principal = asset_publico_o_respaldo(asset_principal, asset_type)
+        if not asset_principal:
+            print(f"[{asset_type.capitalize()}] Publicacion omitida porque no hay asset valido para enviar.")
+            continue
+
+        if asset_programado_url and asset_principal == asset_programado_url:
             historial = guardar_historial(
                 historial,
-                f"calendario:{publicacion.get('imagen_archivo')}",
-                publicacion.get("imagen_archivo"),
+                f"calendario:{publicacion.get('asset_archivo') or publicacion.get('imagen_archivo')}",
+                publicacion.get("asset_archivo") or publicacion.get("imagen_archivo"),
                 tema_dia,
             )
-        print(f"URL de imagen final a publicar: {imagen_principal}")
+        print(f"URL de {asset_type} final a publicar: {asset_principal}")
 
         print(f"\n--- Enviando Post {i} a Facebook ---")
-        send_to_make(webhook_url, "facebook", ig_text, image_url=imagen_principal)
+        send_to_make(webhook_url, "facebook", ig_text, asset_url=asset_principal, asset_type=asset_type)
 
         print("\n[Esperando 3 segundos para que Make procese el post...]")
         time.sleep(3)
 
         print(f"\n--- Enviando Post {i} a Instagram ---")
-        send_to_make(webhook_url, "instagram", ig_text, image_url=imagen_principal)
+        send_to_make(webhook_url, "instagram", ig_text, asset_url=asset_principal, asset_type=asset_type)
 
         print(f"\n--- Enviando Post {i} a WhatsApp ---")
         send_to_whatsapp_import(
             whatsapp_import_config,
             i,
             ig_text,
-            image_url=imagen_principal,
+            asset_url=asset_principal,
+            asset_type=asset_type,
             source_date=publicacion.get("fecha"),
             source_time=publicacion.get("hora"),
         )

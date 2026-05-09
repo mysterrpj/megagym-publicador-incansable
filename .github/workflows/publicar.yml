@@ -7,6 +7,15 @@ on:
 
   # Permite ejecutar manualmente desde la interfaz de GitHub
   workflow_dispatch:
+    inputs:
+      publicacion_fecha:
+        description: 'Fecha a publicar manualmente, ejemplo: 2026-05-10'
+        required: false
+        type: string
+      publicacion_hora:
+        description: 'Hora a publicar manualmente, ejemplo: 20:00'
+        required: false
+        type: string
 
 concurrency:
   group: publicador-megagym
@@ -48,6 +57,8 @@ jobs:
           WHATSAPP_IMPORT_KEY: ${{ secrets.WHATSAPP_IMPORT_KEY }}
           WHATSAPP_IMPORT_USER_ID: ${{ secrets.WHATSAPP_IMPORT_USER_ID }}
           WHATSAPP_STATUS_TIMES: "12:00,21:00"
+          PUBLICACION_FECHA: ${{ github.event_name == 'workflow_dispatch' && inputs.publicacion_fecha || '' }}
+          PUBLICACION_HORA: ${{ github.event_name == 'workflow_dispatch' && inputs.publicacion_hora || '' }}
         run: python publisher.py
 
       - name: Guardar historial de fotos en el repositorio

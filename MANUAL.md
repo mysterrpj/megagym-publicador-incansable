@@ -61,10 +61,12 @@ fecha,hora,estado,tema,imagen_archivo,copy
 
 Uso recomendado:
 1. Revisa el tema de cada fila.
-2. Prepara la foto adecuada con el nombre indicado en `imagen_archivo`.
-3. Coloca la foto en la carpeta `posts_programados/`.
+2. Prepara la foto o video adecuado con el nombre indicado en `imagen_archivo`.
+3. Coloca el archivo en la carpeta `posts_programados/`.
 4. Cambia `estado` de `pendiente` a `lista`.
 5. Si llenas `copy`, el sistema publicará ese texto exacto. Si lo dejas vacío, Gemini genera el texto usando el tema.
+
+Para videos, usa extensiones `.mp4`, `.mov` o `.m4v`. El publicador detecta el tipo por extension y envia `video_url` a Make.com.
 
 El publicador solo usa filas con estado `lista`, `programada` o `ready`. Las filas `pendiente` no se publican todavía, así el sistema actual sigue funcionando mientras preparas las 60 fotos.
 
@@ -74,7 +76,7 @@ El publicador solo usa filas con estado `lista`, `programada` o `ready`. Las fil
 
 Ve a GitHub → pestaña **Actions** → **"Publicador Automatico MEGAGYM"** → **"Run workflow"**.
 
-Esto publica 1 post en ese momento, igual que si fuera las 8 AM.
+Puedes dejar los campos vacios para publicar el slot actual, o completar `publicacion_fecha` y `publicacion_hora` para probar una fila exacta del calendario, por ejemplo `2026-05-10` y `20:00`.
 
 ---
 
