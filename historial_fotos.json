@@ -254,5 +254,12 @@
     "fecha": "2026-05-09",
     "clave": "202605090800",
     "firma": "cardio|despues|pesas|buena|mala|idea"
+  },
+  {
+    "id": "calendario:2026-05-10_2000.mp4",
+    "nombre": "2026-05-10_2000.mp4",
+    "fecha": "2026-05-09",
+    "clave": "202605102000",
+    "firma": "energia|tambien|entrena|disciplina"
   }
 ]
