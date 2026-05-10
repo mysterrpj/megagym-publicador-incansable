@@ -50,32 +50,50 @@
   {
     "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
     "nombre": "file_00000000422471f58b87dd30219afa0f.png",
-    "descripcion": "Esta foto real muestra a una mujer tomando una selfie en un gimnasio moderno, con el logo \"MEGAGYM\" en la pared y mancuernas de 20 kg en primer plano."
+    "descripcion": "Una mujer se toma una selfie de cuerpo completo en el espejo de un gimnasio, mostrando el logo de \"MEGAGYM\" y mancuernas en primer plano.",
+    "nombre_sugerido": "mujer-selfie-gimnasio-megagym",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1tJWJNcf3kRV-MEGE2TscZq1b0boBHYnT",
     "nombre": "file_00000000a72871f5ac37a544941aa4a0.png",
-    "descripcion": "Una foto real muestra a una mujer con leggings amarillos estirándose sobre una colchoneta \"MEGAGYM\" en un moderno gimnasio con su logo y equipo de fondo, predominando los colores negro y amarillo."
+    "descripcion": "Una mujer en ropa deportiva amarilla y negra realiza un estiramiento de cuádriceps arrodillada sobre una colchoneta de MEGAGYM en un gimnasio moderno.",
+    "nombre_sugerido": "mujer-estirando-cuadriceps-megagym-colchoneta",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
     "nombre": "file_000000002dc471f59ca589d473676fb9.png",
-    "descripcion": "La imagen es una foto real con diseño gráfico que muestra a una mujer realizando un estiramiento de cuádriceps en un gimnasio Megagym con equipo visible de fondo, y un cartel con el texto \"Estiramientos para Cuádriceps\"."
+    "descripcion": "Una mujer realiza un estiramiento de cuádriceps sobre una colchoneta en un gimnasio, presentado en un flyer de Megagym que promueve estiramientos.",
+    "nombre_sugerido": "mujer-estirando-cuadriceps-megagym-flyer",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
     "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "descripcion": "Una foto real de un gimnasio Megagym, predominantemente amarillo y negro, muestra a una mujer haciendo sentadillas hack en una máquina de pesas con un cinturón de levantamiento, mientras un hombre la observa."
+    "descripcion": "Una mujer realiza sentadillas en una máquina hack squat amarilla en un gimnasio MegaGym, con un cinturón de levantamiento y rodilleras, mientras un hombre en polo amarillo observa en el fondo.",
+    "nombre_sugerido": "mujer-entrena-hack-squat-megagym",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
     "nombre": "file_00000000bedc71f5967307b616c7232f.png",
-    "descripcion": "Una foto real retrata a un culturista sudoroso con bigote, sosteniendo una barra de pesas en un gimnasio \"MEGA GYM\", cuyo logo es prominente en su vestimenta y equipo."
+    "descripcion": "Un hombre musculoso y sudoroso con bigote levanta una barra con pesas en un gimnasio Mega Gym, luciendo camiseta y calcetines de la marca.",
+    "nombre_sugerido": "hombre-musculoso-levanta-pesas-mega-gym",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
     "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "descripcion": "Una foto real muestra a una mujer atlética concentrada, realizando un ejercicio con una mancuerna de 40 kg en el gimnasio MEGAGYM, donde destacan los equipos azules y el logo amarillo del lugar en la pared."
+    "descripcion": "Una mujer muscular realiza un ejercicio de remo con mancuerna de 40 en un banco del Megagym, luciendo ropa deportiva de color neón y exhibiendo concentración.",
+    "nombre_sugerido": "mujer-entrenando-fuerza-megagym",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
@@ -186,7 +204,10 @@
   {
     "id": "1sfBbRKAe4-VpEA7lbzoMKU9vFQBlwt7L",
     "nombre": "file_00000000835871f5b8a3b53eb7993393.png",
-    "descripcion": "Una fotografía real muestra a una mujer atlética en ropa deportiva oscura posando en un gimnasio con equipo borroso de fondo, sin flyers ni logos visibles."
+    "descripcion": "Una mujer atlética con top corto negro y shorts de malla posa en un gimnasio con luces difuminadas al fondo.",
+    "nombre_sugerido": "mujer-atletica-top-corto-gimnasio",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "11XTIwtI3IxttQgUfc35g4d2O_Q8pQfhK",
@@ -255,11 +276,73 @@
   {
     "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
     "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
-    "descripcion": "Una foto real muestra a un joven sudoroso, sin camiseta y con gorra (con el logo \"BMC\" estilizado), posando en un gimnasio con equipo difuminado de fondo y una pesa en el suelo, sin flyers."
+    "descripcion": "Un joven visiblemente sudado y sin camiseta posa mostrando su físico en un gimnasio, con las manos en las caderas y una gorra.",
+    "nombre_sugerido": "hombre-joven-sudando-posando-gym",
+    "categoria_visual": "transformacion",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
     "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
-    "descripcion": "Una foto real de una mujer atlética sudorosa en un gimnasio, sentada en un banco y sosteniendo una mancuerna de 12, con el logo de Puma en su camiseta."
+    "descripcion": "Una mujer visiblemente sudorosa se sienta en un banco de gimnasio sosteniendo una mancuerna, con una camiseta Puma y patrones de Hello Kitty.",
+    "nombre_sugerido": "mujer-gimnasio-mancuerna-sudor",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1iXPqrsnCgmyhpuZ2nosTfh1VOzUBqu5K",
+    "nombre": "file_00000000adb8720ea07c2c05ceb46205.png",
+    "descripcion": "Un hombre con una expresión facial exagerada está sentado en un banco de gimnasio cerca de una barra, con el logo de MEGAGYM de fondo.",
+    "nombre_sugerido": "hombre-banco-megagym-expresion-divertida",
+    "categoria_visual": "selfie",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1Z2SRvWPpeiEjwbRabeH4ENsOZrS7zkg7",
+    "nombre": "file_00000000e90c720e9bc6ae60fe054351.png",
+    "descripcion": "Un hombre de mediana edad, sudoroso y musculoso, con una camiseta de gimnasio, sostiene una barra con pesas mientras mira fijamente a la cámara dentro de un gimnasio.",
+    "nombre_sugerido": "hombre-musculoso-barra-pesas-gym",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1JIvxt-3doLt1UA5S-lLGpy3E1JaZTtEW",
+    "nombre": "IMG-20260505-WA0020.jpg",
+    "descripcion": "```json\n{\n  \"descripcion\": \"Un flyer promociona dos botes de proteína ISO WHEY 90 de Universe Nutrition en sabores vainilla y chocolate, destacando su calidad y la cantidad de servicios.\",\n  \"nombre_sugerido\": \"universe-nutrition-iso-whey-90-sabores\",\n  \"categoria_visual\": \"promocion\",\n  \"tipo_visual\": \"flyer\"\n}\n```",
+    "nombre_sugerido": "img-20260505-wa0020-jpg",
+    "categoria_visual": "otro",
+    "tipo_visual": "otro"
+  },
+  {
+    "id": "11OVp6z2-DGNf8DRYhtnajpRWmRhL66Zu",
+    "nombre": "ChatGPT Image 21 abr 2026, 19_20_35.jpg",
+    "descripcion": "Una mujer con ropa deportiva posa en un gimnasio para un flyer promocional de Megagym, destacando mensajes motivacionales y el logo.",
+    "nombre_sugerido": "mujer-fuerte-megagym-promocion-motivacion",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
+    "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
+    "descripcion": "Un flyer promocional de Megagym muestra a un hombre haciendo curl de bíceps con mancuernas sentado en un banco dentro de un gimnasio, con texto motivacional y detalles de la membresía.",
+    "nombre_sugerido": "flyer-megagym-hombre-bicep-curl",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "1K3hedBgdLvDRO1Ap1ZKpx1C13SHcuxTF",
+    "nombre": "file_0000000080bc720e98c30957cc534616.png",
+    "descripcion": "Un flyer promocional de MEGAGYM muestra a dos hombres sudorosos levantando mancuernas en un gimnasio con mensajes motivacionales sobre disciplina y transformación.",
+    "nombre_sugerido": "megagym-flyer-entrenamiento-motivacion",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "1BgNB3AP7viJmI7C_g3yNHsrmS04T1e0e",
+    "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
+    "descripcion": "Un hombre joven realiza curls de bíceps con mancuernas en un gimnasio oscuro, mientras otro entrena al fondo, en un flyer promocional para MEGAGYM.",
+    "nombre_sugerido": "megagym-entrenamiento-mancuernas-flyer",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   }
 ]
