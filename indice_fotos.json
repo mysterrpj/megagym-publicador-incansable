@@ -98,27 +98,42 @@
   {
     "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
     "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
-    "descripcion": "Este diseño gráfico publicitario para el gimnasio MEGAGYM presenta una foto de una mujer levantando una mancuerna con su entrenador, resaltando su oferta de \"Entrenamiento Personalizado\"."
+    "descripcion": "Un flyer muestra a una mujer levantando una mancuerna bajo la supervisión de un entrenador personal de Megagym, promocionando entrenamiento personalizado con planes a medida.",
+    "nombre_sugerido": "flyer-entrenamiento-personalizado-megagym-mujer-trainer",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1y5vkLbeWV6esVWPnXrd6Ot61FT2Ju2gL",
     "nombre": "file_00000000298871f596e37ca867546d7a.png",
-    "descripcion": "Flyer digital de MEGAGYM con una foto real de un entrenador y una deportista sonriendo mientras ella ejercita con una mancuerna, promocionando \"ENTRENAMIENTO PERSONALIZADO\" y mostrando un número de contacto."
+    "descripcion": "Un entrenador personal sonriente asiste a una mujer sudorosa realizando un curl de bíceps con mancuerna en un gimnasio, promocionando 'Entrenamiento Personalizado' de 'Megagym' en un flyer.",
+    "nombre_sugerido": "entrenamiento-personalizado-megagym-mujer-pesas",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
     "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
-    "descripcion": "Una fotografía real captura a una mujer con zapatillas Nike realizando un ejercicio con mancuernas en un gimnasio con máquinas amarillas y negras."
+    "descripcion": "Una mujer realiza peso muerto con mancuernas en un gimnasio con equipo amarillo y negro.",
+    "nombre_sugerido": "mujer-peso-muerto-mancuernas-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
     "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "descripcion": "Este diseño gráfico de gimnasio, tipo flyer, muestra un fisicoculturista posando entre cuatro opciones de desayunos altos en proteína y sus detalles nutricionales."
+    "descripcion": "Un hombre musculoso posa entre cuatro opciones de desayunos altos en proteína, detallando sus ingredientes y valores nutricionales, presentado como un flyer informativo de fitness.",
+    "nombre_sugerido": "desayunos-altos-proteina-hombre-musculoso",
+    "categoria_visual": "nutricion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
     "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "descripcion": "Un flyer de diseño gráfico para MEGAGYM muestra la transformación física real \"antes y después\" de una mujer de 47 a 54 años, con el logo del gimnasio y un llamado a la acción."
+    "descripcion": "Una mujer sonriente muestra su transformación física de \"antes y después\" en un flyer de MEGAGYM, destacando que la edad es solo un número.",
+    "nombre_sugerido": "mujer-transformacion-megagym-antes-despues",
+    "categoria_visual": "transformacion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "128k7sQJLFNu8rA_0PezbFf2E2dygYtCc",
@@ -171,7 +186,10 @@
   {
     "id": "109vEC35rMWPDiMRzTr0KM53CLxtTo5CN",
     "nombre": "file_00000000b890720e9408b0d45c7ab535.png",
-    "descripcion": "Fotografía real de una mujer con ropa deportiva y guantes Nike, concentrada o descansando en un gimnasio con equipo al fondo."
+    "descripcion": "Una mujer latina sudorosa descansa en un banco de gimnasio con guantes Nike, luciendo agotada después de su rutina.",
+    "nombre_sugerido": "mujer-descansando-gimnasio-guantes-nike",
+    "categoria_visual": "recuperacion",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1V4SanX1ejB8SEB7x2Zll66pgdkevvTXc",
@@ -342,6 +360,46 @@
     "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
     "descripcion": "Un hombre joven realiza curls de bíceps con mancuernas en un gimnasio oscuro, mientras otro entrena al fondo, en un flyer promocional para MEGAGYM.",
     "nombre_sugerido": "megagym-entrenamiento-mancuernas-flyer",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "1arKkj0qZ8uEk6PzYKfe8c1P4ZalGB-3I",
+    "nombre": "file_00000000ba7871f589f1642311f2a905.png",
+    "descripcion": "Una mujer atlética y sudorosa realiza un jalón al pecho con barra curva en una máquina de gimnasio, mostrando gran esfuerzo en su entrenamiento.",
+    "nombre_sugerido": "mujer-entrenando-espalda-lat-pulldown",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
+    "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
+    "descripcion": "Una mujer sonriente con ropa deportiva posa de espaldas mostrando su físico en un gimnasio oscuro con equipo de fuerza al fondo.",
+    "nombre_sugerido": "mujer-posando-fisico-gimnasio-oscuro",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
+    "nombre": "file_000000000c64720e9c2035abf0284caa.png",
+    "descripcion": "Una mujer atlética se toma una selfie frente al espejo en el gimnasio, promocionando 'MEGAGYM' y la idea de alcanzar 'Tu Mejor Versión' con texto superpuesto.",
+    "nombre_sugerido": "mujer-selfie-gimnasio-megagym-version",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "1wztkSOYhdw7wYFzors9EsU4-BzbUYDjU",
+    "nombre": "file_00000000fa20720ea249e1ac46ba5960.png",
+    "descripcion": "Una mujer con aspecto atlético se toma una selfie en un gimnasio, como parte de un flyer promocional de MEGAGYM con el lema 'SIN EXCUSAS'.",
+    "nombre_sugerido": "mujer-fuerte-selfie-promocion-megagym",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
+  },
+  {
+    "id": "1JVGRh96T4mSC158Xd-MsoNzvzCdMQmgz",
+    "nombre": "file_00000000590871f5a777790574d41aa4.png",
+    "descripcion": "Una mujer atlética se toma una selfie con su smartphone en un gimnasio, como parte de un flyer promocional para MEGAGYM.",
+    "nombre_sugerido": "mujer-selfie-gym-flyer-megagym",
     "categoria_visual": "promocion",
     "tipo_visual": "flyer"
   }
