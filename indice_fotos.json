@@ -194,17 +194,26 @@
   {
     "id": "1V4SanX1ejB8SEB7x2Zll66pgdkevvTXc",
     "nombre": "file_000000009fd0720ea8afd108211ad1b4.png",
-    "descripcion": "Foto real de una mujer sudorosa en pleno esfuerzo con una mancuerna, usando equipo con logos Nike, en un gimnasio con bancos rojos."
+    "descripcion": "Una mujer concentrada y sudorosa sostiene una mancuerna con guantes de entrenamiento mientras se sienta en un banco de gimnasio.",
+    "nombre_sugerido": "mujer-concentrada-mancuerna-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
     "nombre": "file_00000000b840720e83ace2d5d629a813.png",
-    "descripcion": "Una mujer atlética y sudorosa realiza un ejercicio con máquina de cables en un gimnasio moderno con luces de neón, luciendo ropa deportiva y zapatillas Nike en esta foto real."
+    "descripcion": "Una mujer sudorosa en un gimnasio oscuro con luces de neón amarillas realiza un ejercicio de fuerza con una máquina de cable.",
+    "nombre_sugerido": "mujer-ejercitando-maquina-cable-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   },
   {
     "id": "1X88A9ioKk3WJxn8hEJ2s4g381nx-ZA7G",
     "nombre": "file_00000000c638720e8395bfedd8d0ec10.png",
-    "descripcion": "Este flyer promocional gráfico para MEGAGYM combina una foto real de una mujer sudorosa entrenando en una máquina de cable, con el logo y mensajes motivacionales del gimnasio."
+    "descripcion": "Una mujer realiza un ejercicio de remo con cable en un gimnasio, como parte de un flyer promocional para MEGAGYM.",
+    "nombre_sugerido": "mujer-ejercicio-gimnasio-flyer-megagym",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1BMCY4OLBbiS3tzdNq65m7XCbW7bV_k31",
@@ -217,7 +226,10 @@
   {
     "id": "1Vl3xttqCBwlCd8Fy8nMsSUzryMrrGARd",
     "nombre": "file_000000006840720ea36ee1d346b9bfd1.png",
-    "descripcion": "Un flyer de gimnasio, mezcla de fotografía real y diseño gráfico, muestra a un hombre musculoso sudoroso realizando un ejercicio de bíceps en una máquina bajo el logo de MEGAGYM y el potente eslogan \"Fuerza sin excusas\", en un claro contexto motivacional."
+    "descripcion": "Un hombre musculoso y sudoroso realiza un ejercicio de fuerza en una máquina de gimnasio, presentado en un flyer publicitario de Megagym con el lema \"Fuerza Sin Excusas\".",
+    "nombre_sugerido": "megagym-fuerza-sin-excusas",
+    "categoria_visual": "promocion",
+    "tipo_visual": "flyer"
   },
   {
     "id": "1sfBbRKAe4-VpEA7lbzoMKU9vFQBlwt7L",
@@ -402,5 +414,21 @@
     "nombre_sugerido": "mujer-selfie-gym-flyer-megagym",
     "categoria_visual": "promocion",
     "tipo_visual": "flyer"
+  },
+  {
+    "id": "1DvPgAkhAG46jaTcFDc3HiHQnluITS11z",
+    "nombre": "file_00000000e96071f592808f6ef00c9061.png",
+    "descripcion": "Una mujer joven con camiseta roja y el rostro sudoroso se recupera o reflexiona tras un esfuerzo en el gimnasio.",
+    "nombre_sugerido": "mujer-joven-recuperacion-gimnasio-sudorosa",
+    "categoria_visual": "recuperacion",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1ltGg0vN-EdXvafrpTr330FsT6HoEGcJD",
+    "nombre": "file_00000000d7a8720eb8dc215972160192.png",
+    "descripcion": "Una mujer entrena sus piernas con una patada de cable usando una máquina de poleas, en un gimnasio de aspecto rústico con paredes amarillas y suelo rojo.",
+    "nombre_sugerido": "mujer-entrenando-piernas-maquina-poleas",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   }
 ]
