@@ -430,5 +430,29 @@
     "nombre_sugerido": "mujer-entrenando-piernas-maquina-poleas",
     "categoria_visual": "fuerza",
     "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
+    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
+    "descripcion": "Una mujer realiza un ejercicio de extensión de pierna con una correa de tobillo en una máquina de cable dentro de un gimnasio con iluminación tenue.",
+    "nombre_sugerido": "mujer-ejercitando-pierna-maquina-cable",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
+    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
+    "descripcion": "Una mujer realiza un ejercicio de fuerza con dos mancuernas en un gimnasio de aspecto rústico, con su reflejo visible en un espejo.",
+    "nombre_sugerido": "mujer-ejercicio-mancuernas-gimnasio-rustico",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
+    "nombre": "file_00000000ce2c71f5b264751776096bca.png",
+    "descripcion": "Una mujer realiza zancadas con mancuernas en un gimnasio, mostrando concentración y esfuerzo durante su entrenamiento.",
+    "nombre_sugerido": "mujer-zancadas-mancuernas-entrenamiento-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   }
 ]
