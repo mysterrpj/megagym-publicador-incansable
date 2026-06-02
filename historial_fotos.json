@@ -54,12 +54,6 @@
     "clave": "dianaalopezh202603310002"
   },
   {
-    "id": "128k7sQJLFNu8rA_0PezbFf2E2dygYtCc",
-    "nombre": "file_000000006e4c720ebd2615da24ab7e51.png",
-    "fecha": "2026-04-13",
-    "clave": "file000000006e4c720ebd2615da24ab7e51"
-  },
-  {
     "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
     "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
     "fecha": "2026-04-14",
@@ -289,5 +283,12 @@
     "fecha": "2026-06-01",
     "clave": "file0000000080bc720e98c30957cc534616",
     "firma": "flyer|entrenamiento|motivacion|promocion|flyer|flyer|promocional|hombres|sudorosos|levantando"
+  },
+  {
+    "id": "128k7sQJLFNu8rA_0PezbFf2E2dygYtCc",
+    "nombre": "file_000000006e4c720ebd2615da24ab7e51.png",
+    "fecha": "2026-06-02",
+    "clave": "file000000006e4c720ebd2615da24ab7e51",
+    "firma": "transformacion|antes|despues|anos|transformacion|flyer|transformacion|fisica|antes|despues"
   }
 ]
