@@ -18,12 +18,6 @@
     "clave": "file00000000478c720ea7678a31f1dd4d13"
   },
   {
-    "id": "1y5vkLbeWV6esVWPnXrd6Ot61FT2Ju2gL",
-    "nombre": "file_00000000298871f596e37ca867546d7a.png",
-    "fecha": "2026-04-07",
-    "clave": "file00000000298871f596e37ca867546d7a"
-  },
-  {
     "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
     "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
     "fecha": "2026-04-08",
@@ -304,5 +298,12 @@
     "fecha": "2026-06-03",
     "clave": "file000000006840720ea36ee1d346b9bfd1",
     "firma": "fuerza|excusas|promocion|flyer|musculoso|sudoroso|realiza|ejercicio|fuerza|maquina"
+  },
+  {
+    "id": "1y5vkLbeWV6esVWPnXrd6Ot61FT2Ju2gL",
+    "nombre": "file_00000000298871f596e37ca867546d7a.png",
+    "fecha": "2026-06-03",
+    "clave": "file00000000298871f596e37ca867546d7a",
+    "firma": "entrenamiento|personalizado|pesas|promocion|flyer|entrenador|personal|sonriente|asiste|sudorosa"
   }
 ]
