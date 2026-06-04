@@ -6,12 +6,6 @@
     "clave": "file00000000478c720ea7678a31f1dd4d13"
   },
   {
-    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
-    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
-    "fecha": "2026-04-08",
-    "clave": "file000000000cd071f5b5cbb30108a19066"
-  },
-  {
     "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
     "nombre": "file_000000002dc471f59ca589d473676fb9.png",
     "fecha": "2026-04-11",
@@ -300,5 +294,12 @@
     "fecha": "2026-06-04",
     "clave": "file00000000294c71f5b9c0a68ea443b218",
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
+  },
+  {
+    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
+    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
+    "fecha": "2026-06-04",
+    "clave": "file000000000cd071f5b5cbb30108a19066",
+    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
   }
 ]
