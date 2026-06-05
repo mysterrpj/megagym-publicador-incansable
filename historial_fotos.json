@@ -66,12 +66,6 @@
     "clave": "file000000003c3c720ebe6bcd30e239e75a"
   },
   {
-    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
-    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-04-19",
-    "clave": "file00000000fed071f5a922b4de72830ef1"
-  },
-  {
     "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
     "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
     "fecha": "2026-04-19",
@@ -301,5 +295,12 @@
     "fecha": "2026-06-04",
     "clave": "file000000000cd071f5b5cbb30108a19066",
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
+  },
+  {
+    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
+    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
+    "fecha": "2026-06-05",
+    "clave": "file00000000fed071f5a922b4de72830ef1",
+    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
   }
 ]
