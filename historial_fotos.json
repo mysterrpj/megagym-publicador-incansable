@@ -72,12 +72,6 @@
     "clave": "file0000000099dc720ebd2a29250bdd8f00"
   },
   {
-    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
-    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "fecha": "2026-04-21",
-    "clave": "file000000003e0071f59a4b69ceb7ad7f94"
-  },
-  {
     "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
     "nombre": "file_00000000bedc71f5967307b616c7232f.png",
     "fecha": "2026-04-23",
@@ -309,5 +303,12 @@
     "fecha": "2026-06-05",
     "clave": "file000000009270720e90474ab8c37f68c5",
     "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
+  },
+  {
+    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
+    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
+    "fecha": "2026-06-06",
+    "clave": "file000000003e0071f59a4b69ceb7ad7f94",
+    "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
   }
 ]
