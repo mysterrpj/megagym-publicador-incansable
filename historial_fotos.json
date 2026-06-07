@@ -1,11 +1,5 @@
 [
   {
-    "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
-    "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
-    "fecha": "2026-04-07",
-    "clave": "file00000000478c720ea7678a31f1dd4d13"
-  },
-  {
     "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
     "nombre": "file_000000002dc471f59ca589d473676fb9.png",
     "fecha": "2026-04-11",
@@ -317,5 +311,12 @@
     "fecha": "2026-06-06",
     "clave": "chatgptimage22abr2026221238",
     "firma": "banco|bebida|promocion|promocion|flyer|sudorosa|roja|sentada|banco|bebida"
+  },
+  {
+    "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
+    "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
+    "fecha": "2026-06-07",
+    "clave": "chatgptimage21abr2026185939",
+    "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
   }
 ]
