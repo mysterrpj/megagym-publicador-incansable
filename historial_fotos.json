@@ -1,11 +1,5 @@
 [
   {
-    "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
-    "nombre": "file_000000007e14720ea6d07a291750be85.png",
-    "fecha": "2026-04-12",
-    "clave": "file000000007e14720ea6d07a291750be85"
-  },
-  {
     "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
     "nombre": "dianaalopezh-20260331-0002.jpg",
     "fecha": "2026-04-13",
@@ -356,5 +350,12 @@
     "fecha": "2026-06-11",
     "clave": "file00000000e96071f592808f6ef00c9061",
     "firma": "recuperacion|sudorosa|recuperacion|camiseta|roja|rostro|sudoroso|recupera|reflexiona|tras"
+  },
+  {
+    "id": "1GZm4c8bzeuCJHJNBHd2vUj13xc7nGad3",
+    "nombre": "file_000000003a3c71f5b0d29188f26a3474.png",
+    "fecha": "2026-06-12",
+    "clave": "file000000003a3c71f5b0d29188f26a3474",
+    "firma": "ejercitando|bicep|curl|cable|fuerza|sudorosa|guantes|auriculares|realiza|ejercicio"
   }
 ]
