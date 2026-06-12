@@ -48,12 +48,6 @@
     "clave": "file0000000099dc720ebd2a29250bdd8f00"
   },
   {
-    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
-    "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "fecha": "2026-04-24",
-    "clave": "file000000005998720ebf1114b16d482560"
-  },
-  {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
     "fecha": "2026-04-24",
@@ -357,5 +351,12 @@
     "fecha": "2026-06-12",
     "clave": "file000000003a3c71f5b0d29188f26a3474",
     "firma": "ejercitando|bicep|curl|cable|fuerza|sudorosa|guantes|auriculares|realiza|ejercicio"
+  },
+  {
+    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
+    "nombre": "file_000000005998720ebf1114b16d482560.png",
+    "fecha": "2026-06-12",
+    "clave": "file000000005998720ebf1114b16d482560",
+    "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
   }
 ]
