@@ -36,12 +36,6 @@
     "clave": "file000000003c3c720ebe6bcd30e239e75a"
   },
   {
-    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
-    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-04-19",
-    "clave": "file0000000099dc720ebd2a29250bdd8f00"
-  },
-  {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
     "fecha": "2026-04-24",
@@ -359,5 +353,12 @@
     "fecha": "2026-06-13",
     "clave": "img20260505wa0020",
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
+  },
+  {
+    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
+    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
+    "fecha": "2026-06-13",
+    "clave": "file0000000099dc720ebd2a29250bdd8f00",
+    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   }
 ]
