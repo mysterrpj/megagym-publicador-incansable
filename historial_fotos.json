@@ -1,17 +1,5 @@
 [
   {
-    "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
-    "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
-    "fecha": "2026-04-14",
-    "clave": "file00000000d61071f58bd9f8c09ec51c96"
-  },
-  {
-    "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
-    "nombre": "file_00000000422471f58b87dd30219afa0f.png",
-    "fecha": "2026-04-14",
-    "clave": "file00000000422471f58b87dd30219afa0f"
-  },
-  {
     "id": "1lCzAvQcQ2E42NFeOtfifSrinm_QTx0aU",
     "nombre": "file_00000000f754720e95e29c906df78cdd.png",
     "fecha": "2026-04-15",
@@ -360,5 +348,12 @@
     "fecha": "2026-06-13",
     "clave": "file0000000099dc720ebd2a29250bdd8f00",
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
+  },
+  {
+    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
+    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
+    "fecha": "2026-06-14",
+    "clave": "file00000000236871f58e2a68166e52d64a",
+    "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
   }
 ]
