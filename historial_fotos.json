@@ -355,5 +355,12 @@
     "fecha": "2026-06-14",
     "clave": "file00000000236871f58e2a68166e52d64a",
     "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
+  },
+  {
+    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
+    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
+    "fecha": "2026-06-14",
+    "clave": "file00000000506c71f58e56d2bc7516f0c7",
+    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
   }
 ]
