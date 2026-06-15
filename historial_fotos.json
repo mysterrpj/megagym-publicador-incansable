@@ -1,11 +1,5 @@
 [
   {
-    "id": "1lCzAvQcQ2E42NFeOtfifSrinm_QTx0aU",
-    "nombre": "file_00000000f754720e95e29c906df78cdd.png",
-    "fecha": "2026-04-15",
-    "clave": "file00000000f754720e95e29c906df78cdd"
-  },
-  {
     "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
     "nombre": "file_0000000023a471f59d86082de291dba4.png",
     "fecha": "2026-04-16",
@@ -34,12 +28,6 @@
     "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
     "fecha": "2026-04-26",
     "clave": "file00000000c8fc720ea57411b6c719027d"
-  },
-  {
-    "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
-    "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
-    "fecha": "2026-04-26",
-    "clave": "chatgptimage21abr2026185833"
   },
   {
     "id": "calendario:2026-05-01_2000.jpg",
@@ -362,5 +350,12 @@
     "fecha": "2026-06-14",
     "clave": "file00000000506c71f58e56d2bc7516f0c7",
     "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
+  },
+  {
+    "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
+    "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
+    "fecha": "2026-06-15",
+    "clave": "chatgptimage21abr2026185833",
+    "firma": "mancuerna|sudor|fuerza|visiblemente|sudorosa|sienta|banco|sosteniendo|mancuerna|camiseta"
   }
 ]
