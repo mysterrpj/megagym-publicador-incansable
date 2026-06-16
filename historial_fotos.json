@@ -18,12 +18,6 @@
     "clave": "file00000000f17471f58b7d27ba421351e0"
   },
   {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-04-26",
-    "clave": "file00000000c8fc720ea57411b6c719027d"
-  },
-  {
     "id": "calendario:2026-05-01_2000.jpg",
     "nombre": "2026-05-01_2000.jpg",
     "fecha": "2026-05-02",
@@ -365,5 +359,12 @@
     "fecha": "2026-06-16",
     "clave": "file00000000d7a8720eb8dc215972160192",
     "firma": "entrenando|piernas|maquina|poleas|fuerza|entrena|piernas|patada|cable|usando"
+  },
+  {
+    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
+    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
+    "fecha": "2026-06-16",
+    "clave": "file00000000c8fc720ea57411b6c719027d",
+    "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
   }
 ]
