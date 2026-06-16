@@ -1,11 +1,5 @@
 [
   {
-    "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
-    "nombre": "file_0000000023a471f59d86082de291dba4.png",
-    "fecha": "2026-04-16",
-    "clave": "file0000000023a471f59d86082de291dba4"
-  },
-  {
     "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
     "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
     "fecha": "2026-04-17",
@@ -364,5 +358,12 @@
     "fecha": "2026-06-15",
     "clave": "file0000000066b871f5bbdedca6560aa598",
     "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
+  },
+  {
+    "id": "1ltGg0vN-EdXvafrpTr330FsT6HoEGcJD",
+    "nombre": "file_00000000d7a8720eb8dc215972160192.png",
+    "fecha": "2026-06-16",
+    "clave": "file00000000d7a8720eb8dc215972160192",
+    "firma": "entrenando|piernas|maquina|poleas|fuerza|entrena|piernas|patada|cable|usando"
   }
 ]
