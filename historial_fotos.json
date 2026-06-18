@@ -1,11 +1,5 @@
 [
   {
-    "id": "1dvOreRIjS5jk_wfYEemFMcoZkqGJFfbS",
-    "nombre": "file_000000003c3c720ebe6bcd30e239e75a.png",
-    "fecha": "2026-04-18",
-    "clave": "file000000003c3c720ebe6bcd30e239e75a"
-  },
-  {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
     "fecha": "2026-04-24",
@@ -374,5 +368,12 @@
     "fecha": "2026-06-17",
     "clave": "file00000000ec6c71f587ecec2b041041c0",
     "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
+  },
+  {
+    "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
+    "nombre": "file_0000000023a471f59d86082de291dba4.png",
+    "fecha": "2026-06-18",
+    "clave": "file0000000023a471f59d86082de291dba4",
+    "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
   }
 ]
