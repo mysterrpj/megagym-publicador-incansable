@@ -20,13 +20,6 @@
     "firma": "rutina|piernas|volver|despues|pausa"
   },
   {
-    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
-    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
-    "fecha": "2026-05-02",
-    "clave": "file000000006a40720ebdaaae296a6bdf43",
-    "firma": "sudorosa|concentrada|haciendo|ejercicio|brazos|barra|maquina|cables|flyers|logos"
-  },
-  {
     "id": "calendario:2026-05-02_2000.jpg",
     "nombre": "2026-05-02_2000.jpg",
     "fecha": "2026-05-03",
@@ -389,5 +382,12 @@
     "fecha": "2026-06-19",
     "clave": "file000000002dc471f59ca589d473676fb9",
     "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
+  },
+  {
+    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
+    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
+    "fecha": "2026-06-19",
+    "clave": "file000000006a40720ebdaaae296a6bdf43",
+    "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
   }
 ]
