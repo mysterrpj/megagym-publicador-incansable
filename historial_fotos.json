@@ -403,5 +403,12 @@
     "fecha": "2026-06-20",
     "clave": "file00000000a84871f5aa83b4371c9e2332",
     "firma": "camisa|biceps|curl|maquina|fuerza|camisa|realizando|ejercicio|curl|biceps"
+  },
+  {
+    "id": "1iXPqrsnCgmyhpuZ2nosTfh1VOzUBqu5K",
+    "nombre": "file_00000000adb8720ea07c2c05ceb46205.png",
+    "fecha": "2026-06-21",
+    "clave": "file00000000adb8720ea07c2c05ceb46205",
+    "firma": "banco|expresion|divertida|selfie|expresion|facial|exagerada|sentado|banco|cerca"
   }
 ]
