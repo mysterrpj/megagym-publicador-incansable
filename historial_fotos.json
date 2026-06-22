@@ -1,11 +1,5 @@
 [
   {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-04-24",
-    "clave": "file00000000f17471f58b7d27ba421351e0"
-  },
-  {
     "id": "calendario:2026-05-01_2000.jpg",
     "nombre": "2026-05-01_2000.jpg",
     "fecha": "2026-05-02",
@@ -417,5 +411,12 @@
     "fecha": "2026-06-21",
     "clave": "dianaalopezh202603310002",
     "firma": "mancuernas|suelo|entrenamiento|zapatillas|piernas|mancuernas|16kg|suelo|granulado|dianaalopezh"
+  },
+  {
+    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
+    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
+    "fecha": "2026-06-22",
+    "clave": "file00000000f17471f58b7d27ba421351e0",
+    "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   }
 ]
