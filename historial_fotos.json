@@ -439,5 +439,12 @@
     "fecha": "2026-06-23",
     "clave": "file00000000835871f5b8a3b53eb7993393",
     "firma": "corto|entrenamiento|corto|negro|shorts|malla|posa|luces|difuminadas|file"
+  },
+  {
+    "id": "11XTIwtI3IxttQgUfc35g4d2O_Q8pQfhK",
+    "nombre": "file_0000000059d0720e8ced93dfbab53b7f.png",
+    "fecha": "2026-06-24",
+    "clave": "file0000000059d0720e8ced93dfbab53b7f",
+    "firma": "atleta|posando|fuerza|fisico|fuerza|fisico|atletico|posa|maquinas|fuerza"
   }
 ]
