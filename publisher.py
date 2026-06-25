@@ -1012,19 +1012,36 @@ def send_to_make(webhook_url, network, text, image_url=None, asset_url=None, ass
         asset_type = "image"
 
     asset_type = detectar_tipo_asset(asset_url, asset_type)
+    is_facebook = network == "facebook"
+    is_instagram = network == "instagram"
+    is_image = asset_type == "image"
+    is_video = asset_type == "video"
     
     payload = {
         "network": network,
+        "red": network,
+        "platform": network,
+        "canal": network,
+        "is_facebook": is_facebook,
+        "is_instagram": is_instagram,
         "text": text,
-        "asset_type": asset_type
+        "caption": text,
+        "message": text,
+        "asset_type": asset_type,
+        "tipo": asset_type,
+        "media_type": asset_type,
+        "is_image": is_image,
+        "is_video": is_video
     }
     
     if asset_url:
         payload["asset_url"] = asset_url
+        payload["url"] = asset_url
         if asset_type == "video":
             payload["video_url"] = asset_url
         else:
             payload["image_url"] = asset_url
+            payload["imagen_url"] = asset_url
     
     for intento in range(1, 4):
         try:
