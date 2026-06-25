@@ -460,5 +460,12 @@
     "fecha": "2026-06-25",
     "clave": "file00000000422471f58b87dd30219afa0f",
     "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
+  },
+  {
+    "id": "calendario:2026-06-25_0800.png",
+    "nombre": "2026-06-25_0800.png",
+    "fecha": "2026-06-25",
+    "clave": "202606250800",
+    "firma": "rutina|full|body|personas|poco|tiempo"
   }
 ]
