@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEGAGYM | Programador</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f8;
+      --panel: #ffffff;
+      --ink: #171b1f;
+      --muted: #69727d;
+      --line: #d9dee5;
+      --brand: #d31820;
+      --brand-dark: #a90f16;
+      --ok: #137a3f;
+      --warn: #ad5c00;
+      --bad: #b00020;
+      --soft: #eef1f4;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    header {
+      background: #111418;
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .status {
+      color: #dce2e8;
+      font-size: 13px;
+      min-height: 18px;
+      text-align: right;
+    }
+
+    main { padding: 18px 20px 30px; }
+
+    .toolbar {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 180px 180px auto auto;
+      gap: 10px;
+      padding: 12px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea, button {
+      font: inherit;
+      letter-spacing: 0;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 9px;
+      min-height: 36px;
+    }
+
+    textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    button {
+      min-height: 36px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 8px 12px;
+      cursor: pointer;
+      background: var(--soft);
+      color: var(--ink);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    button.primary {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    button.primary:hover { background: var(--brand-dark); }
+    button.danger { color: var(--bad); }
+    button:disabled { cursor: not-allowed; opacity: .55; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #f0f2f5;
+      z-index: 1;
+      color: #4a525c;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    tr.hidden { display: none; }
+    tr:last-child td { border-bottom: 0; }
+
+    .date-cell { width: 138px; }
+    .time-cell { width: 104px; }
+    .state-cell { width: 142px; }
+    .topic-cell { width: 250px; }
+    .asset-cell { width: 250px; }
+    .copy-cell { width: 300px; }
+    .preview-cell { width: 190px; }
+    .actions-cell { width: 88px; }
+
+    .asset-tools {
+      display: grid;
+      gap: 7px;
+    }
+
+    .upload-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .upload-row input[type="file"] {
+      padding: 6px;
+      min-height: 34px;
+      font-size: 12px;
+    }
+
+    .preview {
+      min-height: 118px;
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .preview img, .preview video {
+      width: 160px;
+      height: 96px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #000;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--soft);
+      color: var(--muted);
+    }
+
+    .pill.ok { color: var(--ok); background: #e7f4ec; }
+    .pill.warn { color: var(--warn); background: #fff2df; }
+    .pill.bad { color: var(--bad); background: #ffe8ed; }
+
+    .empty {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .status { text-align: left; }
+
+      main { padding: 12px; }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MEGAGYM | Programador de publicaciones</h1>
+    <div class="status" id="status">Cargando calendario...</div>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Filtros y acciones">
+      <label>
+        Buscar
+        <input id="textFilter" type="search" placeholder="Fecha, tema, archivo o copy">
+      </label>
+      <label>
+        Estado
+        <select id="stateFilter">
+          <option value="">Todos</option>
+        </select>
+      </label>
+      <label>
+        Asset
+        <select id="assetFilter">
+          <option value="">Todos</option>
+          <option value="image">Imagen</option>
+          <option value="video">Video</option>
+          <option value="missing">Falta archivo</option>
+          <option value="none">Sin archivo</option>
+        </select>
+      </label>
+      <button id="addRow" type="button">Nueva fila</button>
+      <button id="saveRows" class="primary" type="button">Guardar CSV</button>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="date-cell">Fecha</th>
+            <th class="time-cell">Hora</th>
+            <th class="state-cell">Estado</th>
+            <th class="topic-cell">Tema</th>
+            <th class="asset-cell">Imagen / video</th>
+            <th class="copy-cell">Copy</th>
+            <th class="preview-cell">Preview</th>
+            <th class="actions-cell"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty">No hay filas para los filtros actuales.</div>
+    </div>
+  </main>
+
+  <script>
+    const columns = ["fecha", "hora", "estado", "tema", "imagen_archivo", "copy"];
+    const allowedStates = ["pendiente", "lista", "programada", "ready", "publicada"];
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+    const videoExtensions = [".mp4", ".mov", ".m4v"];
+
+    let rows = [];
+    let dirty = false;
+
+    const tbody = document.querySelector("#rows");
+    const statusEl = document.querySelector("#status");
+    const textFilter = document.querySelector("#textFilter");
+    const stateFilter = document.querySelector("#stateFilter");
+    const assetFilter = document.querySelector("#assetFilter");
+    const emptyEl = document.querySelector("#empty");
+
+    function setStatus(message, tone) {
+      statusEl.textContent = message;
+      statusEl.style.color = tone === "error" ? "#ffb4c0" : "#dce2e8";
+    }
+
+    function markDirty() {
+      dirty = true;
+      setStatus("Cambios sin guardar");
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function extensionOf(filename) {
+      const clean = String(filename || "").split("?")[0].toLowerCase();
+      const index = clean.lastIndexOf(".");
+      return index >= 0 ? clean.slice(index) : "";
+    }
+
+    function localAssetInfo(row) {
+      if (row._asset) return row._asset;
+      const file = row.imagen_archivo || "";
+      if (!file.trim()) return { exists: false, type: "none", url: "" };
+      const ext = extensionOf(file);
+      const type = videoExtensions.includes(ext) ? "video" : "image";
+      return { exists: false, type, url: "" };
+    }
+
+    function rowMatches(row) {
+      const query = textFilter.value.trim().toLowerCase();
+      const state = stateFilter.value;
+      const asset = assetFilter.value;
+      const info = localAssetInfo(row);
+      const file = row.imagen_archivo || "";
+      const haystack = columns.map((column) => row[column] || "").join(" ").toLowerCase();
+      if (query && !haystack.includes(query)) return false;
+      if (state && row.estado !== state) return false;
+      if (asset === "missing" && (!file || info.exists)) return false;
+      if (asset === "none" && file) return false;
+      if ((asset === "image" || asset === "video") && info.type !== asset) return false;
+      return true;
+    }
+
+    function renderPreview(row) {
+      const info = localAssetInfo(row);
+      const file = row.imagen_archivo || "";
+      if (!file) {
+        return '<span class="pill">Sin archivo</span>';
+      }
+      if (!info.exists) {
+        return `<span class="pill bad">Falta archivo</span><span>${escapeHtml(file)}</span>`;
+      }
+      const src = encodeURI(info.url);
+      const media = info.type === "video"
+        ? `<video src="${src}" controls preload="metadata"></video>`
+        : `<img src="${src}" alt="${escapeHtml(file)}">`;
+      return `${media}<span class="pill ok">${info.type === "video" ? "Video" : "Imagen"}</span>`;
+    }
+
+    function renderRows() {
+      tbody.innerHTML = "";
+      let visible = 0;
+
+      rows.forEach((row, index) => {
+        const tr = document.createElement("tr");
+        if (!rowMatches(row)) tr.className = "hidden";
+        else visible += 1;
+
+        tr.innerHTML = `
+          <td class="date-cell"><input type="date" data-index="${index}" data-field="fecha" value="${escapeHtml(row.fecha)}"></td>
+          <td class="time-cell"><input type="time" data-index="${index}" data-field="hora" value="${escapeHtml(row.hora)}"></td>
+          <td class="state-cell">
+            <select data-index="${index}" data-field="estado">
+              ${allowedStates.map((state) => `<option value="${state}" ${row.estado === state ? "selected" : ""}>${state}</option>`).join("")}
+            </select>
+          </td>
+          <td class="topic-cell"><textarea data-index="${index}" data-field="tema">${escapeHtml(row.tema)}</textarea></td>
+          <td class="asset-cell">
+            <div class="asset-tools">
+              <input data-index="${index}" data-field="imagen_archivo" value="${escapeHtml(row.imagen_archivo)}" placeholder="archivo.jpg o video.mp4">
+              <div class="upload-row">
+                <input type="file" data-upload="${index}" accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.mov,.m4v">
+              </div>
+            </div>
+          </td>
+          <td class="copy-cell"><textarea data-index="${index}" data-field="copy">${escapeHtml(row.copy)}</textarea></td>
+          <td class="preview-cell"><div class="preview">${renderPreview(row)}</div></td>
+          <td class="actions-cell"><button class="danger" type="button" data-delete="${index}">Eliminar</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      emptyEl.style.display = visible ? "none" : "block";
+    }
+
+    function normalizeRow(row = {}) {
+      const clean = {};
+      columns.forEach((column) => clean[column] = String(row[column] || ""));
+      if (!allowedStates.includes(clean.estado)) clean.estado = "pendiente";
+      if (row._asset) clean._asset = row._asset;
+      return clean;
+    }
+
+    async function loadRows() {
+      const response = await fetch("/api/posts");
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "No se pudo leer el calendario");
+      rows = data.rows.map(normalizeRow);
+      stateFilter.innerHTML = '<option value="">Todos</option>' + allowedStates.map((state) => `<option value="${state}">${state}</option>`).join("");
+      dirty = false;
+      setStatus(`${rows.length} filas cargadas`);
+      renderRows();
+    }
+
+    async function saveRows() {
+      document.querySelector("#saveRows").disabled = true;
+      try {
+        const payloadRows = rows.map((row) => {
+          const clean = {};
+          columns.forEach((column) => clean[column] = row[column] || "");
+          return clean;
+        });
+        const response = await fetch("/api/posts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ rows: payloadRows })
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || "No se pudo guardar");
+        dirty = false;
+        setStatus(`Guardado. Backup: ${data.backup}`);
+        await loadRows();
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        document.querySelector("#saveRows").disabled = false;
+      }
+    }
+
+    async function uploadForRow(index, file) {
+      if (!file) return;
+      const form = new FormData();
+      form.append("file", file);
+      setStatus("Subiendo archivo...");
+      const response = await fetch("/api/upload", { method: "POST", body: form });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.error || "No se pudo subir");
+      rows[index].imagen_archivo = data.filename;
+      rows[index]._asset = data._asset;
+      markDirty();
+      renderRows();
+    }
+
+    tbody.addEventListener("input", (event) => {
+      const target = event.target;
+      const index = Number(target.dataset.index);
+      const field = target.dataset.field;
+      if (!Number.isInteger(index) || !field) return;
+      rows[index][field] = target.value;
+      if (field === "imagen_archivo") delete rows[index]._asset;
+      markDirty();
+    });
+
+    tbody.addEventListener("change", async (event) => {
+      const target = event.target;
+      if (target.dataset.upload) {
+        try {
+          await uploadForRow(Number(target.dataset.upload), target.files[0]);
+        } catch (error) {
+          setStatus(error.message, "error");
+        }
+        return;
+      }
+      const index = Number(target.dataset.index);
+      const field = target.dataset.field;
+      if (!Number.isInteger(index) || !field) return;
+      rows[index][field] = target.value;
+      markDirty();
+      renderRows();
+    });
+
+    tbody.addEventListener("click", (event) => {
+      const index = event.target.dataset.delete;
+      if (index === undefined) return;
+      rows.splice(Number(index), 1);
+      markDirty();
+      renderRows();
+    });
+
+    document.querySelector("#addRow").addEventListener("click", () => {
+      rows.unshift(normalizeRow({
+        fecha: new Date().toISOString().slice(0, 10),
+        hora: "08:00",
+        estado: "pendiente"
+      }));
+      markDirty();
+      renderRows();
+    });
+
+    document.querySelector("#saveRows").addEventListener("click", saveRows);
+    [textFilter, stateFilter, assetFilter].forEach((input) => input.addEventListener("input", renderRows));
+    [stateFilter, assetFilter].forEach((input) => input.addEventListener("change", renderRows));
+
+    window.addEventListener("beforeunload", (event) => {
+      if (!dirty) return;
+      event.preventDefault();
+      event.returnValue = "";
+    });
+
+    loadRows().catch((error) => setStatus(error.message, "error"));
+  </script>
+</body>
+</html>

@@ -72,6 +72,24 @@ El publicador solo usa filas con estado `lista`, `programada` o `ready`. Las fil
 
 ---
 
+## Panel local para programar publicaciones
+
+Para editar el calendario desde una pantalla grafica local:
+
+```bash
+python admin_server.py
+```
+
+Luego abre en el navegador:
+
+```text
+http://127.0.0.1:8787
+```
+
+El panel lee y guarda `calendario_publicaciones.csv`, crea `calendario_publicaciones.csv.bak` antes de guardar cambios y sube imagenes o videos a `posts_programados/`.
+
+---
+
 ## ▶️ Cómo publicar ahora mismo (manual)
 
 Ve a GitHub → pestaña **Actions** → **"Publicador Automatico MEGAGYM"** → **"Run workflow"**.
