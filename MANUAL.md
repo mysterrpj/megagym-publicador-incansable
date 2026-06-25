@@ -74,7 +74,13 @@ El publicador solo usa filas con estado `lista`, `programada` o `ready`. Las fil
 
 ## Panel local para programar publicaciones
 
-Para editar el calendario desde una pantalla grafica local:
+Para editar el calendario desde una pantalla grafica local puedes hacer doble clic en:
+
+```text
+abrir_panel.bat
+```
+
+Tambien puedes abrirlo desde terminal:
 
 ```bash
 python admin_server.py
@@ -87,6 +93,14 @@ http://127.0.0.1:8787
 ```
 
 El panel lee y guarda `calendario_publicaciones.csv`, crea `calendario_publicaciones.csv.bak` antes de guardar cambios y sube imagenes o videos a `posts_programados/`.
+
+Despues de guardar cambios en el panel, subelos a GitHub haciendo doble clic en:
+
+```text
+subir_publicaciones.bat
+```
+
+Ese script sube `calendario_publicaciones.csv` y solo las imagenes/videos mencionados en la columna `imagen_archivo`. No sube el backup `.bak`.
 
 ---
 
