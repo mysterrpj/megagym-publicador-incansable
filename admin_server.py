@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import tempfile
+import ast
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -67,6 +68,46 @@ def asset_type(filename):
     if suffix in IMAGE_EXTENSIONS:
         return "image"
     return "none"
+
+
+def slot_filename(fecha, hora, suffix):
+    fecha = (fecha or "").strip()
+    hora = (hora or "").strip()
+    suffix = (suffix or "").lower()
+    if suffix not in ALLOWED_EXTENSIONS:
+        raise ValueError(f"Extension no permitida: {suffix or '(sin extension)'}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", fecha):
+        raise ValueError("La fila necesita una fecha valida para renombrar el archivo.")
+    if not re.fullmatch(r"\d{2}:\d{2}", hora):
+        raise ValueError("La fila necesita una hora valida para renombrar el archivo.")
+    return f"{fecha}_{hora.replace(':', '')}{suffix}"
+
+
+def load_topics_from_publisher():
+    publisher_path = ROOT_DIR / "publisher.py"
+    if not publisher_path.exists():
+        return []
+    try:
+        tree = ast.parse(publisher_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(isinstance(target, ast.Name) and target.id == "TEMAS_POR_CATEGORIA" for target in node.targets):
+            continue
+        try:
+            topics_by_category = ast.literal_eval(node.value)
+        except Exception:
+            return []
+        topics = []
+        for values in topics_by_category.values():
+            for topic in values:
+                if isinstance(topic, str) and topic.strip():
+                    topics.append(topic.strip())
+        return topics
+    return []
 
 
 def row_asset_info(filename):
@@ -149,6 +190,8 @@ def parse_multipart_upload(handler):
     body = handler.rfile.read(length)
     delimiter = b"--" + boundary
 
+    fields = {}
+    upload = None
     for part in body.split(delimiter):
         part = part.strip()
         if not part or part == b"--":
@@ -160,22 +203,37 @@ def parse_multipart_upload(handler):
             continue
         headers = header_bytes.decode("utf-8", errors="replace")
         disposition = next((line for line in headers.split("\r\n") if line.lower().startswith("content-disposition:")), "")
+        name_match = re.search(r'name="([^"]*)"', disposition)
+        field_name = name_match.group(1) if name_match else ""
         filename_match = re.search(r'filename="([^"]*)"', disposition)
-        if not filename_match:
-            continue
-        filename = filename_match.group(1)
         if content.endswith(b"\r\n"):
             content = content[:-2]
-        return filename, content
-    raise ValueError("No se recibio ningun archivo.")
+        if not filename_match:
+            if field_name:
+                fields[field_name] = content.decode("utf-8", errors="replace")
+            continue
+        filename = filename_match.group(1)
+        upload = (filename, content)
+    if not upload:
+        raise ValueError("No se recibio ningun archivo.")
+    return upload[0], upload[1], fields
 
 
-def save_upload(filename, content):
+def save_upload(filename, content, target_name=None):
     POSTS_DIR.mkdir(exist_ok=True)
     filename = clean_filename(filename)
     suffix = Path(filename).suffix.lower()
     if suffix not in ALLOWED_EXTENSIONS:
         raise ValueError(f"Extension no permitida: {suffix or '(sin extension)'}")
+
+    if target_name:
+        candidate = clean_filename(target_name)
+        candidate_suffix = Path(candidate).suffix.lower()
+        if candidate_suffix not in ALLOWED_EXTENSIONS:
+            raise ValueError(f"Extension no permitida: {candidate_suffix or '(sin extension)'}")
+        path = safe_asset_path(candidate)
+        path.write_bytes(content)
+        return candidate
 
     base = Path(filename).stem
     candidate = filename
@@ -206,6 +264,9 @@ class AdminHandler(SimpleHTTPRequestHandler):
                 ],
             }
             json_response(self, 200, payload)
+            return
+        if path == "/api/topics":
+            json_response(self, 200, {"topics": load_topics_from_publisher()})
             return
         if path.startswith("/assets/"):
             self.serve_asset(path.removeprefix("/assets/"))
@@ -239,8 +300,12 @@ class AdminHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/upload":
             try:
-                filename, content = parse_multipart_upload(self)
-                saved = save_upload(filename, content)
+                filename, content, fields = parse_multipart_upload(self)
+                suffix = Path(filename).suffix.lower()
+                target_name = None
+                if fields.get("fecha") and fields.get("hora"):
+                    target_name = slot_filename(fields.get("fecha"), fields.get("hora"), suffix)
+                saved = save_upload(filename, content, target_name)
                 json_response(self, 200, {"ok": True, "filename": saved, "_asset": row_asset_info(saved)})
             except Exception as exc:
                 json_response(self, 400, {"ok": False, "error": str(exc)})

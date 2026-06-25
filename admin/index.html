@@ -67,6 +67,18 @@
       margin-bottom: 14px;
     }
 
+    .bulkbar {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 130px 170px auto auto;
+      gap: 10px;
+      padding: 12px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
     label {
       display: grid;
       gap: 5px;
@@ -115,6 +127,10 @@
 
     button.primary:hover { background: var(--brand-dark); }
     button.danger { color: var(--bad); }
+    button.secondary {
+      border-color: var(--line);
+      background: #fff;
+    }
     button:disabled { cursor: not-allowed; opacity: .55; }
 
     .table-wrap {
@@ -229,6 +245,10 @@
       .toolbar {
         grid-template-columns: 1fr;
       }
+
+      .bulkbar {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -264,6 +284,19 @@
       <button id="saveRows" class="primary" type="button">Guardar CSV</button>
     </section>
 
+    <section class="bulkbar" aria-label="Acciones masivas">
+      <label>
+        Cantidad
+        <input id="generateCount" type="number" min="1" max="120" value="10">
+      </label>
+      <label>
+        Desde fecha
+        <input id="generateStart" type="date">
+      </label>
+      <button id="generateRows" class="secondary" type="button">Generar filas</button>
+      <button id="reschedulePending" class="secondary" type="button">Reprogramar pendientes</button>
+    </section>
+
     <div class="table-wrap">
       <table>
         <thead>
@@ -291,6 +324,7 @@
     const videoExtensions = [".mp4", ".mov", ".m4v"];
 
     let rows = [];
+    let topics = [];
     let dirty = false;
 
     const tbody = document.querySelector("#rows");
@@ -324,6 +358,61 @@
       const clean = String(filename || "").split("?")[0].toLowerCase();
       const index = clean.lastIndexOf(".");
       return index >= 0 ? clean.slice(index) : "";
+    }
+
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseLocalDate(value) {
+      const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return null;
+      return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    function addDays(date, days) {
+      const next = new Date(date);
+      next.setDate(next.getDate() + days);
+      return next;
+    }
+
+    function tomorrow() {
+      const today = new Date();
+      return addDays(new Date(today.getFullYear(), today.getMonth(), today.getDate()), 1);
+    }
+
+    function filenameForSlot(row, fallbackExtension = ".jpg") {
+      const ext = extensionOf(row.imagen_archivo) || fallbackExtension;
+      return `${row.fecha}_${String(row.hora || "08:00").replace(":", "")}${ext}`;
+    }
+
+    function nextDateAfterLastRow() {
+      const dates = rows
+        .map((row) => parseLocalDate(row.fecha))
+        .filter(Boolean)
+        .sort((a, b) => a - b);
+      if (!dates.length) return tomorrow();
+      return addDays(dates[dates.length - 1], 1);
+    }
+
+    function usedTopics() {
+      return new Set(rows.map((row) => (row.tema || "").trim().toLowerCase()).filter(Boolean));
+    }
+
+    function nextUnusedTopics(count) {
+      const used = usedTopics();
+      const selected = [];
+      for (const topic of topics) {
+        const key = topic.trim().toLowerCase();
+        if (!key || used.has(key)) continue;
+        used.add(key);
+        selected.push(topic);
+        if (selected.length >= count) break;
+      }
+      return selected;
     }
 
     function localAssetInfo(row) {
@@ -421,6 +510,18 @@
       renderRows();
     }
 
+    async function loadTopics() {
+      try {
+        const response = await fetch("/api/topics");
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "No se pudieron leer los temas");
+        topics = Array.isArray(data.topics) ? data.topics : [];
+      } catch (error) {
+        topics = [];
+        setStatus(error.message, "error");
+      }
+    }
+
     async function saveRows() {
       document.querySelector("#saveRows").disabled = true;
       try {
@@ -450,12 +551,73 @@
       if (!file) return;
       const form = new FormData();
       form.append("file", file);
+      form.append("fecha", rows[index].fecha || "");
+      form.append("hora", rows[index].hora || "");
       setStatus("Subiendo archivo...");
       const response = await fetch("/api/upload", { method: "POST", body: form });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.error || "No se pudo subir");
       rows[index].imagen_archivo = data.filename;
       rows[index]._asset = data._asset;
+      markDirty();
+      renderRows();
+    }
+
+    function generateRows() {
+      const countInput = document.querySelector("#generateCount");
+      const startInput = document.querySelector("#generateStart");
+      const count = Math.max(1, Math.min(120, Number(countInput.value || 1)));
+      if (!topics.length) {
+        setStatus("No se encontraron temas en publisher.py", "error");
+        return;
+      }
+
+      const selectedTopics = nextUnusedTopics(count);
+      if (!selectedTopics.length) {
+        setStatus("No quedan temas nuevos sin repetir", "error");
+        return;
+      }
+      const partialMessage = selectedTopics.length < count
+        ? ` Solo quedan ${selectedTopics.length} temas nuevos sin repetir.`
+        : "";
+
+      const startDate = parseLocalDate(startInput.value) || nextDateAfterLastRow();
+      const newRows = selectedTopics.map((topic, index) => {
+        const date = addDays(startDate, Math.floor(index / 2));
+        const hora = index % 2 === 0 ? "08:00" : "20:00";
+        const fecha = formatDate(date);
+        return normalizeRow({
+          fecha,
+          hora,
+          estado: "pendiente",
+          tema: topic,
+          imagen_archivo: `${fecha}_${hora.replace(":", "")}.jpg`,
+          copy: ""
+        });
+      });
+
+      rows.unshift(...newRows);
+      markDirty();
+      setStatus(`Generadas ${newRows.length} filas nuevas arriba.${partialMessage}`);
+      renderRows();
+    }
+
+    function reschedulePending() {
+      const pendingRows = rows.filter((row) => row.estado === "pendiente");
+      if (!pendingRows.length) {
+        setStatus("No hay filas pendientes para reprogramar");
+        return;
+      }
+
+      const startDate = tomorrow();
+      pendingRows.forEach((row, index) => {
+        const date = addDays(startDate, Math.floor(index / 2));
+        row.fecha = formatDate(date);
+        row.hora = index % 2 === 0 ? "08:00" : "20:00";
+        row.imagen_archivo = filenameForSlot(row);
+        delete row._asset;
+      });
+
       markDirty();
       renderRows();
     }
@@ -507,6 +669,8 @@
     });
 
     document.querySelector("#saveRows").addEventListener("click", saveRows);
+    document.querySelector("#generateRows").addEventListener("click", generateRows);
+    document.querySelector("#reschedulePending").addEventListener("click", reschedulePending);
     [textFilter, stateFilter, assetFilter].forEach((input) => input.addEventListener("input", renderRows));
     [stateFilter, assetFilter].forEach((input) => input.addEventListener("change", renderRows));
 
@@ -516,7 +680,7 @@
       event.returnValue = "";
     });
 
-    loadRows().catch((error) => setStatus(error.message, "error"));
+    Promise.all([loadTopics(), loadRows()]).catch((error) => setStatus(error.message, "error"));
   </script>
 </body>
 </html>
