@@ -495,5 +495,12 @@
     "fecha": "2026-06-30",
     "clave": "202606292000",
     "firma": "compres|motivacion|compra|compromiso|entrenar"
+  },
+  {
+    "id": "calendario:2026-06-30_0800.mp4",
+    "nombre": "2026-06-30_0800.mp4",
+    "fecha": "2026-06-30",
+    "clave": "202606300800",
+    "firma": "thrust|bien|hecho|menos|control"
   }
 ]
