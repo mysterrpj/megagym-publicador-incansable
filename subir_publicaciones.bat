@@ -19,6 +19,15 @@ if not exist "calendario_publicaciones.csv" (
   exit /b 1
 )
 
+echo Sincronizando cambios recientes de GitHub...
+git pull --rebase --autostash origin master
+if errorlevel 1 (
+  echo ERROR: No se pudo sincronizar con GitHub antes de preparar cambios.
+  echo Si subiste medios desde la web, revisa el mensaje anterior.
+  pause
+  exit /b 1
+)
+
 git add calendario_publicaciones.csv
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop'; $ext=@('.jpg','.jpeg','.png','.webp','.gif','.mp4','.mov','.m4v'); Import-Csv -Path 'calendario_publicaciones.csv' | ForEach-Object { $asset=($_.imagen_archivo + '').Trim(); if ($asset -and $asset -notmatch '^https?://') { $name=Split-Path -Leaf $asset; $path=Join-Path 'posts_programados' $name; if ((Test-Path -LiteralPath $path) -and ($ext -contains ([IO.Path]::GetExtension($name).ToLowerInvariant()))) { git add -- $path } } }"
@@ -44,7 +53,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-git pull --rebase origin master
+git pull --rebase --autostash origin master
 if errorlevel 1 (
   echo ERROR: No se pudo sincronizar con GitHub. Revisa el mensaje anterior.
   pause
