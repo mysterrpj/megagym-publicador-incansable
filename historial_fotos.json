@@ -502,5 +502,12 @@
     "fecha": "2026-06-30",
     "clave": "202606300800",
     "firma": "thrust|bien|hecho|menos|control"
+  },
+  {
+    "id": "calendario:2026-07-01_0800.mp4",
+    "nombre": "2026-07-01_0800.mp4",
+    "fecha": "2026-07-01",
+    "clave": "202607010800",
+    "firma": "saltar|cuerda|cardio|subestimado"
   }
 ]
