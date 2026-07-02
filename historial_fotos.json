@@ -1,19 +1,5 @@
 [
   {
-    "id": "calendario:2026-05-01_2000.jpg",
-    "nombre": "2026-05-01_2000.jpg",
-    "fecha": "2026-05-02",
-    "clave": "202605012000",
-    "firma": "disciplina|contagia|cuando|entrenas|lugar|correcto"
-  },
-  {
-    "id": "calendario:2026-05-02_0800.jpg",
-    "nombre": "2026-05-02_0800.jpg",
-    "fecha": "2026-05-02",
-    "clave": "202605020800",
-    "firma": "rutina|piernas|volver|despues|pausa"
-  },
-  {
     "id": "calendario:2026-05-02_2000.jpg",
     "nombre": "2026-05-02_2000.jpg",
     "fecha": "2026-05-03",
@@ -509,5 +495,12 @@
     "fecha": "2026-07-01",
     "clave": "202607010800",
     "firma": "saltar|cuerda|cardio|subestimado"
+  },
+  {
+    "id": "calendario:2026-07-01_2000.mp4",
+    "nombre": "2026-07-01_2000.mp4",
+    "fecha": "2026-07-02",
+    "clave": "202607012000",
+    "firma": "proxima|transformacion|empieza|visita"
   }
 ]
