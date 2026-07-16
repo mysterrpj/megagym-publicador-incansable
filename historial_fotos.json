@@ -1,117 +1,5 @@
 [
   {
-    "id": "calendario:2026-05-02_2000.jpg",
-    "nombre": "2026-05-02_2000.jpg",
-    "fecha": "2026-05-03",
-    "clave": "202605022000",
-    "firma": "entrenar|rodeado|gente|enfocada|cambia|mentalidad"
-  },
-  {
-    "id": "calendario:2026-05-03_0800.jpg",
-    "nombre": "2026-05-03_0800.jpg",
-    "fecha": "2026-05-03",
-    "clave": "202605030800",
-    "firma": "primer|esperar|exigirle|cuerpo"
-  },
-  {
-    "id": "calendario:2026-05-04_0800.jpg",
-    "nombre": "2026-05-04_0800.jpg",
-    "fecha": "2026-05-04",
-    "clave": "202605040800",
-    "firma": "entrenamiento|fuerza|mejor|cardio|perder|grasa"
-  },
-  {
-    "id": "calendario:2026-05-04_2000.jpg",
-    "nombre": "2026-05-04_2000.jpg",
-    "fecha": "2026-05-05",
-    "clave": "202605042000",
-    "firma": "empieza|deja|esperar|lunes|perfecto"
-  },
-  {
-    "id": "calendario:2026-05-05_0800.jpg",
-    "nombre": "2026-05-05_0800.jpg",
-    "fecha": "2026-05-05",
-    "clave": "202605050800",
-    "firma": "tres|errores|arruinan|sentadilla|como|corregirlos"
-  },
-  {
-    "id": "calendario:2026-05-05_2000.jpg",
-    "nombre": "2026-05-05_2000.jpg",
-    "fecha": "2026-05-06",
-    "clave": "202605052000",
-    "firma": "ambiente|importa|elegir|provoque|volver"
-  },
-  {
-    "id": "calendario:2026-05-06_0800.jpg",
-    "nombre": "2026-05-06_0800.jpg",
-    "fecha": "2026-05-06",
-    "clave": "202605060800",
-    "firma": "hiit|cardio|moderado|cual|quema|grasa"
-  },
-  {
-    "id": "calendario:2026-05-06_2000.jpg",
-    "nombre": "2026-05-06_2000.jpg",
-    "fecha": "2026-05-07",
-    "clave": "202605062000",
-    "firma": "constancia|minima|efectiva|cuantos|dias|necesitas|empezar|bien"
-  },
-  {
-    "id": "calendario:2026-05-07_0800.jpg",
-    "nombre": "2026-05-07_0800.jpg",
-    "fecha": "2026-05-07",
-    "clave": "202605070800",
-    "firma": "proteina|simple|como|llegar|meta|diaria|complicarte"
-  },
-  {
-    "id": "calendario:2026-05-07_2000.jpg",
-    "nombre": "2026-05-07_2000.jpg",
-    "fecha": "2026-05-08",
-    "clave": "202605072000",
-    "firma": "necesitas|empezar|perfecto|necesitas|empezar|acompanado"
-  },
-  {
-    "id": "calendario:2026-05-08_0800.jpg",
-    "nombre": "2026-05-08_0800.jpg",
-    "fecha": "2026-05-08",
-    "clave": "202605080800",
-    "firma": "press|banca|sientes|pecho|ajustar"
-  },
-  {
-    "id": "calendario:2026-05-08_2000.jpg",
-    "nombre": "2026-05-08_2000.jpg",
-    "fecha": "2026-05-09",
-    "clave": "202605082000",
-    "firma": "entrenar|conoce|ambiente|hechos"
-  },
-  {
-    "id": "calendario:2026-05-09_0800.jpg",
-    "nombre": "2026-05-09_0800.jpg",
-    "fecha": "2026-05-09",
-    "clave": "202605090800",
-    "firma": "cardio|despues|pesas|buena|mala|idea"
-  },
-  {
-    "id": "calendario:2026-05-10_2000.mp4",
-    "nombre": "2026-05-10_2000.mp4",
-    "fecha": "2026-05-09",
-    "clave": "202605102000",
-    "firma": "energia|tambien|entrena|disciplina"
-  },
-  {
-    "id": "calendario:2026-05-09_2000.jpg",
-    "nombre": "2026-05-09_2000.jpg",
-    "fecha": "2026-05-10",
-    "clave": "202605092000",
-    "firma": "como|vencer|pereza|faltar"
-  },
-  {
-    "id": "calendario:2026-05-10_0800.jpg",
-    "nombre": "2026-05-10_0800.jpg",
-    "fecha": "2026-05-10",
-    "clave": "202605100800",
-    "firma": "madre|mama|entrena|tambien|inspira"
-  },
-  {
     "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
     "nombre": "file_00000000ce2c71f5b264751776096bca.png",
     "fecha": "2026-06-01",
@@ -502,5 +390,12 @@
     "fecha": "2026-07-02",
     "clave": "202607012000",
     "firma": "proxima|transformacion|empieza|visita"
+  },
+  {
+    "id": "11OVp6z2-DGNf8DRYhtnajpRWmRhL66Zu",
+    "nombre": "ChatGPT Image 21 abr 2026, 19_20_35.jpg",
+    "fecha": "2026-07-16",
+    "clave": "chatgptimage21abr2026192035",
+    "firma": "fuerte|promocion|motivacion|promocion|flyer|posa|flyer|promocional|destacando|mensajes"
   }
 ]
