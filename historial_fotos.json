@@ -1,12 +1,5 @@
 [
   {
-    "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
-    "nombre": "file_00000000ce2c71f5b264751776096bca.png",
-    "fecha": "2026-06-01",
-    "clave": "file00000000ce2c71f5b264751776096bca",
-    "firma": "zancadas|mancuernas|entrenamiento|fuerza|realiza|zancadas|mancuernas|mostrando|concentracion|esfuerzo"
-  },
-  {
     "id": "1K3hedBgdLvDRO1Ap1ZKpx1C13SHcuxTF",
     "nombre": "file_0000000080bc720e98c30957cc534616.png",
     "fecha": "2026-06-01",
@@ -397,5 +390,12 @@
     "fecha": "2026-07-16",
     "clave": "chatgptimage21abr2026192035",
     "firma": "fuerte|promocion|motivacion|promocion|flyer|posa|flyer|promocional|destacando|mensajes"
+  },
+  {
+    "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
+    "nombre": "file_00000000ce2c71f5b264751776096bca.png",
+    "fecha": "2026-07-17",
+    "clave": "file00000000ce2c71f5b264751776096bca",
+    "firma": "zancadas|mancuernas|entrenamiento|fuerza|realiza|zancadas|mancuernas|mostrando|concentracion|esfuerzo"
   }
 ]
