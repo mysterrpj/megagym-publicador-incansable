@@ -7,13 +7,6 @@
     "firma": "transformacion|antes|despues|anos|transformacion|flyer|transformacion|fisica|antes|despues"
   },
   {
-    "id": "1EQaAY3hYr60Na-UG_jCUJuKrQGbDam24",
-    "nombre": "file_000000004d2071f595b29ad9af0e4680.png",
-    "fecha": "2026-06-02",
-    "clave": "file000000004d2071f595b29ad9af0e4680",
-    "firma": "entrenando|fuerza|poleas|sudor|fuerza|sudorosa|concentrada|realiza|ejercicio|fuerza"
-  },
-  {
     "id": "1Vl3xttqCBwlCd8Fy8nMsSUzryMrrGARd",
     "nombre": "file_000000006840720ea36ee1d346b9bfd1.png",
     "fecha": "2026-06-03",
@@ -397,5 +390,12 @@
     "fecha": "2026-07-17",
     "clave": "file0000000080bc720e98c30957cc534616",
     "firma": "flyer|entrenamiento|motivacion|promocion|flyer|flyer|promocional|hombres|sudorosos|levantando"
+  },
+  {
+    "id": "1EQaAY3hYr60Na-UG_jCUJuKrQGbDam24",
+    "nombre": "file_000000004d2071f595b29ad9af0e4680.png",
+    "fecha": "2026-07-18",
+    "clave": "file000000004d2071f595b29ad9af0e4680",
+    "firma": "entrenando|fuerza|poleas|sudor|fuerza|sudorosa|concentrada|realiza|ejercicio|fuerza"
   }
 ]
