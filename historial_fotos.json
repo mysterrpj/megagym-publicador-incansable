@@ -7,13 +7,6 @@
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
   },
   {
-    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
-    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
-    "fecha": "2026-06-04",
-    "clave": "file000000000cd071f5b5cbb30108a19066",
-    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
-  },
-  {
     "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
     "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
     "fecha": "2026-06-05",
@@ -397,5 +390,12 @@
     "fecha": "2026-07-19",
     "clave": "file00000000298871f596e37ca867546d7a",
     "firma": "entrenamiento|personalizado|pesas|promocion|flyer|entrenador|personal|sonriente|asiste|sudorosa"
+  },
+  {
+    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
+    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
+    "fecha": "2026-07-20",
+    "clave": "file000000000cd071f5b5cbb30108a19066",
+    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
   }
 ]
