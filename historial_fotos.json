@@ -7,13 +7,6 @@
     "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
   },
   {
-    "id": "1Yc7uq2O0H8HCOlI-7RHhF_GFRutIja7X",
-    "nombre": "file_000000009270720e90474ab8c37f68c5.png",
-    "fecha": "2026-06-05",
-    "clave": "file000000009270720e90474ab8c37f68c5",
-    "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
-  },
-  {
     "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
     "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
     "fecha": "2026-06-06",
@@ -404,5 +397,12 @@
     "fecha": "2026-07-21",
     "clave": "file000000003c3c720ebe6bcd30e239e75a",
     "firma": "selfie|resultados|reales|promocion|flyer|toma|selfie|banco|pesas|destacando"
+  },
+  {
+    "id": "1Yc7uq2O0H8HCOlI-7RHhF_GFRutIja7X",
+    "nombre": "file_000000009270720e90474ab8c37f68c5.png",
+    "fecha": "2026-07-21",
+    "clave": "file000000009270720e90474ab8c37f68c5",
+    "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
   }
 ]
