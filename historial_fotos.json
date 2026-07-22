@@ -14,13 +14,6 @@
     "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
   },
   {
-    "id": "1m4yxkBs6IYYJ3KM8RZ6bX7yZfeDnGas2",
-    "nombre": "ChatGPT Image 22 abr 2026, 22_12_38.png",
-    "fecha": "2026-06-06",
-    "clave": "chatgptimage22abr2026221238",
-    "firma": "banco|bebida|promocion|promocion|flyer|sudorosa|roja|sentada|banco|bebida"
-  },
-  {
     "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
     "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
     "fecha": "2026-06-07",
@@ -404,5 +397,12 @@
     "fecha": "2026-07-21",
     "clave": "file000000009270720e90474ab8c37f68c5",
     "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
+  },
+  {
+    "id": "1m4yxkBs6IYYJ3KM8RZ6bX7yZfeDnGas2",
+    "nombre": "ChatGPT Image 22 abr 2026, 22_12_38.png",
+    "fecha": "2026-07-22",
+    "clave": "chatgptimage22abr2026221238",
+    "firma": "banco|bebida|promocion|promocion|flyer|sudorosa|roja|sentada|banco|bebida"
   }
 ]
