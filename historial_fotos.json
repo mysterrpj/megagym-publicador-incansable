@@ -1,12 +1,5 @@
 [
   {
-    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
-    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-06-05",
-    "clave": "file00000000fed071f5a922b4de72830ef1",
-    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
-  },
-  {
     "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
     "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
     "fecha": "2026-06-06",
@@ -404,5 +397,12 @@
     "fecha": "2026-07-22",
     "clave": "chatgptimage22abr2026221238",
     "firma": "banco|bebida|promocion|promocion|flyer|sudorosa|roja|sentada|banco|bebida"
+  },
+  {
+    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
+    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
+    "fecha": "2026-07-22",
+    "clave": "file00000000fed071f5a922b4de72830ef1",
+    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
   }
 ]
