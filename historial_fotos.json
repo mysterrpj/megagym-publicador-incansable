@@ -7,13 +7,6 @@
     "firma": "musculoso|levanta|pesas|fuerza|musculoso|sudoroso|bigote|levanta|barra|pesas"
   },
   {
-    "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
-    "nombre": "file_00000000b840720e83ace2d5d629a813.png",
-    "fecha": "2026-06-08",
-    "clave": "file00000000b840720e83ace2d5d629a813",
-    "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
-  },
-  {
     "id": "1arKkj0qZ8uEk6PzYKfe8c1P4ZalGB-3I",
     "nombre": "file_00000000ba7871f589f1642311f2a905.png",
     "fecha": "2026-06-09",
@@ -404,5 +397,12 @@
     "fecha": "2026-07-23",
     "clave": "chatgptimage21abr2026185939",
     "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
+  },
+  {
+    "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
+    "nombre": "file_00000000b840720e83ace2d5d629a813.png",
+    "fecha": "2026-07-24",
+    "clave": "file00000000b840720e83ace2d5d629a813",
+    "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
   }
 ]
