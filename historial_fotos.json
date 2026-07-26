@@ -411,5 +411,12 @@
     "fecha": "2026-07-25",
     "clave": "file00000000d61071f58bd9f8c09ec51c96",
     "firma": "fitness|selfie|selfie|toma|selfie|pesas|maquinas|file|00000000d61071f58bd9f8c09ec51c96"
+  },
+  {
+    "id": "1wztkSOYhdw7wYFzors9EsU4-BzbUYDjU",
+    "nombre": "file_00000000fa20720ea249e1ac46ba5960.png",
+    "fecha": "2026-07-26",
+    "clave": "file00000000fa20720ea249e1ac46ba5960",
+    "firma": "fuerte|selfie|promocion|promocion|flyer|aspecto|atletico|toma|selfie|como"
   }
 ]
