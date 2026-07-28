@@ -21,13 +21,6 @@
     "firma": "ejercitando|bicep|curl|cable|fuerza|sudorosa|guantes|auriculares|realiza|ejercicio"
   },
   {
-    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
-    "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "fecha": "2026-06-12",
-    "clave": "file000000005998720ebf1114b16d482560",
-    "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
-  },
-  {
     "id": "1JIvxt-3doLt1UA5S-lLGpy3E1JaZTtEW",
     "nombre": "IMG-20260505-WA0020.jpg",
     "fecha": "2026-06-13",
@@ -418,5 +411,12 @@
     "fecha": "2026-07-27",
     "clave": "file00000000d59871f5b147d5fa2e40202e",
     "firma": "entrenamiento|mancuernas|flyer|promocion|flyer|realiza|curls|biceps|mancuernas|oscuro"
+  },
+  {
+    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
+    "nombre": "file_000000005998720ebf1114b16d482560.png",
+    "fecha": "2026-07-28",
+    "clave": "file000000005998720ebf1114b16d482560",
+    "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
   }
 ]
