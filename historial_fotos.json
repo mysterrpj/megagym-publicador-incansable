@@ -14,13 +14,6 @@
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
   },
   {
-    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
-    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-06-13",
-    "clave": "file0000000099dc720ebd2a29250bdd8f00",
-    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
-  },
-  {
     "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
     "nombre": "file_00000000236871f58e2a68166e52d64a.png",
     "fecha": "2026-06-14",
@@ -418,5 +411,12 @@
     "fecha": "2026-07-29",
     "clave": "file000000009fd0720ea8afd108211ad1b4",
     "firma": "concentrada|mancuerna|fuerza|concentrada|sudorosa|sostiene|mancuerna|guantes|entrenamiento|mientras"
+  },
+  {
+    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
+    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
+    "fecha": "2026-07-29",
+    "clave": "file0000000099dc720ebd2a29250bdd8f00",
+    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   }
 ]
