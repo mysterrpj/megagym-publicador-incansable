@@ -7,13 +7,6 @@
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
   },
   {
-    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
-    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
-    "fecha": "2026-06-14",
-    "clave": "file00000000506c71f58e56d2bc7516f0c7",
-    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
-  },
-  {
     "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
     "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
     "fecha": "2026-06-15",
@@ -418,5 +411,12 @@
     "fecha": "2026-07-31",
     "clave": "chatgptimage21abr2026185833",
     "firma": "mancuerna|sudor|fuerza|visiblemente|sudorosa|sienta|banco|sosteniendo|mancuerna|camiseta"
+  },
+  {
+    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
+    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
+    "fecha": "2026-07-31",
+    "clave": "file00000000506c71f58e56d2bc7516f0c7",
+    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
   }
 ]
