@@ -7,13 +7,6 @@
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
   },
   {
-    "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
-    "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
-    "fecha": "2026-06-15",
-    "clave": "file0000000066b871f5bbdedca6560aa598",
-    "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
-  },
-  {
     "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
     "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
     "fecha": "2026-06-16",
@@ -418,5 +411,12 @@
     "fecha": "2026-08-01",
     "clave": "file00000000d7a8720eb8dc215972160192",
     "firma": "entrenando|piernas|maquina|poleas|fuerza|entrena|piernas|patada|cable|usando"
+  },
+  {
+    "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
+    "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
+    "fecha": "2026-08-01",
+    "clave": "file0000000066b871f5bbdedca6560aa598",
+    "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
   }
 ]
