@@ -21,13 +21,6 @@
     "firma": "estirando|cuadriceps|colchoneta|entrenamiento|amarilla|negra|realiza|estiramiento|cuadriceps|arrodillada"
   },
   {
-    "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
-    "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
-    "fecha": "2026-06-17",
-    "clave": "file00000000ec6c71f587ecec2b041041c0",
-    "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
-  },
-  {
     "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
     "nombre": "file_0000000023a471f59d86082de291dba4.png",
     "fecha": "2026-06-18",
@@ -418,5 +411,12 @@
     "fecha": "2026-08-01",
     "clave": "file0000000066b871f5bbdedca6560aa598",
     "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
+  },
+  {
+    "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
+    "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
+    "fecha": "2026-08-02",
+    "clave": "file00000000ec6c71f587ecec2b041041c0",
+    "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
   }
 ]
