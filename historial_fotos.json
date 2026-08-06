@@ -21,13 +21,6 @@
     "firma": "banco|expresion|divertida|selfie|expresion|facial|exagerada|sentado|banco|cerca"
   },
   {
-    "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
-    "nombre": "dianaalopezh-20260331-0002.jpg",
-    "fecha": "2026-06-21",
-    "clave": "dianaalopezh202603310002",
-    "firma": "mancuernas|suelo|entrenamiento|zapatillas|piernas|mancuernas|16kg|suelo|granulado|dianaalopezh"
-  },
-  {
     "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
     "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
     "fecha": "2026-06-22",
@@ -418,5 +411,12 @@
     "fecha": "2026-08-05",
     "clave": "chatgptimage22abr2026221229",
     "firma": "entrena|mancuerna|flyer|promocion|flyer|musculosa|entrena|mancuerna|formando|parte"
+  },
+  {
+    "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
+    "nombre": "dianaalopezh-20260331-0002.jpg",
+    "fecha": "2026-08-06",
+    "clave": "dianaalopezh202603310002",
+    "firma": "mancuernas|suelo|entrenamiento|zapatillas|piernas|mancuernas|16kg|suelo|granulado|dianaalopezh"
   }
 ]
