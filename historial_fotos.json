@@ -7,13 +7,6 @@
     "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
   },
   {
-    "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
-    "nombre": "file_000000002dc471f59ca589d473676fb9.png",
-    "fecha": "2026-06-19",
-    "clave": "file000000002dc471f59ca589d473676fb9",
-    "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
-  },
-  {
     "id": "1iXPqrsnCgmyhpuZ2nosTfh1VOzUBqu5K",
     "nombre": "file_00000000adb8720ea07c2c05ceb46205.png",
     "fecha": "2026-06-21",
@@ -425,5 +418,12 @@
     "fecha": "2026-08-07",
     "clave": "file00000000478c720ea7678a31f1dd4d13",
     "firma": "flyer|entrenamiento|personalizado|trainer|promocion|flyer|flyer|levantando|mancuerna|bajo"
+  },
+  {
+    "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
+    "nombre": "file_000000002dc471f59ca589d473676fb9.png",
+    "fecha": "2026-08-07",
+    "clave": "file000000002dc471f59ca589d473676fb9",
+    "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
   }
 ]
