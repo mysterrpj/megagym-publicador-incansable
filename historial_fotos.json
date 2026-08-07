@@ -28,13 +28,6 @@
     "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   },
   {
-    "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
-    "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
-    "fecha": "2026-06-22",
-    "clave": "file00000000478c720ea7678a31f1dd4d13",
-    "firma": "flyer|entrenamiento|personalizado|trainer|promocion|flyer|flyer|levantando|mancuerna|bajo"
-  },
-  {
     "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
     "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
     "fecha": "2026-06-23",
@@ -425,5 +418,12 @@
     "fecha": "2026-08-06",
     "clave": "file000000000c64720e9c2035abf0284caa",
     "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
+  },
+  {
+    "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
+    "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
+    "fecha": "2026-08-07",
+    "clave": "file00000000478c720ea7678a31f1dd4d13",
+    "firma": "flyer|entrenamiento|personalizado|trainer|promocion|flyer|flyer|levantando|mancuerna|bajo"
   }
 ]
