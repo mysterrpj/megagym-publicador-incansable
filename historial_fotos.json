@@ -21,13 +21,6 @@
     "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   },
   {
-    "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
-    "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
-    "fecha": "2026-06-23",
-    "clave": "file000000001d4071f598c3f5d6cbd2b4b1",
-    "firma": "posando|fisico|oscuro|fuerza|sonriente|posa|espaldas|mostrando|fisico|oscuro"
-  },
-  {
     "id": "1sfBbRKAe4-VpEA7lbzoMKU9vFQBlwt7L",
     "nombre": "file_00000000835871f5b8a3b53eb7993393.png",
     "fecha": "2026-06-23",
@@ -425,5 +418,12 @@
     "fecha": "2026-08-07",
     "clave": "file000000002dc471f59ca589d473676fb9",
     "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
+  },
+  {
+    "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
+    "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
+    "fecha": "2026-08-08",
+    "clave": "file000000001d4071f598c3f5d6cbd2b4b1",
+    "firma": "posando|fisico|oscuro|fuerza|sonriente|posa|espaldas|mostrando|fisico|oscuro"
   }
 ]
