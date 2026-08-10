@@ -432,5 +432,12 @@
     "fecha": "2026-08-10",
     "clave": "file0000000059d0720e8ced93dfbab53b7f",
     "firma": "atleta|posando|fuerza|fisico|fuerza|fisico|atletico|posa|maquinas|fuerza"
+  },
+  {
+    "id": "1lCzAvQcQ2E42NFeOtfifSrinm_QTx0aU",
+    "nombre": "file_00000000f754720e95e29c906df78cdd.png",
+    "fecha": "2026-08-10",
+    "clave": "file00000000f754720e95e29c906df78cdd",
+    "firma": "promocion|oferta|promocion|flyer|sonriente|posa|mancuernas|promocionando|oferta|meses"
   }
 ]
