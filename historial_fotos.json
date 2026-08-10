@@ -21,13 +21,6 @@
     "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   },
   {
-    "id": "11XTIwtI3IxttQgUfc35g4d2O_Q8pQfhK",
-    "nombre": "file_0000000059d0720e8ced93dfbab53b7f.png",
-    "fecha": "2026-06-24",
-    "clave": "file0000000059d0720e8ced93dfbab53b7f",
-    "firma": "atleta|posando|fuerza|fisico|fuerza|fisico|atletico|posa|maquinas|fuerza"
-  },
-  {
     "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
     "nombre": "file_00000000422471f58b87dd30219afa0f.png",
     "fecha": "2026-06-25",
@@ -432,5 +425,12 @@
     "fecha": "2026-08-09",
     "clave": "file00000000b70871f5abea18bf1864adf7",
     "firma": "fuerte|posando|selfie|selfie|negra|posa|selfie|mostrando|piernas|musculosas"
+  },
+  {
+    "id": "11XTIwtI3IxttQgUfc35g4d2O_Q8pQfhK",
+    "nombre": "file_0000000059d0720e8ced93dfbab53b7f.png",
+    "fecha": "2026-08-10",
+    "clave": "file0000000059d0720e8ced93dfbab53b7f",
+    "firma": "atleta|posando|fuerza|fisico|fuerza|fisico|atletico|posa|maquinas|fuerza"
   }
 ]
