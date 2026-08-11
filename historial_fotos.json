@@ -14,13 +14,6 @@
     "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   },
   {
-    "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
-    "nombre": "file_00000000422471f58b87dd30219afa0f.png",
-    "fecha": "2026-06-25",
-    "clave": "file00000000422471f58b87dd30219afa0f",
-    "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
-  },
-  {
     "id": "calendario:2026-06-25_0800.png",
     "nombre": "2026-06-25_0800.png",
     "fecha": "2026-06-25",
@@ -439,5 +432,12 @@
     "fecha": "2026-08-11",
     "clave": "file00000000adb8720ea07c2c05ceb46205",
     "firma": "banco|expresion|divertida|selfie|expresion|facial|exagerada|sentado|banco|cerca"
+  },
+  {
+    "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
+    "nombre": "file_00000000422471f58b87dd30219afa0f.png",
+    "fecha": "2026-08-11",
+    "clave": "file00000000422471f58b87dd30219afa0f",
+    "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
   }
 ]
