@@ -7,13 +7,6 @@
     "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
   },
   {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-06-22",
-    "clave": "file00000000f17471f58b7d27ba421351e0",
-    "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
-  },
-  {
     "id": "calendario:2026-06-25_0800.png",
     "nombre": "2026-06-25_0800.png",
     "fecha": "2026-06-25",
@@ -439,5 +432,12 @@
     "fecha": "2026-08-11",
     "clave": "file00000000422471f58b87dd30219afa0f",
     "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
+  },
+  {
+    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
+    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
+    "fecha": "2026-08-12",
+    "clave": "file00000000f17471f58b7d27ba421351e0",
+    "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   }
 ]
