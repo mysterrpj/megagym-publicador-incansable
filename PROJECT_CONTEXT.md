@@ -53,3 +53,9 @@ Automatizacion de publicaciones para MEGAGYM en Facebook, Instagram y WhatsApp. 
 
 ## Estado actual
 El proyecto soporta imagenes y videos programados desde el calendario. La prueba de video en Make completo correctamente para Facebook Upload a Video e Instagram Create a reel post.
+
+## Panel web /megagym
+- En el proyecto create-next-app existe el panel /megagym (Firebase Hosting) para programar y asignar medios.
+- generateMegagymRows crea filas futuras en el calendario (2 por dia, temas automaticos sin repetir).
+- saveMegagymCalendarAsset sube el medio a posts_programados/ y marca la fila como lista.
+- Cuando una fila tiene imagen asignada, el publicador usa esa imagen; Google Drive solo se usa si la fila no tiene imagen.

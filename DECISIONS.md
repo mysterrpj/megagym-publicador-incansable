@@ -27,3 +27,24 @@ Motivo: publicar una imagen cuando se esperaba un video cambia el formato planif
 Impacto:
 - Videos invalidos se omiten.
 - Imagenes conservan fallback de imagen de respaldo.
+
+## 2026-08-14 - Generar filas futuras desde el panel web /megagym
+Decision: el panel web MEGAGYM de create-next-app puede crear filas futuras en el calendario (fecha de inicio + cantidad), con temas de publisher.py, 2 por dia (08:00 y 20:00), estado pendiente.
+
+Motivo: evitar depender del panel local para programar publicaciones y permitir subir la imagen por fila desde el mismo panel.
+
+Impacto: las filas nuevas se escriben en calendario_publicaciones.csv via GitHub API y el publicador las procesa igual que antes.
+
+## 2026-08-14 - Deduplicacion de temas normalizando tildes
+Decision: al seleccionar temas para filas nuevas, se normalizan tildes y mayusculas antes de comparar con temas ya usados.
+
+Motivo: filas viejas guardadas sin tildes (ej. "Por que...") repetian temas con tildes ("Por qué...") porque la comparacion era literal.
+
+Impacto: ya no se repiten temas visualmente iguales con o sin acentos.
+
+## 2026-08-14 - Temas en orden aleatorio
+Decision: los temas disponibles (no usados) se mezclan al azar antes de asignarse a las filas nuevas.
+
+Motivo: evitar que siempre se elijan los primeros temas de la lista y dar variedad.
+
+Impacto: cada generacion produce una seleccion variada de temas.

@@ -87,3 +87,20 @@ git push origin master
 Invoke-RestMethod -Uri https://hook.us2.make.com/... -Method Post -ContentType application/json -Body <payload de prueba>
 New-Item -ItemType Directory -Path notes -Force
 ```
+
+## Actualizacion 2026-08-14 - Panel web /megagym y causa de imagenes repetidas
+
+### Problema diagnosticado
+El pool de fotos del indice inteligente se agoto: solo habia 57 fotos indexadas, se publican 2 veces al dia y la regla anti-repeticion es de 45 dias (DIAS_HISTORIAL=45). Los logs de GitHub Actions mostraron candidatas disponibles bajando de 9 (8 ago) a 1 (13 ago). Con 0 candidatas, el publicador cae a fotos_reales/ y luego a la imagen de respaldo, repitiendo siempre la misma.
+
+### Que se hizo
+- Diagnostico con logs de GitHub Actions, historial remoto e indice remoto.
+- En create-next-app: nueva funcion generateMegagymRows + seccion "Programar nuevas publicaciones" en /megagym.
+- La funcion evita temas repetidos normalizando tildes y mezcla al azar los temas libres.
+- Deploy de funciones y hosting en el proyecto status-architect-stitch.
+- Se corrigio un ref roto de Codex (refs/codex/.../base) que impedia el git pull local.
+
+### Estado actual
+- /megagym genera filas futuras y permite subir la imagen/video de cada fila; la imagen subida se publica tal cual.
+- Google Drive queda como respaldo solo cuando una fila no tiene imagen asignada.
+- Para desplegar funciones en create-next-app usar FUNCTIONS_DISCOVERY_TIMEOUT=120 (la PC tarda mas de 10s en cargar el codigo).

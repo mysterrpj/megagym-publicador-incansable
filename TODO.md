@@ -16,3 +16,9 @@
 ## Baja
 - [ ] Revisar warning local de Git sobre `C:\Users\Lenovo\.config\git\ignore`.
 - [ ] Considerar migrar de `google.generativeai` a `google.genai` por aviso de deprecacion en GitHub Actions.
+
+## Completado 2026-08-14
+- [x] Panel web /megagym genera filas futuras del calendario (fecha + cantidad + temas automaticos).
+- [x] Deduplicar temas normalizando tildes (evita repetir temas con/sin acento).
+- [x] Mezclar al azar los temas disponibles al generar filas.
+- [x] Sincronizar el repo local con GitHub (se elimino un ref roto de Codex).

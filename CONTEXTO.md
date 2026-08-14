@@ -102,4 +102,13 @@ Cuando expira:
 | `fotos_reales/` | Galería local de fotos (fallback de Drive) |
 
 ---
-*Última actualización: 4 de abril de 2026 (fix Drive→GitHub + documentación Make)*
+
+## 🆕 Panel web para programar publicaciones (/megagym)
+
+- La app create-next-app (estados de WhatsApp) incluye la sección /megagym que lee el calendario desde GitHub.
+- Permite generar filas futuras (fecha de inicio + cantidad, temas automáticos, 2 por día: 08:00 y 20:00) y subir la imagen/video de cada fila.
+- Al subir un medio, la fila queda lista y el publicador usa esa imagen exacta. Google Drive queda como respaldo solo si la fila no tiene imagen.
+- Funciones de Firebase: listMegagymCalendar, saveMegagymCalendarAsset y generateMegagymRows.
+- Los temas nuevos se eligen al azar entre los no usados y la comparación ignora tildes para no repetir.
+- Para desplegar cambios en ese panel usar la variable FUNCTIONS_DISCOVERY_TIMEOUT=120.
+*Última actualización: 14 de agosto de 2026 (panel /megagym + fix de temas)*

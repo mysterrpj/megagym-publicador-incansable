@@ -253,3 +253,18 @@ Grilla resultante:
 ```
 
 Si faltan `WHATSAPP_IMPORT_URL` o `WHATSAPP_IMPORT_KEY`, el publicador sigue enviando a Facebook/Instagram y omite WhatsApp.
+
+---
+
+## Panel web para programar publicaciones (/megagym)
+
+Ademas del panel local, puedes programar desde la web en la app de estados de WhatsApp, seccion **Facebook / Instagram MEGAGYM** (/megagym).
+
+1. Abre /megagym y pulsa **Actualizar**.
+2. En **"Programar nuevas publicaciones"** elige la fecha de inicio y cuantas publicaciones quieres (maximo 120; se crean 2 por dia: 8:00 AM y 8:00 PM).
+3. Pulsa **"Generar filas"**: se crean filas con tema automatico y estado pendiente.
+4. Para cada fila, pulsa **"Subir medio"**, elige la imagen/video y guarda: la fila queda lista con tu archivo.
+
+Cuando una fila tiene imagen asignada, el publicador usa esa imagen exacta. Google Drive solo se usa si la fila no tiene imagen.
+
+> Los temas nuevos se eligen al azar entre los no usados y no se repiten temas ya programados (se ignoran tildes al comparar).
