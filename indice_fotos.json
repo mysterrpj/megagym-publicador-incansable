@@ -454,5 +454,37 @@
     "nombre_sugerido": "mujer-zancadas-mancuernas-entrenamiento-gimnasio",
     "categoria_visual": "fuerza",
     "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1pvY-L39c4iKDlr_ww5LeSZ4mfGo82QAI",
+    "nombre": "ChatGPT Image 13 ago 2026, 17_40_05.png",
+    "descripcion": "Un hombre musculoso posa sin camiseta mostrando su físico en un gimnasio con equipo de fuerza al fondo.",
+    "nombre_sugerido": "hombre-musculoso-posando-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1stS_E7PRuHYaYv2lH3CzQYvXFJgRN3ae",
+    "nombre": "ChatGPT Image 13 ago 2026, 07_21_09.png",
+    "descripcion": "Una mujer joven realiza sentadillas con barra dentro de un rack en un gimnasio de aspecto rústico con espejos y letreros de reglas.",
+    "nombre_sugerido": "mujer-joven-haciendo-sentadilla-barra",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "18Mje83KASOER_ZUs_0QuDw5Hvg9gpcvk",
+    "nombre": "ChatGPT Image 12 ago 2026, 20_41_26.png",
+    "descripcion": "Un hombre musculoso y sudoroso posa mostrando sus bíceps y antebrazos en un gimnasio con equipo de fuerza al fondo.",
+    "nombre_sugerido": "hombre-musculoso-posando-gym-fuerza",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1bRAiiSPU8hC20fEEdx-YsYUCJt11pZEv",
+    "nombre": "ChatGPT Image 12 ago 2026, 18_00_51.png",
+    "descripcion": "Un hombre realiza un press de hombros con barra sentado en un banco de gimnasio, mostrando esfuerzo.",
+    "nombre_sugerido": "hombre-press-hombros-barra-banco-gimnasio",
+    "categoria_visual": "fuerza",
+    "tipo_visual": "foto_real"
   }
 ]
