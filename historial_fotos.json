@@ -509,5 +509,12 @@
     "fecha": "2026-08-18",
     "clave": "fotomujerestiramiento",
     "firma": "estiramiento"
+  },
+  {
+    "id": "foto_hombre_barra_pesada.png",
+    "nombre": "foto_hombre_barra_pesada.png",
+    "fecha": "2026-08-19",
+    "clave": "fotohombrebarrapesada",
+    "firma": "barra|pesada"
   }
 ]
