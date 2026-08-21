@@ -518,10 +518,10 @@
     "firma": "barra|pesada"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-08-20",
-    "clave": "entrenamientohombrebarrav2",
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-08-21",
+    "clave": "entrenamientohombrebarra",
     "firma": "entrenamiento|barra"
   }
 ]
