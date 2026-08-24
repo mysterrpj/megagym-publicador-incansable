@@ -518,17 +518,17 @@
     "firma": "barra|pesada"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-08-23",
-    "clave": "entrenamientohombrebarrav2",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "entrenamiento_mujer_mancuerna_v2.png",
     "nombre": "entrenamiento_mujer_mancuerna_v2.png",
     "fecha": "2026-08-23",
     "clave": "entrenamientomujermancuernav2",
     "firma": "entrenamiento|mancuerna"
+  },
+  {
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-08-24",
+    "clave": "entrenamientohombrebarra",
+    "firma": "entrenamiento|barra"
   }
 ]
