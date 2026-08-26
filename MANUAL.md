@@ -238,7 +238,11 @@ Opcional:
 WHATSAPP_STATUS_TIMES=12:00,21:00
 ```
 
-Por defecto, cada post se programa en el proximo horario libre: `12:00` o `21:00`, hora Peru. Asi el post de Facebook/Instagram de las `08:00` queda para WhatsApp a las `12:00`, y el de las `20:00` queda para WhatsApp a las `21:00`.
+Por defecto, cada post se programa en un horario fijo segun su turno:
+- El post de Facebook/Instagram de las `08:00` se importa a WhatsApp el **mismo dia a las 12:00** hora Peru (`17:00Z`).
+- El post de Facebook/Instagram de las `20:00` se importa a WhatsApp el **dia siguiente a las 21:00** hora Peru (`02:00Z`).
+
+El `scheduleTime` se envia en UTC con formato ISO 8601 (ej. `2026-08-26T17:00:00Z` para la manana y `2026-08-27T02:00:00Z` para la noche).
 
 Grilla resultante:
 ```

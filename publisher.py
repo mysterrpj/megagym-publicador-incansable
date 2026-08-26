@@ -1092,6 +1092,11 @@ def build_external_post_id(post_index):
     return f"local-{datetime.now(ZoneInfo('America/Lima')).strftime('%Y%m%d-%H%M%S')}-post-{post_index}"
 
 def schedule_time_for_whatsapp(config, post_index, source_date=None, source_time=None):
+    """Calcula el horario del estado de WhatsApp en hora de Lima.
+
+    - Publicacion de manana (08:00): primer slot del mismo dia (12:00 Lima = 17:00Z).
+    - Publicacion de noche (20:00): ultimo slot del dia siguiente (21:00 Lima = 02:00Z del dia siguiente).
+    """
     lima_now = datetime.now(ZoneInfo("America/Lima"))
     base_date = lima_now.date()
     if source_date:
@@ -1123,16 +1128,22 @@ def schedule_time_for_whatsapp(config, post_index, source_date=None, source_time
 
     candidates = sorted(candidates)
 
+    # Determinar el turno de la publicacion (manana/noche) por la hora de origen
+    # o, en su defecto, por el indice del post dentro de la misma ejecucion.
+    es_turno_noche = None
     if source_time:
         try:
-            source_hour = int(str(source_time).split(":", 1)[0])
-            slot_index = 0 if source_hour < 12 else min(1, len(candidates) - 1)
-            return candidates[slot_index]
+            es_turno_noche = int(str(source_time).split(":", 1)[0]) >= 12
         except (ValueError, TypeError):
-            print(f"[WhatsApp] Hora de origen invalida '{source_time}'. Se usara el proximo horario disponible.")
+            print(f"[WhatsApp] Hora de origen invalida '{source_time}'. Se usara el indice del post.")
+    else:
+        es_turno_noche = post_index > 1
 
-    if 1 <= post_index <= len(candidates):
-        selected = candidates[post_index - 1]
+    if es_turno_noche is not None:
+        slot_index = min(1, len(candidates) - 1) if es_turno_noche else 0
+        selected = candidates[slot_index]
+        if es_turno_noche:
+            selected = selected + timedelta(days=1)
         if selected <= lima_now:
             selected = selected + timedelta(days=1)
         return selected
@@ -1153,13 +1164,14 @@ def send_to_whatsapp_import(config, post_index, text, image_url=None, asset_url=
 
     asset_type = detectar_tipo_asset(asset_url, asset_type) if asset_url else None
     schedule_time = schedule_time_for_whatsapp(config, post_index, source_date=source_date, source_time=source_time)
+    schedule_time_utc = schedule_time.astimezone(ZoneInfo("UTC"))
     payload = {
         "source": "megagym-auto-redes",
         "externalPostId": build_external_post_id(post_index),
         "message": text,
         "assetUrl": asset_url,
         "assetType": asset_type,
-        "scheduleTime": schedule_time.isoformat(),
+        "scheduleTime": schedule_time_utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
     if config.get("user_id"):
@@ -1171,7 +1183,7 @@ def send_to_whatsapp_import(config, post_index, text, image_url=None, asset_url=
     }
 
     try:
-        print(f"[WhatsApp] Enviando post al importador de estados para {schedule_time.strftime('%Y-%m-%d %H:%M')}...")
+        print(f"[WhatsApp] Enviando post al importador de estados para {schedule_time_utc.strftime('%Y-%m-%dT%H:%M:%SZ')} (UTC)...")
         response = requests.post(config["url"], json=payload, headers=headers, timeout=15)
         data = response.json() if response.text else {}
         if response.status_code == 200 and data.get("ok"):
@@ -1213,8 +1225,10 @@ def main():
     if publicacion_programada:
         publicaciones_del_dia = [publicacion_programada]
     else:
-        publicaciones_del_dia = [
-            {
+        ahora_lima = datetime.now(ZoneInfo("America/Lima"))
+        publicaciones_del_dia = []
+        for tema in seleccionar_temas_del_dia():
+            publicaciones_del_dia.append({
                 "tema": tema,
                 "copy": "",
                 "asset_archivo": "",
@@ -1222,9 +1236,9 @@ def main():
                 "asset_url": None,
                 "imagen_archivo": "",
                 "imagen_url": None,
-            }
-            for tema in seleccionar_temas_del_dia()
-        ]
+                "fecha": ahora_lima.date().isoformat(),
+                "hora": slot_publicacion_actual(ahora_lima),
+            })
     print(f"\n[INFO] Publicaciones a procesar: {[p['tema'] for p in publicaciones_del_dia]}")
 
     for i, publicacion in enumerate(publicaciones_del_dia, 1):

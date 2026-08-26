@@ -48,3 +48,16 @@ Decision: los temas disponibles (no usados) se mezclan al azar antes de asignars
 Motivo: evitar que siempre se elijan los primeros temas de la lista y dar variedad.
 
 Impacto: cada generacion produce una seleccion variada de temas.
+
+## 2026-08-25 - Horarios fijos de importacion a WhatsApp
+Decision: cada importacion a WhatsApp usa un horario fijo segun el turno de la publicacion, no el "proximo horario libre":
+- Publicacion de manana (08:00) -> mismo dia 12:00 hora Peru (`17:00Z`).
+- Publicacion de noche (20:00) -> dia siguiente 21:00 hora Peru (`02:00Z`).
+
+Motivo: antes, ambas llamadas diarias usaban `post_index=1` (cada ejecucion procesa una sola publicacion) y caian en el primer slot (12:00 Lima = 17:00Z), por lo que las 2 tareas quedaban con el mismo `scheduleTime` y se intentaban publicar a la vez.
+
+Impacto:
+- El flujo automatico ahora agrega `fecha` y `hora` a cada publicacion para calcular su turno.
+- `schedule_time_for_whatsapp` mapea manana -> 12:00 mismo dia y noche -> 21:00 del dia siguiente.
+- El `scheduleTime` se envia en UTC con formato ISO 8601 (sufijo `Z`).
+- Cada post conserva su `externalPostId` unico.
