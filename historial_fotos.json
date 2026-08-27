@@ -502,5 +502,12 @@
     "fecha": "2026-08-27",
     "clave": "entrenamientohombrebarrav2",
     "firma": "entrenamiento|barra"
+  },
+  {
+    "id": "foto_mujer_mancuerna_gym.png",
+    "nombre": "foto_mujer_mancuerna_gym.png",
+    "fecha": "2026-08-27",
+    "clave": "fotomujermancuernagym",
+    "firma": "mancuerna"
   }
 ]
