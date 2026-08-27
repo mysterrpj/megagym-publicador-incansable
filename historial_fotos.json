@@ -1,26 +1,5 @@
 [
   {
-    "id": "calendario:2026-06-26_0800.png",
-    "nombre": "2026-06-26_0800.png",
-    "fecha": "2026-06-26",
-    "clave": "202606260800",
-    "firma": "peso|muerto|destruir|espalda|claves|simples|antes|cargar"
-  },
-  {
-    "id": "calendario:2026-06-26_2000.png",
-    "nombre": "2026-06-26_2000.png",
-    "fecha": "2026-06-27",
-    "clave": "202606262000",
-    "firma": "separa|exito|estancamiento"
-  },
-  {
-    "id": "calendario:2026-06-27_0800.png",
-    "nombre": "2026-06-27_0800.png",
-    "fecha": "2026-06-27",
-    "clave": "202606270800",
-    "firma": "verdad|necesitas|tanto|cardio|bajar|peso"
-  },
-  {
     "id": "calendario:2026-06-29_2000.png",
     "nombre": "2026-06-29_2000.png",
     "fecha": "2026-06-30",
@@ -511,17 +490,17 @@
     "firma": "barra|pesada"
   },
   {
-    "id": "entrenamiento_hombre_barra.png",
-    "nombre": "entrenamiento_hombre_barra.png",
-    "fecha": "2026-08-24",
-    "clave": "entrenamientohombrebarra",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "entrenamiento_mujer_mancuerna.png",
     "nombre": "entrenamiento_mujer_mancuerna.png",
     "fecha": "2026-08-25",
     "clave": "entrenamientomujermancuerna",
     "firma": "entrenamiento|mancuerna"
+  },
+  {
+    "id": "entrenamiento_hombre_barra_v2.png",
+    "nombre": "entrenamiento_hombre_barra_v2.png",
+    "fecha": "2026-08-27",
+    "clave": "entrenamientohombrebarrav2",
+    "firma": "entrenamiento|barra"
   }
 ]
