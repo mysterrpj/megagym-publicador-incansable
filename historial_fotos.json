@@ -497,17 +497,17 @@
     "firma": "entrenamiento|mancuerna"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-08-27",
-    "clave": "entrenamientohombrebarrav2",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "foto_mujer_mancuerna_gym.png",
     "nombre": "foto_mujer_mancuerna_gym.png",
     "fecha": "2026-08-27",
     "clave": "fotomujermancuernagym",
     "firma": "mancuerna"
+  },
+  {
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-08-28",
+    "clave": "entrenamientohombrebarra",
+    "firma": "entrenamiento|barra"
   }
 ]
