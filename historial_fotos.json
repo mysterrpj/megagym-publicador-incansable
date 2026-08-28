@@ -509,5 +509,12 @@
     "fecha": "2026-08-28",
     "clave": "entrenamientohombrebarra",
     "firma": "entrenamiento|barra"
+  },
+  {
+    "id": "entrenamiento_pierna_hack_squat.png",
+    "nombre": "entrenamiento_pierna_hack_squat.png",
+    "fecha": "2026-08-28",
+    "clave": "entrenamientopiernahacksquat",
+    "firma": "entrenamiento|pierna|hack|squat"
   }
 ]
