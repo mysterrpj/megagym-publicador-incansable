@@ -516,5 +516,12 @@
     "fecha": "2026-08-28",
     "clave": "entrenamientopiernahacksquat",
     "firma": "entrenamiento|pierna|hack|squat"
+  },
+  {
+    "id": "flyer_estiramiento.png",
+    "nombre": "flyer_estiramiento.png",
+    "fecha": "2026-08-29",
+    "clave": "flyerestiramiento",
+    "firma": "flyer|estiramiento"
   }
 ]
