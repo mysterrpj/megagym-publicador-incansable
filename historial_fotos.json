@@ -490,17 +490,17 @@
     "firma": "entrenamiento|barra"
   },
   {
-    "id": "entrenamiento_mujer_mancuerna_v2.png",
-    "nombre": "entrenamiento_mujer_mancuerna_v2.png",
-    "fecha": "2026-08-30",
-    "clave": "entrenamientomujermancuernav2",
-    "firma": "entrenamiento|mancuerna"
-  },
-  {
     "id": "11OVp6z2-DGNf8DRYhtnajpRWmRhL66Zu",
     "nombre": "ChatGPT Image 21 abr 2026, 19_20_35.jpg",
     "fecha": "2026-08-31",
     "clave": "chatgptimage21abr2026192035",
     "firma": "fuerte|promocion|motivacion|promocion|flyer|posa|flyer|promocional|destacando|mensajes"
+  },
+  {
+    "id": "entrenamiento_mujer_mancuerna.png",
+    "nombre": "entrenamiento_mujer_mancuerna.png",
+    "fecha": "2026-08-31",
+    "clave": "entrenamientomujermancuerna",
+    "firma": "entrenamiento|mancuerna"
   }
 ]
