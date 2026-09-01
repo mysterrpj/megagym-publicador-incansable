@@ -1,19 +1,5 @@
 [
   {
-    "id": "calendario:2026-07-01_2000.mp4",
-    "nombre": "2026-07-01_2000.mp4",
-    "fecha": "2026-07-02",
-    "clave": "202607012000",
-    "firma": "proxima|transformacion|empieza|visita"
-  },
-  {
-    "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
-    "nombre": "file_00000000ce2c71f5b264751776096bca.png",
-    "fecha": "2026-07-17",
-    "clave": "file00000000ce2c71f5b264751776096bca",
-    "firma": "zancadas|mancuernas|entrenamiento|fuerza|realiza|zancadas|mancuernas|mostrando|concentracion|esfuerzo"
-  },
-  {
     "id": "1K3hedBgdLvDRO1Ap1ZKpx1C13SHcuxTF",
     "nombre": "file_0000000080bc720e98c30957cc534616.png",
     "fecha": "2026-07-17",
@@ -502,5 +488,12 @@
     "fecha": "2026-08-31",
     "clave": "entrenamientomujermancuerna",
     "firma": "entrenamiento|mancuerna"
+  },
+  {
+    "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
+    "nombre": "file_00000000ce2c71f5b264751776096bca.png",
+    "fecha": "2026-09-01",
+    "clave": "file00000000ce2c71f5b264751776096bca",
+    "firma": "zancadas|mancuernas|entrenamiento|fuerza|realiza|zancadas|mancuernas|mostrando|concentracion|esfuerzo"
   }
 ]
