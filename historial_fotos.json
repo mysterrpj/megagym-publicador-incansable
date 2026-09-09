@@ -28,13 +28,6 @@
     "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
   },
   {
-    "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
-    "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
-    "fecha": "2026-07-23",
-    "clave": "chatgptimage21abr2026185939",
-    "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
-  },
-  {
     "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
     "nombre": "file_00000000b840720e83ace2d5d629a813.png",
     "fecha": "2026-07-24",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-09",
     "clave": "file000000003c3c720ebe6bcd30e239e75a",
     "firma": "selfie|resultados|reales|promocion|flyer|toma|selfie|banco|pesas|destacando"
+  },
+  {
+    "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
+    "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
+    "fecha": "2026-09-09",
+    "clave": "chatgptimage21abr2026185939",
+    "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
   }
 ]
