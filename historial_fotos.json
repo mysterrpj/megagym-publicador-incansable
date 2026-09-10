@@ -14,13 +14,6 @@
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
   },
   {
-    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
-    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-07-22",
-    "clave": "file00000000fed071f5a922b4de72830ef1",
-    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
-  },
-  {
     "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
     "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
     "fecha": "2026-07-23",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-09",
     "clave": "chatgptimage21abr2026185939",
     "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
+  },
+  {
+    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
+    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
+    "fecha": "2026-09-10",
+    "clave": "file00000000fed071f5a922b4de72830ef1",
+    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
   }
 ]
