@@ -42,13 +42,6 @@
     "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
   },
   {
-    "id": "109vEC35rMWPDiMRzTr0KM53CLxtTo5CN",
-    "nombre": "file_00000000b890720e9408b0d45c7ab535.png",
-    "fecha": "2026-07-27",
-    "clave": "file00000000b890720e9408b0d45c7ab535",
-    "firma": "descansando|guantes|nike|recuperacion|latina|sudorosa|descansa|banco|guantes|nike"
-  },
-  {
     "id": "1BgNB3AP7viJmI7C_g3yNHsrmS04T1e0e",
     "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
     "fecha": "2026-07-27",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-11",
     "clave": "file00000000bedc71f5967307b616c7232f",
     "firma": "musculoso|levanta|pesas|fuerza|musculoso|sudoroso|bigote|levanta|barra|pesas"
+  },
+  {
+    "id": "109vEC35rMWPDiMRzTr0KM53CLxtTo5CN",
+    "nombre": "file_00000000b890720e9408b0d45c7ab535.png",
+    "fecha": "2026-09-12",
+    "clave": "file00000000b890720e9408b0d45c7ab535",
+    "firma": "descansando|guantes|nike|recuperacion|latina|sudorosa|descansa|banco|guantes|nike"
   }
 ]
