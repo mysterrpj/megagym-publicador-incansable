@@ -7,13 +7,6 @@
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
   },
   {
-    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
-    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "fecha": "2026-07-23",
-    "clave": "file000000003e0071f59a4b69ceb7ad7f94",
-    "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
-  },
-  {
     "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
     "nombre": "file_00000000b840720e83ace2d5d629a813.png",
     "fecha": "2026-07-24",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-12",
     "clave": "file00000000b890720e9408b0d45c7ab535",
     "firma": "descansando|guantes|nike|recuperacion|latina|sudorosa|descansa|banco|guantes|nike"
+  },
+  {
+    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
+    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
+    "fecha": "2026-09-12",
+    "clave": "file000000003e0071f59a4b69ceb7ad7f94",
+    "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
   }
 ]
