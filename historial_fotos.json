@@ -1,12 +1,5 @@
 [
   {
-    "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
-    "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
-    "fecha": "2026-07-20",
-    "clave": "file00000000294c71f5b9c0a68ea443b218",
-    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
-  },
-  {
     "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
     "nombre": "file_00000000b840720e83ace2d5d629a813.png",
     "fecha": "2026-07-24",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-13",
     "clave": "file0000000099dc720ebd2a29250bdd8f00",
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
+  },
+  {
+    "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
+    "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
+    "fecha": "2026-09-13",
+    "clave": "file00000000294c71f5b9c0a68ea443b218",
+    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
   }
 ]
