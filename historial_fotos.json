@@ -63,13 +63,6 @@
     "firma": "concentrada|mancuerna|fuerza|concentrada|sudorosa|sostiene|mancuerna|guantes|entrenamiento|mientras"
   },
   {
-    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
-    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-07-29",
-    "clave": "file0000000099dc720ebd2a29250bdd8f00",
-    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
-  },
-  {
     "id": "1DvPgAkhAG46jaTcFDc3HiHQnluITS11z",
     "nombre": "file_00000000e96071f592808f6ef00c9061.png",
     "fecha": "2026-07-30",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-12",
     "clave": "file000000003e0071f59a4b69ceb7ad7f94",
     "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
+  },
+  {
+    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
+    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
+    "fecha": "2026-09-13",
+    "clave": "file0000000099dc720ebd2a29250bdd8f00",
+    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   }
 ]
