@@ -63,13 +63,6 @@
     "firma": "recuperacion|sudorosa|recuperacion|camiseta|roja|rostro|sudoroso|recupera|reflexiona|tras"
   },
   {
-    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
-    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
-    "fecha": "2026-07-30",
-    "clave": "file00000000236871f58e2a68166e52d64a",
-    "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
-  },
-  {
     "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
     "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
     "fecha": "2026-07-31",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-13",
     "clave": "file00000000294c71f5b9c0a68ea443b218",
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
+  },
+  {
+    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
+    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
+    "fecha": "2026-09-14",
+    "clave": "file00000000236871f58e2a68166e52d64a",
+    "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
   }
 ]
