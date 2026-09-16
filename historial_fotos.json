@@ -42,13 +42,6 @@
     "firma": "ejercitando|bicep|curl|cable|fuerza|sudorosa|guantes|auriculares|realiza|ejercicio"
   },
   {
-    "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
-    "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
-    "fecha": "2026-07-31",
-    "clave": "chatgptimage21abr2026185833",
-    "firma": "mancuerna|sudor|fuerza|visiblemente|sudorosa|sienta|banco|sosteniendo|mancuerna|camiseta"
-  },
-  {
     "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
     "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
     "fecha": "2026-07-31",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-15",
     "clave": "file000000009fd0720ea8afd108211ad1b4",
     "firma": "concentrada|mancuerna|fuerza|concentrada|sudorosa|sostiene|mancuerna|guantes|entrenamiento|mientras"
+  },
+  {
+    "id": "1vSCuIycKCod7-V1U-scP5xKdDmwkhmbV",
+    "nombre": "ChatGPT Image 21 abr 2026, 18_58_33.png",
+    "fecha": "2026-09-16",
+    "clave": "chatgptimage21abr2026185833",
+    "firma": "mancuerna|sudor|fuerza|visiblemente|sudorosa|sienta|banco|sosteniendo|mancuerna|camiseta"
   }
 ]
