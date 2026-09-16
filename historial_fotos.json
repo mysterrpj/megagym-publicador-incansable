@@ -21,13 +21,6 @@
     "firma": "fuerte|selfie|promocion|promocion|flyer|aspecto|atletico|toma|selfie|como"
   },
   {
-    "id": "1Z2SRvWPpeiEjwbRabeH4ENsOZrS7zkg7",
-    "nombre": "file_00000000e90c720e9bc6ae60fe054351.png",
-    "fecha": "2026-07-26",
-    "clave": "file00000000e90c720e9bc6ae60fe054351",
-    "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
-  },
-  {
     "id": "1BgNB3AP7viJmI7C_g3yNHsrmS04T1e0e",
     "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
     "fecha": "2026-07-27",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-16",
     "clave": "chatgptimage21abr2026185833",
     "firma": "mancuerna|sudor|fuerza|visiblemente|sudorosa|sienta|banco|sosteniendo|mancuerna|camiseta"
+  },
+  {
+    "id": "1Z2SRvWPpeiEjwbRabeH4ENsOZrS7zkg7",
+    "nombre": "file_00000000e90c720e9bc6ae60fe054351.png",
+    "fecha": "2026-09-16",
+    "clave": "file00000000e90c720e9bc6ae60fe054351",
+    "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
   }
 ]
