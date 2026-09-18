@@ -49,13 +49,6 @@
     "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
   },
   {
-    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
-    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
-    "fecha": "2026-08-03",
-    "clave": "file00000000c8fc720ea57411b6c719027d",
-    "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
-  },
-  {
     "id": "1JIvxt-3doLt1UA5S-lLGpy3E1JaZTtEW",
     "nombre": "IMG-20260505-WA0020.jpg",
     "fecha": "2026-08-03",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-18",
     "clave": "file00000000b840720e83ace2d5d629a813",
     "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
+  },
+  {
+    "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
+    "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
+    "fecha": "2026-09-18",
+    "clave": "file00000000c8fc720ea57411b6c719027d",
+    "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
   }
 ]
