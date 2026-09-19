@@ -21,13 +21,6 @@
     "firma": "entrenamiento|mancuernas|flyer|promocion|flyer|realiza|curls|biceps|mancuernas|oscuro"
   },
   {
-    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
-    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
-    "fecha": "2026-07-31",
-    "clave": "file00000000506c71f58e56d2bc7516f0c7",
-    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
-  },
-  {
     "id": "1ltGg0vN-EdXvafrpTr330FsT6HoEGcJD",
     "nombre": "file_00000000d7a8720eb8dc215972160192.png",
     "fecha": "2026-08-01",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-19",
     "clave": "file000000006a40720ebdaaae296a6bdf43",
     "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
+  },
+  {
+    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
+    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
+    "fecha": "2026-09-19",
+    "clave": "file00000000506c71f58e56d2bc7516f0c7",
+    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
   }
 ]
