@@ -56,13 +56,6 @@
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
   },
   {
-    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
-    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
-    "fecha": "2026-08-04",
-    "clave": "file000000006a40720ebdaaae296a6bdf43",
-    "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
-  },
-  {
     "id": "1X88A9ioKk3WJxn8hEJ2s4g381nx-ZA7G",
     "nombre": "file_00000000c638720e8395bfedd8d0ec10.png",
     "fecha": "2026-08-04",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-18",
     "clave": "file00000000c8fc720ea57411b6c719027d",
     "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
+  },
+  {
+    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
+    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
+    "fecha": "2026-09-19",
+    "clave": "file000000006a40720ebdaaae296a6bdf43",
+    "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
   }
 ]
