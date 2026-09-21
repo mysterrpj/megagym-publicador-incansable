@@ -56,13 +56,6 @@
     "firma": "entrena|mancuerna|flyer|promocion|flyer|musculosa|entrena|mancuerna|formando|parte"
   },
   {
-    "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
-    "nombre": "dianaalopezh-20260331-0002.jpg",
-    "fecha": "2026-08-06",
-    "clave": "dianaalopezh202603310002",
-    "firma": "mancuernas|suelo|entrenamiento|zapatillas|piernas|mancuernas|16kg|suelo|granulado|dianaalopezh"
-  },
-  {
     "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
     "nombre": "file_000000000c64720e9c2035abf0284caa.png",
     "fecha": "2026-08-06",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-20",
     "clave": "file0000000066b871f5bbdedca6560aa598",
     "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
+  },
+  {
+    "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
+    "nombre": "dianaalopezh-20260331-0002.jpg",
+    "fecha": "2026-09-21",
+    "clave": "dianaalopezh202603310002",
+    "firma": "mancuernas|suelo|entrenamiento|zapatillas|piernas|mancuernas|16kg|suelo|granulado|dianaalopezh"
   }
 ]
