@@ -49,13 +49,6 @@
     "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
   },
   {
-    "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
-    "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
-    "fecha": "2026-08-07",
-    "clave": "file00000000478c720ea7678a31f1dd4d13",
-    "firma": "flyer|entrenamiento|personalizado|trainer|promocion|flyer|flyer|levantando|mancuerna|bajo"
-  },
-  {
     "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
     "nombre": "file_000000002dc471f59ca589d473676fb9.png",
     "fecha": "2026-08-07",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-22",
     "clave": "chatgptimage22abr2026221229",
     "firma": "entrena|mancuerna|flyer|promocion|flyer|musculosa|entrena|mancuerna|formando|parte"
+  },
+  {
+    "id": "1JgZiKNQVidYS3r59mbPbi_csqTmmax-i",
+    "nombre": "file_00000000478c720ea7678a31f1dd4d13.png",
+    "fecha": "2026-09-22",
+    "clave": "file00000000478c720ea7678a31f1dd4d13",
+    "firma": "flyer|entrenamiento|personalizado|trainer|promocion|flyer|flyer|levantando|mancuerna|bajo"
   }
 ]
