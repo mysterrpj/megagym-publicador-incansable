@@ -14,13 +14,6 @@
     "firma": "fuerte|selfie|promocion|promocion|flyer|aspecto|atletico|toma|selfie|como"
   },
   {
-    "id": "1BgNB3AP7viJmI7C_g3yNHsrmS04T1e0e",
-    "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
-    "fecha": "2026-07-27",
-    "clave": "file00000000d59871f5b147d5fa2e40202e",
-    "firma": "entrenamiento|mancuernas|flyer|promocion|flyer|realiza|curls|biceps|mancuernas|oscuro"
-  },
-  {
     "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
     "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
     "fecha": "2026-08-02",
@@ -509,5 +502,12 @@
     "fecha": "2026-09-23",
     "clave": "img20260505wa0020",
     "firma": "20260505|wa0020|otro|otro|json|descripcion|flyer|promociona|botes|proteina"
+  },
+  {
+    "id": "1BgNB3AP7viJmI7C_g3yNHsrmS04T1e0e",
+    "nombre": "file_00000000d59871f5b147d5fa2e40202e.png",
+    "fecha": "2026-09-23",
+    "clave": "file00000000d59871f5b147d5fa2e40202e",
+    "firma": "entrenamiento|mancuernas|flyer|promocion|flyer|realiza|curls|biceps|mancuernas|oscuro"
   }
 ]
