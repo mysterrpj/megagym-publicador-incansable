@@ -7,13 +7,6 @@
     "firma": "fuerte|selfie|promocion|promocion|flyer|aspecto|atletico|toma|selfie|como"
   },
   {
-    "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
-    "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
-    "fecha": "2026-08-02",
-    "clave": "file00000000ec6c71f587ecec2b041041c0",
-    "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
-  },
-  {
     "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
     "nombre": "file_000000000c64720e9c2035abf0284caa.png",
     "fecha": "2026-08-06",
@@ -502,5 +495,12 @@
     "fecha": "2026-09-24",
     "clave": "file00000000c638720e8395bfedd8d0ec10",
     "firma": "ejercicio|flyer|promocion|flyer|realiza|ejercicio|remo|cable|como|parte"
+  },
+  {
+    "id": "15M-gumdPuudNMKrsJgSrIe8euOO66G7E",
+    "nombre": "file_00000000ec6c71f587ecec2b041041c0.png",
+    "fecha": "2026-09-24",
+    "clave": "file00000000ec6c71f587ecec2b041041c0",
+    "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
   }
 ]
