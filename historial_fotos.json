@@ -1,12 +1,5 @@
 [
   {
-    "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
-    "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
-    "fecha": "2026-07-25",
-    "clave": "file00000000d61071f58bd9f8c09ec51c96",
-    "firma": "fitness|selfie|selfie|toma|selfie|pesas|maquinas|file|00000000d61071f58bd9f8c09ec51c96"
-  },
-  {
     "id": "1wztkSOYhdw7wYFzors9EsU4-BzbUYDjU",
     "nombre": "file_00000000fa20720ea249e1ac46ba5960.png",
     "fecha": "2026-07-26",
@@ -19,13 +12,6 @@
     "fecha": "2026-08-02",
     "clave": "file00000000ec6c71f587ecec2b041041c0",
     "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
-  },
-  {
-    "id": "1X88A9ioKk3WJxn8hEJ2s4g381nx-ZA7G",
-    "nombre": "file_00000000c638720e8395bfedd8d0ec10.png",
-    "fecha": "2026-08-04",
-    "clave": "file00000000c638720e8395bfedd8d0ec10",
-    "firma": "ejercicio|flyer|promocion|flyer|realiza|ejercicio|remo|cable|como|parte"
   },
   {
     "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
@@ -509,5 +495,12 @@
     "fecha": "2026-09-23",
     "clave": "file00000000d59871f5b147d5fa2e40202e",
     "firma": "entrenamiento|mancuernas|flyer|promocion|flyer|realiza|curls|biceps|mancuernas|oscuro"
+  },
+  {
+    "id": "1X88A9ioKk3WJxn8hEJ2s4g381nx-ZA7G",
+    "nombre": "file_00000000c638720e8395bfedd8d0ec10.png",
+    "fecha": "2026-09-24",
+    "clave": "file00000000c638720e8395bfedd8d0ec10",
+    "firma": "ejercicio|flyer|promocion|flyer|realiza|ejercicio|remo|cable|como|parte"
   }
 ]
