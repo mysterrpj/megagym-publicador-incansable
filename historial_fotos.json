@@ -1,24 +1,10 @@
 [
   {
-    "id": "1wztkSOYhdw7wYFzors9EsU4-BzbUYDjU",
-    "nombre": "file_00000000fa20720ea249e1ac46ba5960.png",
-    "fecha": "2026-07-26",
-    "clave": "file00000000fa20720ea249e1ac46ba5960",
-    "firma": "fuerte|selfie|promocion|promocion|flyer|aspecto|atletico|toma|selfie|como"
-  },
-  {
     "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
     "nombre": "file_000000000c64720e9c2035abf0284caa.png",
     "fecha": "2026-08-06",
     "clave": "file000000000c64720e9c2035abf0284caa",
     "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
-  },
-  {
-    "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
-    "nombre": "file_000000002dc471f59ca589d473676fb9.png",
-    "fecha": "2026-08-07",
-    "clave": "file000000002dc471f59ca589d473676fb9",
-    "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
   },
   {
     "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
@@ -502,5 +488,12 @@
     "fecha": "2026-09-24",
     "clave": "file00000000ec6c71f587ecec2b041041c0",
     "firma": "flyer|bicep|curl|promocion|flyer|flyer|promocional|haciendo|curl|biceps"
+  },
+  {
+    "id": "1toLA5LY1bEsdCEs5ek4-3R3GOV7AX8KL",
+    "nombre": "file_000000002dc471f59ca589d473676fb9.png",
+    "fecha": "2026-09-25",
+    "clave": "file000000002dc471f59ca589d473676fb9",
+    "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
   }
 ]
