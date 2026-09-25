@@ -14,13 +14,6 @@
     "firma": "posando|fisico|oscuro|fuerza|sonriente|posa|espaldas|mostrando|fisico|oscuro"
   },
   {
-    "id": "1sfBbRKAe4-VpEA7lbzoMKU9vFQBlwt7L",
-    "nombre": "file_00000000835871f5b8a3b53eb7993393.png",
-    "fecha": "2026-08-08",
-    "clave": "file00000000835871f5b8a3b53eb7993393",
-    "firma": "corto|entrenamiento|corto|negro|shorts|malla|posa|luces|difuminadas|file"
-  },
-  {
     "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
     "nombre": "file_000000007e14720ea6d07a291750be85.png",
     "fecha": "2026-08-09",
@@ -495,5 +488,12 @@
     "fecha": "2026-09-25",
     "clave": "file000000002dc471f59ca589d473676fb9",
     "firma": "estirando|cuadriceps|flyer|promocion|flyer|realiza|estiramiento|cuadriceps|colchoneta|presentado"
+  },
+  {
+    "id": "1sfBbRKAe4-VpEA7lbzoMKU9vFQBlwt7L",
+    "nombre": "file_00000000835871f5b8a3b53eb7993393.png",
+    "fecha": "2026-09-25",
+    "clave": "file00000000835871f5b8a3b53eb7993393",
+    "firma": "corto|entrenamiento|corto|negro|shorts|malla|posa|luces|difuminadas|file"
   }
 ]
