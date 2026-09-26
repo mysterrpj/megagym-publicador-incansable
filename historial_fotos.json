@@ -7,13 +7,6 @@
     "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
   },
   {
-    "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
-    "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
-    "fecha": "2026-08-08",
-    "clave": "file000000001d4071f598c3f5d6cbd2b4b1",
-    "firma": "posando|fisico|oscuro|fuerza|sonriente|posa|espaldas|mostrando|fisico|oscuro"
-  },
-  {
     "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
     "nombre": "file_000000007e14720ea6d07a291750be85.png",
     "fecha": "2026-08-09",
@@ -495,5 +488,12 @@
     "fecha": "2026-09-25",
     "clave": "file00000000835871f5b8a3b53eb7993393",
     "firma": "corto|entrenamiento|corto|negro|shorts|malla|posa|luces|difuminadas|file"
+  },
+  {
+    "id": "10mh4UOeT7LNCIglkDJIlcPs1qEd2sksX",
+    "nombre": "file_000000001d4071f598c3f5d6cbd2b4b1.png",
+    "fecha": "2026-09-26",
+    "clave": "file000000001d4071f598c3f5d6cbd2b4b1",
+    "firma": "posando|fisico|oscuro|fuerza|sonriente|posa|espaldas|mostrando|fisico|oscuro"
   }
 ]
