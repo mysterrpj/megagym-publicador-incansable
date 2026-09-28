@@ -1,12 +1,5 @@
 [
   {
-    "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
-    "nombre": "file_000000000c64720e9c2035abf0284caa.png",
-    "fecha": "2026-08-06",
-    "clave": "file000000000c64720e9c2035abf0284caa",
-    "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
-  },
-  {
     "id": "1kxl5hnBTJdGRJFrV2YHg_QdDhOWxFT6L",
     "nombre": "file_000000007e14720ea6d07a291750be85.png",
     "fecha": "2026-08-09",
@@ -502,5 +495,12 @@
     "fecha": "2026-09-28",
     "clave": "file00000000f17471f58b7d27ba421351e0",
     "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
+  },
+  {
+    "id": "1AptaDWtLnVZhhrBTILlGBtN2nNxH8TLp",
+    "nombre": "file_000000000c64720e9c2035abf0284caa.png",
+    "fecha": "2026-09-28",
+    "clave": "file000000000c64720e9c2035abf0284caa",
+    "firma": "selfie|version|promocion|flyer|toma|selfie|frente|espejo|promocionando|idea"
   }
 ]
