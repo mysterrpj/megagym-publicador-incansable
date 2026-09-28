@@ -35,13 +35,6 @@
     "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
   },
   {
-    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
-    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
-    "fecha": "2026-08-12",
-    "clave": "file00000000f17471f58b7d27ba421351e0",
-    "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
-  },
-  {
     "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
     "nombre": "file_0000000023a471f59d86082de291dba4.png",
     "fecha": "2026-08-12",
@@ -502,5 +495,12 @@
     "fecha": "2026-09-27",
     "clave": "file00000000adb8720ea07c2c05ceb46205",
     "firma": "banco|expresion|divertida|selfie|expresion|facial|exagerada|sentado|banco|cerca"
+  },
+  {
+    "id": "1a3YbvrZxq822VS89tk33kQxOwvdPxIXf",
+    "nombre": "file_00000000f17471f58b7d27ba421351e0.png",
+    "fecha": "2026-09-28",
+    "clave": "file00000000f17471f58b7d27ba421351e0",
+    "firma": "posando|banco|bebida|promocion|sonrie|posa|sentada|banco|pesas|vistiendo"
   }
 ]
