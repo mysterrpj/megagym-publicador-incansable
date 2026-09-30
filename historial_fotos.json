@@ -502,5 +502,12 @@
     "fecha": "2026-09-30",
     "clave": "file0000000023a471f59d86082de291dba4",
     "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
+  },
+  {
+    "id": "1XWnYIwEfmeoztUhrWsR_z7tYJLb4X5R6",
+    "nombre": "file_00000000d61071f58bd9f8c09ec51c96.png",
+    "fecha": "2026-09-30",
+    "clave": "file00000000d61071f58bd9f8c09ec51c96",
+    "firma": "fitness|selfie|selfie|toma|selfie|pesas|maquinas|file|00000000d61071f58bd9f8c09ec51c96"
   }
 ]
