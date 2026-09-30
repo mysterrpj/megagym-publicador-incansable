@@ -14,13 +14,6 @@
     "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
   },
   {
-    "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
-    "nombre": "file_0000000023a471f59d86082de291dba4.png",
-    "fecha": "2026-08-12",
-    "clave": "file0000000023a471f59d86082de291dba4",
-    "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
-  },
-  {
     "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
     "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
     "fecha": "2026-08-13",
@@ -502,5 +495,12 @@
     "fecha": "2026-09-29",
     "clave": "file000000007e14720ea6d07a291750be85",
     "firma": "selfie|selfie|toma|selfie|frente|espejo|llamado|destacando|piernas|ambiente"
+  },
+  {
+    "id": "1TVH1Vrz57A_HSbiqHW1Yq50GlB4TdY5D",
+    "nombre": "file_0000000023a471f59d86082de291dba4.png",
+    "fecha": "2026-09-30",
+    "clave": "file0000000023a471f59d86082de291dba4",
+    "firma": "selfie|shorts|amarillos|espejo|selfie|shorts|amarillos|camiseta|negra|toma"
   }
 ]
