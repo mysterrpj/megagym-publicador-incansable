@@ -7,13 +7,6 @@
     "firma": "promocion|oferta|promocion|flyer|sonriente|posa|mancuernas|promocionando|oferta|meses"
   },
   {
-    "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
-    "nombre": "file_00000000422471f58b87dd30219afa0f.png",
-    "fecha": "2026-08-11",
-    "clave": "file00000000422471f58b87dd30219afa0f",
-    "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
-  },
-  {
     "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
     "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
     "fecha": "2026-08-13",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-01",
     "clave": "chatgptimage13ago2026072109",
     "firma": "haciendo|sentadilla|barra|fuerza|realiza|sentadillas|barra|dentro|rack|aspecto"
+  },
+  {
+    "id": "1xmbTx450fbf4t3PfvfcFShz34XMO1MYo",
+    "nombre": "file_00000000422471f58b87dd30219afa0f.png",
+    "fecha": "2026-10-01",
+    "clave": "file00000000422471f58b87dd30219afa0f",
+    "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
   }
 ]
