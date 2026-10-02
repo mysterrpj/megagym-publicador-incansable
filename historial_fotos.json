@@ -14,13 +14,6 @@
     "firma": "selfie|atuendo|amarillo|selfie|posa|selfie|sentada|banco|entrenamiento|luciendo"
   },
   {
-    "id": "1JVGRh96T4mSC158Xd-MsoNzvzCdMQmgz",
-    "nombre": "file_00000000590871f5a777790574d41aa4.png",
-    "fecha": "2026-08-13",
-    "clave": "file00000000590871f5a777790574d41aa4",
-    "firma": "selfie|flyer|promocion|flyer|toma|selfie|smartphone|como|parte|flyer"
-  },
-  {
     "id": "calendario:2026-08-14_0800.png",
     "nombre": "2026-08-14_0800.png",
     "fecha": "2026-08-14",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-02",
     "clave": "chatgptimage12ago2026204126",
     "firma": "musculoso|posando|fuerza|fuerza|musculoso|sudoroso|posa|mostrando|biceps|antebrazos"
+  },
+  {
+    "id": "1JVGRh96T4mSC158Xd-MsoNzvzCdMQmgz",
+    "nombre": "file_00000000590871f5a777790574d41aa4.png",
+    "fecha": "2026-10-02",
+    "clave": "file00000000590871f5a777790574d41aa4",
+    "firma": "selfie|flyer|promocion|flyer|toma|selfie|smartphone|como|parte|flyer"
   }
 ]
