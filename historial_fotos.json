@@ -49,13 +49,6 @@
     "firma": "press|hombros|barra|banco|fuerza|realiza|press|hombros|barra|sentado"
   },
   {
-    "id": "18Mje83KASOER_ZUs_0QuDw5Hvg9gpcvk",
-    "nombre": "ChatGPT Image 12 ago 2026, 20_41_26.png",
-    "fecha": "2026-08-17",
-    "clave": "chatgptimage12ago2026204126",
-    "firma": "musculoso|posando|fuerza|fuerza|musculoso|sudoroso|posa|mostrando|biceps|antebrazos"
-  },
-  {
     "id": "1pvY-L39c4iKDlr_ww5LeSZ4mfGo82QAI",
     "nombre": "ChatGPT Image 13 ago 2026, 17_40_05.png",
     "fecha": "2026-08-18",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-01",
     "clave": "file00000000422471f58b87dd30219afa0f",
     "firma": "selfie|selfie|toma|selfie|cuerpo|completo|espejo|mostrando|logo|mancuernas"
+  },
+  {
+    "id": "18Mje83KASOER_ZUs_0QuDw5Hvg9gpcvk",
+    "nombre": "ChatGPT Image 12 ago 2026, 20_41_26.png",
+    "fecha": "2026-10-02",
+    "clave": "chatgptimage12ago2026204126",
+    "firma": "musculoso|posando|fuerza|fuerza|musculoso|sudoroso|posa|mostrando|biceps|antebrazos"
   }
 ]
