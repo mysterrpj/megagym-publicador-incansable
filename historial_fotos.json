@@ -35,13 +35,6 @@
     "firma": "como|aumentar|fuerza|maxima|semanas"
   },
   {
-    "id": "1bRAiiSPU8hC20fEEdx-YsYUCJt11pZEv",
-    "nombre": "ChatGPT Image 12 ago 2026, 18_00_51.png",
-    "fecha": "2026-08-17",
-    "clave": "chatgptimage12ago2026180051",
-    "firma": "press|hombros|barra|banco|fuerza|realiza|press|hombros|barra|sentado"
-  },
-  {
     "id": "1pvY-L39c4iKDlr_ww5LeSZ4mfGo82QAI",
     "nombre": "ChatGPT Image 13 ago 2026, 17_40_05.png",
     "fecha": "2026-08-18",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-02",
     "clave": "file00000000590871f5a777790574d41aa4",
     "firma": "selfie|flyer|promocion|flyer|toma|selfie|smartphone|como|parte|flyer"
+  },
+  {
+    "id": "1bRAiiSPU8hC20fEEdx-YsYUCJt11pZEv",
+    "nombre": "ChatGPT Image 12 ago 2026, 18_00_51.png",
+    "fecha": "2026-10-03",
+    "clave": "chatgptimage12ago2026180051",
+    "firma": "press|hombros|barra|banco|fuerza|realiza|press|hombros|barra|sentado"
   }
 ]
