@@ -35,13 +35,6 @@
     "firma": "como|aumentar|fuerza|maxima|semanas"
   },
   {
-    "id": "1pvY-L39c4iKDlr_ww5LeSZ4mfGo82QAI",
-    "nombre": "ChatGPT Image 13 ago 2026, 17_40_05.png",
-    "fecha": "2026-08-18",
-    "clave": "chatgptimage13ago2026174005",
-    "firma": "musculoso|posando|fuerza|musculoso|posa|camiseta|mostrando|fisico|fuerza|chatgpt"
-  },
-  {
     "id": "foto_mujer_estiramiento.png",
     "nombre": "foto_mujer_estiramiento.png",
     "fecha": "2026-08-18",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-03",
     "clave": "chatgptimage12ago2026180051",
     "firma": "press|hombros|barra|banco|fuerza|realiza|press|hombros|barra|sentado"
+  },
+  {
+    "id": "1pvY-L39c4iKDlr_ww5LeSZ4mfGo82QAI",
+    "nombre": "ChatGPT Image 13 ago 2026, 17_40_05.png",
+    "fecha": "2026-10-03",
+    "clave": "chatgptimage13ago2026174005",
+    "firma": "musculoso|posando|fuerza|musculoso|posa|camiseta|mostrando|fisico|fuerza|chatgpt"
   }
 ]
