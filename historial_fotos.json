@@ -7,13 +7,6 @@
     "firma": "promocion|oferta|promocion|flyer|sonriente|posa|mancuernas|promocionando|oferta|meses"
   },
   {
-    "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
-    "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
-    "fecha": "2026-08-13",
-    "clave": "file000000004300720eb4e7f55c4b563e14",
-    "firma": "selfie|atuendo|amarillo|selfie|posa|selfie|sentada|banco|entrenamiento|luciendo"
-  },
-  {
     "id": "calendario:2026-08-14_0800.png",
     "nombre": "2026-08-14_0800.png",
     "fecha": "2026-08-14",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-03",
     "clave": "chatgptimage13ago2026174005",
     "firma": "musculoso|posando|fuerza|musculoso|posa|camiseta|mostrando|fisico|fuerza|chatgpt"
+  },
+  {
+    "id": "1AyMpdQ4pbqOTiyBMHmxKRE-soCe14sfc",
+    "nombre": "file_000000004300720eb4e7f55c4b563e14.png",
+    "fecha": "2026-10-04",
+    "clave": "file000000004300720eb4e7f55c4b563e14",
+    "firma": "selfie|atuendo|amarillo|selfie|posa|selfie|sentada|banco|entrenamiento|luciendo"
   }
 ]
