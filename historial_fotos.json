@@ -28,13 +28,6 @@
     "firma": "estiramiento"
   },
   {
-    "id": "foto_hombre_barra_pesada.png",
-    "nombre": "foto_hombre_barra_pesada.png",
-    "fecha": "2026-08-19",
-    "clave": "fotohombrebarrapesada",
-    "firma": "barra|pesada"
-  },
-  {
     "id": "foto_mujer_mancuerna_gym.png",
     "nombre": "foto_mujer_mancuerna_gym.png",
     "fecha": "2026-08-27",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-04",
     "clave": "file00000000f754720e95e29c906df78cdd",
     "firma": "promocion|oferta|promocion|flyer|sonriente|posa|mancuernas|promocionando|oferta|meses"
+  },
+  {
+    "id": "foto_hombre_barra_pesada.png",
+    "nombre": "foto_hombre_barra_pesada.png",
+    "fecha": "2026-10-05",
+    "clave": "fotohombrebarrapesada",
+    "firma": "barra|pesada"
   }
 ]
