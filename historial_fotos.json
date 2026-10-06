@@ -49,13 +49,6 @@
     "firma": "flyer|estiramiento"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-08-30",
-    "clave": "entrenamientohombrebarrav2",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "11OVp6z2-DGNf8DRYhtnajpRWmRhL66Zu",
     "nombre": "ChatGPT Image 21 abr 2026, 19_20_35.jpg",
     "fecha": "2026-08-31",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-05",
     "clave": "fotohombrebarrapesada",
     "firma": "barra|pesada"
+  },
+  {
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-10-06",
+    "clave": "entrenamientohombrebarra",
+    "firma": "entrenamiento|barra"
   }
 ]
