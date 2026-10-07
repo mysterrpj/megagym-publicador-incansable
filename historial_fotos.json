@@ -56,13 +56,6 @@
     "firma": "fuerte|promocion|motivacion|promocion|flyer|posa|flyer|promocional|destacando|mensajes"
   },
   {
-    "id": "entrenamiento_mujer_mancuerna.png",
-    "nombre": "entrenamiento_mujer_mancuerna.png",
-    "fecha": "2026-08-31",
-    "clave": "entrenamientomujermancuerna",
-    "firma": "entrenamiento|mancuerna"
-  },
-  {
     "id": "1-JlFa0yciE_Hm2UoTQDHYo5Pf9fQ6ZFT",
     "nombre": "file_00000000ce2c71f5b264751776096bca.png",
     "fecha": "2026-09-01",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-07",
     "clave": "flyergluteos",
     "firma": "flyer|gluteos"
+  },
+  {
+    "id": "entrenamiento_mujer_mancuerna_v2.png",
+    "nombre": "entrenamiento_mujer_mancuerna_v2.png",
+    "fecha": "2026-10-07",
+    "clave": "entrenamientomujermancuernav2",
+    "firma": "entrenamiento|mancuerna"
   }
 ]
