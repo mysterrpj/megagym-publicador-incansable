@@ -511,17 +511,17 @@
     "firma": "entrenamiento|mancuerna"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-10-08",
-    "clave": "entrenamientohombrebarrav2",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "flyer_personalizado_1.jpg",
     "nombre": "flyer_personalizado_1.jpg",
     "fecha": "2026-10-09",
     "clave": "flyerpersonalizado1",
     "firma": "flyer|personalizado"
+  },
+  {
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-10-09",
+    "clave": "entrenamientohombrebarra",
+    "firma": "entrenamiento|barra"
   }
 ]
