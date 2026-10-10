@@ -518,10 +518,10 @@
     "firma": "flyer|personalizado"
   },
   {
-    "id": "entrenamiento_hombre_barra.png",
-    "nombre": "entrenamiento_hombre_barra.png",
-    "fecha": "2026-10-09",
-    "clave": "entrenamientohombrebarra",
+    "id": "entrenamiento_hombre_barra_v2.png",
+    "nombre": "entrenamiento_hombre_barra_v2.png",
+    "fecha": "2026-10-10",
+    "clave": "entrenamientohombrebarrav2",
     "firma": "entrenamiento|barra"
   }
 ]
