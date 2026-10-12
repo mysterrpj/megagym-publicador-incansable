@@ -497,13 +497,6 @@
     "firma": "flyer|gluteos"
   },
   {
-    "id": "entrenamiento_mujer_mancuerna_v2.png",
-    "nombre": "entrenamiento_mujer_mancuerna_v2.png",
-    "fecha": "2026-10-07",
-    "clave": "entrenamientomujermancuernav2",
-    "firma": "entrenamiento|mancuerna"
-  },
-  {
     "id": "flyer_personalizado_1.jpg",
     "nombre": "flyer_personalizado_1.jpg",
     "fecha": "2026-10-09",
@@ -523,5 +516,12 @@
     "fecha": "2026-10-11",
     "clave": "fotomujerestiramiento",
     "firma": "estiramiento"
+  },
+  {
+    "id": "entrenamiento_mujer_mancuerna.png",
+    "nombre": "entrenamiento_mujer_mancuerna.png",
+    "fecha": "2026-10-12",
+    "clave": "entrenamientomujermancuerna",
+    "firma": "entrenamiento|mancuerna"
   }
 ]
