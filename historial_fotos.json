@@ -523,5 +523,12 @@
     "fecha": "2026-10-12",
     "clave": "entrenamientomujermancuerna",
     "firma": "entrenamiento|mancuerna"
+  },
+  {
+    "id": "estiramiento_cuadriceps_limpio.png",
+    "nombre": "estiramiento_cuadriceps_limpio.png",
+    "fecha": "2026-10-13",
+    "clave": "estiramientocuadricepslimpio",
+    "firma": "estiramiento|cuadriceps|limpio"
   }
 ]
