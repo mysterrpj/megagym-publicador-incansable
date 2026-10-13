@@ -21,13 +21,6 @@
     "firma": "como|aumentar|fuerza|maxima|semanas"
   },
   {
-    "id": "foto_mujer_mancuerna_gym.png",
-    "nombre": "foto_mujer_mancuerna_gym.png",
-    "fecha": "2026-08-27",
-    "clave": "fotomujermancuernagym",
-    "firma": "mancuerna"
-  },
-  {
     "id": "entrenamiento_pierna_hack_squat.png",
     "nombre": "entrenamiento_pierna_hack_squat.png",
     "fecha": "2026-08-28",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-13",
     "clave": "estiramientocuadricepslimpio",
     "firma": "estiramiento|cuadriceps|limpio"
+  },
+  {
+    "id": "foto_mujer_mancuerna_gym.png",
+    "nombre": "foto_mujer_mancuerna_gym.png",
+    "fecha": "2026-10-13",
+    "clave": "fotomujermancuernagym",
+    "firma": "mancuerna"
   }
 ]
