@@ -7,13 +7,6 @@
     "firma": "flyer|estiramiento"
   },
   {
-    "id": "1Vl3xttqCBwlCd8Fy8nMsSUzryMrrGARd",
-    "nombre": "file_000000006840720ea36ee1d346b9bfd1.png",
-    "fecha": "2026-09-03",
-    "clave": "file000000006840720ea36ee1d346b9bfd1",
-    "firma": "fuerza|excusas|promocion|flyer|musculoso|sudoroso|realiza|ejercicio|fuerza|maquina"
-  },
-  {
     "id": "calendario:2026-09-04_0800.png",
     "nombre": "2026-09-04_0800.png",
     "fecha": "2026-09-04",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-19",
     "clave": "file00000000298871f596e37ca867546d7a",
     "firma": "entrenamiento|personalizado|pesas|promocion|flyer|entrenador|personal|sonriente|asiste|sudorosa"
+  },
+  {
+    "id": "1Vl3xttqCBwlCd8Fy8nMsSUzryMrrGARd",
+    "nombre": "file_000000006840720ea36ee1d346b9bfd1.png",
+    "fecha": "2026-10-19",
+    "clave": "file000000006840720ea36ee1d346b9bfd1",
+    "firma": "fuerza|excusas|promocion|flyer|musculoso|sudoroso|realiza|ejercicio|fuerza|maquina"
   }
 ]
