@@ -448,13 +448,6 @@
     "firma": "mancuerna"
   },
   {
-    "id": "entrenamiento_hombre_barra_v2.png",
-    "nombre": "entrenamiento_hombre_barra_v2.png",
-    "fecha": "2026-10-14",
-    "clave": "entrenamientohombrebarrav2",
-    "firma": "entrenamiento|barra"
-  },
-  {
     "id": "entrenamiento_pierna_hack_squat.png",
     "nombre": "entrenamiento_pierna_hack_squat.png",
     "fecha": "2026-10-15",
@@ -509,5 +502,12 @@
     "fecha": "2026-10-19",
     "clave": "file000000006840720ea36ee1d346b9bfd1",
     "firma": "fuerza|excusas|promocion|flyer|musculoso|sudoroso|realiza|ejercicio|fuerza|maquina"
+  },
+  {
+    "id": "entrenamiento_hombre_barra.png",
+    "nombre": "entrenamiento_hombre_barra.png",
+    "fecha": "2026-10-20",
+    "clave": "entrenamientohombrebarra",
+    "firma": "entrenamiento|barra"
   }
 ]
