@@ -427,13 +427,6 @@
     "firma": "estiramiento"
   },
   {
-    "id": "entrenamiento_mujer_mancuerna.png",
-    "nombre": "entrenamiento_mujer_mancuerna.png",
-    "fecha": "2026-10-12",
-    "clave": "entrenamientomujermancuerna",
-    "firma": "entrenamiento|mancuerna"
-  },
-  {
     "id": "estiramiento_cuadriceps_limpio.png",
     "nombre": "estiramiento_cuadriceps_limpio.png",
     "fecha": "2026-10-13",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-20",
     "clave": "fotopiernahacksquat",
     "firma": "pierna|hack|squat"
+  },
+  {
+    "id": "entrenamiento_mujer_mancuerna_v2.png",
+    "nombre": "entrenamiento_mujer_mancuerna_v2.png",
+    "fecha": "2026-10-21",
+    "clave": "entrenamientomujermancuernav2",
+    "firma": "entrenamiento|mancuerna"
   }
 ]
