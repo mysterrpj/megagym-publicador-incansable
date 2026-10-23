@@ -1,12 +1,5 @@
 [
   {
-    "id": "flyer_estiramiento.png",
-    "nombre": "flyer_estiramiento.png",
-    "fecha": "2026-08-29",
-    "clave": "flyerestiramiento",
-    "firma": "flyer|estiramiento"
-  },
-  {
     "id": "calendario:2026-09-04_0800.png",
     "nombre": "2026-09-04_0800.png",
     "fecha": "2026-09-04",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-22",
     "clave": "entrenamientomujermancuerna",
     "firma": "entrenamiento|mancuerna"
+  },
+  {
+    "id": "flyer_estiramiento.png",
+    "nombre": "flyer_estiramiento.png",
+    "fecha": "2026-10-23",
+    "clave": "flyerestiramiento",
+    "firma": "flyer|estiramiento"
   }
 ]
