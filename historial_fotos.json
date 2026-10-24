@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1Yc7uq2O0H8HCOlI-7RHhF_GFRutIja7X",
-    "nombre": "file_000000009270720e90474ab8c37f68c5.png",
-    "fecha": "2026-09-08",
-    "clave": "file000000009270720e90474ab8c37f68c5",
-    "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
-  },
-  {
     "id": "1dvOreRIjS5jk_wfYEemFMcoZkqGJFfbS",
     "nombre": "file_000000003c3c720ebe6bcd30e239e75a.png",
     "fecha": "2026-09-09",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-24",
     "clave": "chatgptimage22abr2026221238",
     "firma": "banco|bebida|promocion|promocion|flyer|sudorosa|roja|sentada|banco|bebida"
+  },
+  {
+    "id": "1Yc7uq2O0H8HCOlI-7RHhF_GFRutIja7X",
+    "nombre": "file_000000009270720e90474ab8c37f68c5.png",
+    "fecha": "2026-10-24",
+    "clave": "file000000009270720e90474ab8c37f68c5",
+    "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
   }
 ]
