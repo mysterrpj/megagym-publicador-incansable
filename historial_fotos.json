@@ -21,13 +21,6 @@
     "firma": "selfie|resultados|reales|promocion|flyer|toma|selfie|banco|pesas|destacando"
   },
   {
-    "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
-    "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
-    "fecha": "2026-09-09",
-    "clave": "chatgptimage21abr2026185939",
-    "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
-  },
-  {
     "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
     "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
     "fecha": "2026-09-10",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-24",
     "clave": "file000000009270720e90474ab8c37f68c5",
     "firma": "sudorosa|descansando|entrenamiento|visiblemente|sudorosa|gorra|color|burdeos|descansa|sentada"
+  },
+  {
+    "id": "1JYeAJL91hqM9sYWYgMmWcKWokdWYyp-R",
+    "nombre": "ChatGPT Image 21 abr 2026, 18_59_39.png",
+    "fecha": "2026-10-25",
+    "clave": "chatgptimage21abr2026185939",
+    "firma": "sudando|posando|transformacion|visiblemente|sudado|camiseta|posa|mostrando|fisico|manos"
   }
 ]
