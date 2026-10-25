@@ -486,5 +486,21 @@
     "nombre_sugerido": "hombre-press-hombros-barra-banco-gimnasio",
     "categoria_visual": "fuerza",
     "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1gcIMzxhLONTO01wJcoGTj5ciL9uCoBsJ",
+    "nombre": "file_000000002b74820ea84365a28d2127e8.png",
+    "descripcion": "Una mujer con ropa deportiva de camuflaje azul realiza un ejercicio con una banda de resistencia en los tobillos, posiblemente una sentadilla, en un gimnasio con equipo de pesas al fondo.",
+    "nombre_sugerido": "mujer-ejercitando-banda-resistencia-gimnasio",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
+  },
+  {
+    "id": "1opq3tL3rmmX00qfSjWXVDrByAlOxYj7G",
+    "nombre": "file_00000000c620820eb86e478549192a65.png",
+    "descripcion": "Una mujer en ropa deportiva oscura realiza un ejercicio con mancuernas, con un pie elevado en un banco en un gimnasio.",
+    "nombre_sugerido": "mujer-entrena-con-mancuernas-gimnasio",
+    "categoria_visual": "entrenamiento",
+    "tipo_visual": "foto_real"
   }
 ]
