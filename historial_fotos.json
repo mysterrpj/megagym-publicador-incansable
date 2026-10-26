@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
-    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
-    "fecha": "2026-09-10",
-    "clave": "file00000000fed071f5a922b4de72830ef1",
-    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
-  },
-  {
     "id": "1arKkj0qZ8uEk6PzYKfe8c1P4ZalGB-3I",
     "nombre": "file_00000000ba7871f589f1642311f2a905.png",
     "fecha": "2026-09-10",
@@ -516,5 +509,12 @@
     "fecha": "2026-10-25",
     "clave": "file000000003c3c720ebe6bcd30e239e75a",
     "firma": "selfie|resultados|reales|promocion|flyer|toma|selfie|banco|pesas|destacando"
+  },
+  {
+    "id": "1SQJ8dGrNnnEpBlOJ3CIff-dJvEG6J0bJ",
+    "nombre": "file_00000000fed071f5a922b4de72830ef1.png",
+    "fecha": "2026-10-26",
+    "clave": "file00000000fed071f5a922b4de72830ef1",
+    "firma": "transformacion|antes|despues|transformacion|flyer|sonriente|transformacion|fisica|antes|despues"
   }
 ]
