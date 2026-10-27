@@ -21,13 +21,6 @@
     "firma": "entrenando|espalda|pulldown|fuerza|sudorosa|realiza|jalon|pecho|barra|curva"
   },
   {
-    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
-    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
-    "fecha": "2026-09-11",
-    "clave": "file000000000cd071f5b5cbb30108a19066",
-    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
-  },
-  {
     "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
     "nombre": "file_00000000bedc71f5967307b616c7232f.png",
     "fecha": "2026-09-11",
@@ -523,5 +516,12 @@
     "fecha": "2026-10-26",
     "clave": "file000000002b74820ea84365a28d2127e8",
     "firma": "ejercitando|banda|resistencia|entrenamiento|camuflaje|azul|realiza|ejercicio|banda|resistencia"
+  },
+  {
+    "id": "1LmVA-z-oGaswDu0LpoPqsaje8ffkkZRg",
+    "nombre": "file_000000000cd071f5b5cbb30108a19066.png",
+    "fecha": "2026-10-27",
+    "clave": "file000000000cd071f5b5cbb30108a19066",
+    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
   }
 ]
