@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1arKkj0qZ8uEk6PzYKfe8c1P4ZalGB-3I",
-    "nombre": "file_00000000ba7871f589f1642311f2a905.png",
-    "fecha": "2026-09-10",
-    "clave": "file00000000ba7871f589f1642311f2a905",
-    "firma": "entrenando|espalda|pulldown|fuerza|sudorosa|realiza|jalon|pecho|barra|curva"
-  },
-  {
     "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
     "nombre": "file_00000000bedc71f5967307b616c7232f.png",
     "fecha": "2026-09-11",
@@ -523,5 +516,12 @@
     "fecha": "2026-10-27",
     "clave": "file000000000cd071f5b5cbb30108a19066",
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|mancuernas|amarillo|negro"
+  },
+  {
+    "id": "1arKkj0qZ8uEk6PzYKfe8c1P4ZalGB-3I",
+    "nombre": "file_00000000ba7871f589f1642311f2a905.png",
+    "fecha": "2026-10-27",
+    "clave": "file00000000ba7871f589f1642311f2a905",
+    "firma": "entrenando|espalda|pulldown|fuerza|sudorosa|realiza|jalon|pecho|barra|curva"
   }
 ]
