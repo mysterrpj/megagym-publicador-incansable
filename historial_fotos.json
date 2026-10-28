@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
-    "nombre": "file_00000000bedc71f5967307b616c7232f.png",
-    "fecha": "2026-09-11",
-    "clave": "file00000000bedc71f5967307b616c7232f",
-    "firma": "musculoso|levanta|pesas|fuerza|musculoso|sudoroso|bigote|levanta|barra|pesas"
-  },
-  {
     "id": "109vEC35rMWPDiMRzTr0KM53CLxtTo5CN",
     "nombre": "file_00000000b890720e9408b0d45c7ab535.png",
     "fecha": "2026-09-12",
@@ -523,5 +516,12 @@
     "fecha": "2026-10-27",
     "clave": "file00000000ba7871f589f1642311f2a905",
     "firma": "entrenando|espalda|pulldown|fuerza|sudorosa|realiza|jalon|pecho|barra|curva"
+  },
+  {
+    "id": "1b7iI3vz6vOc-IGnQvOAQlQxhJA6POWSr",
+    "nombre": "file_00000000bedc71f5967307b616c7232f.png",
+    "fecha": "2026-10-28",
+    "clave": "file00000000bedc71f5967307b616c7232f",
+    "firma": "musculoso|levanta|pesas|fuerza|musculoso|sudoroso|bigote|levanta|barra|pesas"
   }
 ]
