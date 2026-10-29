@@ -28,13 +28,6 @@
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   },
   {
-    "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
-    "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
-    "fecha": "2026-09-13",
-    "clave": "file00000000294c71f5b9c0a68ea443b218",
-    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
-  },
-  {
     "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
     "nombre": "file_00000000236871f58e2a68166e52d64a.png",
     "fecha": "2026-09-14",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-29",
     "clave": "file00000000b890720e9408b0d45c7ab535",
     "firma": "descansando|guantes|nike|recuperacion|latina|sudorosa|descansa|banco|guantes|nike"
+  },
+  {
+    "id": "1JDwrUEFBtDvQHLRYV4yNnFB1t8gVhQ_c",
+    "nombre": "file_00000000294c71f5b9c0a68ea443b218.png",
+    "fecha": "2026-10-29",
+    "clave": "file00000000294c71f5b9c0a68ea443b218",
+    "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
   }
 ]
