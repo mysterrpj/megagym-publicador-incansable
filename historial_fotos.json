@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
-    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
-    "fecha": "2026-09-12",
-    "clave": "file000000003e0071f59a4b69ceb7ad7f94",
-    "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
-  },
-  {
     "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
     "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
     "fecha": "2026-09-13",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-29",
     "clave": "file00000000294c71f5b9c0a68ea443b218",
     "firma": "peso|muerto|mancuernas|fuerza|realiza|peso|muerto|rumano|mancuernas|rodeada"
+  },
+  {
+    "id": "1MEQL52EnkDPNQgnwJBye8kMrejLbWJ4n",
+    "nombre": "file_000000003e0071f59a4b69ceb7ad7f94.png",
+    "fecha": "2026-10-30",
+    "clave": "file000000003e0071f59a4b69ceb7ad7f94",
+    "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
   }
 ]
