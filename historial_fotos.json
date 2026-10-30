@@ -21,13 +21,6 @@
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   },
   {
-    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
-    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
-    "fecha": "2026-09-14",
-    "clave": "file00000000236871f58e2a68166e52d64a",
-    "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
-  },
-  {
     "id": "1DvPgAkhAG46jaTcFDc3HiHQnluITS11z",
     "nombre": "file_00000000e96071f592808f6ef00c9061.png",
     "fecha": "2026-09-14",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-30",
     "clave": "file000000003e0071f59a4b69ceb7ad7f94",
     "firma": "entrena|hack|squat|fuerza|realiza|sentadillas|maquina|hack|squat|amarilla"
+  },
+  {
+    "id": "1k72QtqywuJgL0wx_pznp7cCGPtGDBhYF",
+    "nombre": "file_00000000236871f58e2a68166e52d64a.png",
+    "fecha": "2026-10-30",
+    "clave": "file00000000236871f58e2a68166e52d64a",
+    "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
   }
 ]
