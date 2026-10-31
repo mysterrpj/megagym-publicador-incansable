@@ -21,13 +21,6 @@
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   },
   {
-    "id": "1DvPgAkhAG46jaTcFDc3HiHQnluITS11z",
-    "nombre": "file_00000000e96071f592808f6ef00c9061.png",
-    "fecha": "2026-09-14",
-    "clave": "file00000000e96071f592808f6ef00c9061",
-    "firma": "recuperacion|sudorosa|recuperacion|camiseta|roja|rostro|sudoroso|recupera|reflexiona|tras"
-  },
-  {
     "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
     "nombre": "file_000000005998720ebf1114b16d482560.png",
     "fecha": "2026-09-15",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-30",
     "clave": "file00000000236871f58e2a68166e52d64a",
     "firma": "ejercicio|mancuernas|rustico|fuerza|realiza|ejercicio|fuerza|mancuernas|aspecto|rustico"
+  },
+  {
+    "id": "1DvPgAkhAG46jaTcFDc3HiHQnluITS11z",
+    "nombre": "file_00000000e96071f592808f6ef00c9061.png",
+    "fecha": "2026-10-31",
+    "clave": "file00000000e96071f592808f6ef00c9061",
+    "firma": "recuperacion|sudorosa|recuperacion|camiseta|roja|rostro|sudoroso|recupera|reflexiona|tras"
   }
 ]
