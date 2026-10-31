@@ -21,13 +21,6 @@
     "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   },
   {
-    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
-    "nombre": "file_000000005998720ebf1114b16d482560.png",
-    "fecha": "2026-09-15",
-    "clave": "file000000005998720ebf1114b16d482560",
-    "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
-  },
-  {
     "id": "1V4SanX1ejB8SEB7x2Zll66pgdkevvTXc",
     "nombre": "file_000000009fd0720ea8afd108211ad1b4.png",
     "fecha": "2026-09-15",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-31",
     "clave": "file00000000e96071f592808f6ef00c9061",
     "firma": "recuperacion|sudorosa|recuperacion|camiseta|roja|rostro|sudoroso|recupera|reflexiona|tras"
+  },
+  {
+    "id": "1Za_To6zvrg047ivNVmcADggUmyUifNf3",
+    "nombre": "file_000000005998720ebf1114b16d482560.png",
+    "fecha": "2026-10-31",
+    "clave": "file000000005998720ebf1114b16d482560",
+    "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
   }
 ]
