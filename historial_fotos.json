@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
-    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
-    "fecha": "2026-09-13",
-    "clave": "file0000000099dc720ebd2a29250bdd8f00",
-    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
-  },
-  {
     "id": "1V4SanX1ejB8SEB7x2Zll66pgdkevvTXc",
     "nombre": "file_000000009fd0720ea8afd108211ad1b4.png",
     "fecha": "2026-09-15",
@@ -530,5 +523,12 @@
     "fecha": "2026-10-31",
     "clave": "file000000005998720ebf1114b16d482560",
     "firma": "entrenando|fuerza|fuerza|muscular|realiza|ejercicio|remo|mancuerna|banco|luciendo"
+  },
+  {
+    "id": "1PQGMtwH_d5ozrkBXwMg_nL48ekpgTdkc",
+    "nombre": "file_0000000099dc720ebd2a29250bdd8f00.png",
+    "fecha": "2026-11-01",
+    "clave": "file0000000099dc720ebd2a29250bdd8f00",
+    "firma": "instruccion|entrenamiento|mancuerna|entrenamiento|uniforme|instruye|otro|sostiene|mancuerna|file"
   }
 ]
