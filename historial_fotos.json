@@ -14,13 +14,6 @@
     "firma": "necesitas|comer|veces|resultados"
   },
   {
-    "id": "1Z2SRvWPpeiEjwbRabeH4ENsOZrS7zkg7",
-    "nombre": "file_00000000e90c720e9bc6ae60fe054351.png",
-    "fecha": "2026-09-16",
-    "clave": "file00000000e90c720e9bc6ae60fe054351",
-    "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
-  },
-  {
     "id": "1tJWJNcf3kRV-MEGE2TscZq1b0boBHYnT",
     "nombre": "file_00000000a72871f5ac37a544941aa4a0.png",
     "fecha": "2026-09-17",
@@ -530,5 +523,12 @@
     "fecha": "2026-11-03",
     "clave": "file00000000b840720e83ace2d5d629a813",
     "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
+  },
+  {
+    "id": "1Z2SRvWPpeiEjwbRabeH4ENsOZrS7zkg7",
+    "nombre": "file_00000000e90c720e9bc6ae60fe054351.png",
+    "fecha": "2026-11-03",
+    "clave": "file00000000e90c720e9bc6ae60fe054351",
+    "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
   }
 ]
