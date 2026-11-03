@@ -28,13 +28,6 @@
     "firma": "estirando|cuadriceps|colchoneta|entrenamiento|amarilla|negra|realiza|estiramiento|cuadriceps|arrodillada"
   },
   {
-    "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
-    "nombre": "file_00000000b840720e83ace2d5d629a813.png",
-    "fecha": "2026-09-18",
-    "clave": "file00000000b840720e83ace2d5d629a813",
-    "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
-  },
-  {
     "id": "12tAIk_0RK2TgBO27qI1vmWwRf_naJMor",
     "nombre": "file_00000000c8fc720ea57411b6c719027d.png",
     "fecha": "2026-09-18",
@@ -530,5 +523,12 @@
     "fecha": "2026-11-02",
     "clave": "file000000003a3c71f5b0d29188f26a3474",
     "firma": "ejercitando|bicep|curl|cable|fuerza|sudorosa|guantes|auriculares|realiza|ejercicio"
+  },
+  {
+    "id": "1EnwDgo6aU-TiwwYWR_li1vLTSFHLwTcF",
+    "nombre": "file_00000000b840720e83ace2d5d629a813.png",
+    "fecha": "2026-11-03",
+    "clave": "file00000000b840720e83ace2d5d629a813",
+    "firma": "ejercitando|maquina|cable|fuerza|sudorosa|oscuro|luces|neon|amarillas|realiza"
   }
 ]
