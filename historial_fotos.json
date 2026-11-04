@@ -21,13 +21,6 @@
     "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
   },
   {
-    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
-    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
-    "fecha": "2026-09-19",
-    "clave": "file000000006a40720ebdaaae296a6bdf43",
-    "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
-  },
-  {
     "id": "1ltGg0vN-EdXvafrpTr330FsT6HoEGcJD",
     "nombre": "file_00000000d7a8720eb8dc215972160192.png",
     "fecha": "2026-09-20",
@@ -523,5 +516,12 @@
     "fecha": "2026-11-04",
     "clave": "file00000000506c71f58e56d2bc7516f0c7",
     "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
+  },
+  {
+    "id": "1QnY3Tw42NOEQJv0X-BMnIi__-I4kfOxt",
+    "nombre": "file_000000006a40720ebdaaae296a6bdf43.png",
+    "fecha": "2026-11-04",
+    "clave": "file000000006a40720ebdaaae296a6bdf43",
+    "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
   }
 ]
