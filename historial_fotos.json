@@ -1,12 +1,5 @@
 [
   {
-    "id": "calendario:2026-09-04_0800.png",
-    "nombre": "2026-09-04_0800.png",
-    "fecha": "2026-09-04",
-    "clave": "202609040800",
-    "firma": "wearables|como|usar|pasos|sueno|frecuencia|cardiaca|obsesionarte"
-  },
-  {
     "id": "calendario:2026-09-05_0800.png",
     "nombre": "2026-09-05_0800.png",
     "fecha": "2026-09-05",
@@ -33,13 +26,6 @@
     "fecha": "2026-09-19",
     "clave": "file000000006a40720ebdaaae296a6bdf43",
     "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
-  },
-  {
-    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
-    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
-    "fecha": "2026-09-19",
-    "clave": "file00000000506c71f58e56d2bc7516f0c7",
-    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
   },
   {
     "id": "1ltGg0vN-EdXvafrpTr330FsT6HoEGcJD",
@@ -530,5 +516,12 @@
     "fecha": "2026-11-03",
     "clave": "file00000000e90c720e9bc6ae60fe054351",
     "firma": "musculoso|barra|pesas|fuerza|mediana|edad|sudoroso|musculoso|camiseta|sostiene"
+  },
+  {
+    "id": "1dE60xU3E_2WfAEaN2LZz3MV1dzbyYaMq",
+    "nombre": "file_00000000506c71f58e56d2bc7516f0c7.png",
+    "fecha": "2026-11-04",
+    "clave": "file00000000506c71f58e56d2bc7516f0c7",
+    "firma": "ejercitando|pierna|maquina|cable|fuerza|realiza|ejercicio|extension|pierna|correa"
   }
 ]
