@@ -1,12 +1,5 @@
 [
   {
-    "id": "calendario:2026-09-05_0800.png",
-    "nombre": "2026-09-05_0800.png",
-    "fecha": "2026-09-05",
-    "clave": "202609050800",
-    "firma": "necesitas|comer|veces|resultados"
-  },
-  {
     "id": "1tJWJNcf3kRV-MEGE2TscZq1b0boBHYnT",
     "nombre": "file_00000000a72871f5ac37a544941aa4a0.png",
     "fecha": "2026-09-17",
@@ -26,13 +19,6 @@
     "fecha": "2026-09-20",
     "clave": "file00000000d7a8720eb8dc215972160192",
     "firma": "entrenando|piernas|maquina|poleas|fuerza|entrena|piernas|patada|cable|usando"
-  },
-  {
-    "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
-    "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
-    "fecha": "2026-09-20",
-    "clave": "file0000000066b871f5bbdedca6560aa598",
-    "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
   },
   {
     "id": "13H64hwRnuVtu6AOL5CjMD-KZlHr-aAKC",
@@ -523,5 +509,12 @@
     "fecha": "2026-11-04",
     "clave": "file000000006a40720ebdaaae296a6bdf43",
     "firma": "entrenando|fuerza|cable|barra|brazos|fuerza|sudando|intensamente|realiza|ejercicio"
+  },
+  {
+    "id": "1ASWSeRC60l8UHc9a2pwKross41N3K3Yk",
+    "nombre": "file_0000000066b871f5bbdedca6560aa598.png",
+    "fecha": "2026-11-05",
+    "clave": "file0000000066b871f5bbdedca6560aa598",
+    "firma": "activa|gluteos|mancuerna|promocion|flyer|realiza|ejercicio|gluteos|mancuerna|como"
   }
 ]
