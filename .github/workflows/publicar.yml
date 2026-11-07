@@ -53,19 +53,15 @@ jobs:
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          WHATSAPP_IMPORT_URL: ${{ secrets.WHATSAPP_IMPORT_URL }}
-          WHATSAPP_IMPORT_KEY: ${{ secrets.WHATSAPP_IMPORT_KEY }}
-          WHATSAPP_IMPORT_USER_ID: ${{ secrets.WHATSAPP_IMPORT_USER_ID }}
-          WHATSAPP_STATUS_TIMES: "12:00,21:00"
           PUBLICACION_FECHA: ${{ github.event_name == 'workflow_dispatch' && inputs.publicacion_fecha || '' }}
           PUBLICACION_HORA: ${{ github.event_name == 'workflow_dispatch' && inputs.publicacion_hora || '' }}
         run: python publisher.py
 
-      - name: Guardar historial de fotos en el repositorio
+      - name: Guardar resultados de publicación en el repositorio
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
-          git add historial_fotos.json
-          git diff --staged --quiet || git commit -m "chore: actualizar historial de fotos usadas"
+          git add historial_fotos.json calendario_publicaciones.csv
+          git diff --staged --quiet || git commit -m "chore: actualizar resultados de publicaciones"
           git pull --rebase origin master
           git push

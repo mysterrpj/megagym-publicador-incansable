@@ -20,8 +20,8 @@ CSV_PATH = ROOT_DIR / "calendario_publicaciones.csv"
 BACKUP_PATH = ROOT_DIR / "calendario_publicaciones.csv.bak"
 POSTS_DIR = ROOT_DIR / "posts_programados"
 
-CSV_COLUMNS = ["fecha", "hora", "estado", "tema", "imagen_archivo", "copy"]
-ALLOWED_STATES = {"pendiente", "lista", "programada", "ready", "publicada"}
+CSV_COLUMNS = ["fecha", "hora", "estado", "tema", "imagen_archivo", "copy", "facebook_estado", "instagram_estado", "whatsapp_estado"]
+ALLOWED_STATES = {"borrador", "aprobada", "publicada"}
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".m4v"}
 ALLOWED_EXTENSIONS = IMAGE_EXTENSIONS | VIDEO_EXTENSIONS
@@ -145,6 +145,7 @@ def validate_rows(rows):
         raise ValueError("El payload debe incluir una lista de filas.")
 
     clean_rows = []
+    seen_slots = set()
     for index, row in enumerate(rows, start=1):
         if not isinstance(row, dict):
             raise ValueError(f"La fila {index} no es valida.")
@@ -152,6 +153,18 @@ def validate_rows(rows):
         state = clean["estado"].lower()
         if state not in ALLOWED_STATES:
             raise ValueError(f"Estado invalido en fila {index}: {clean['estado']}")
+        try:
+            datetime.strptime(clean["fecha"], "%Y-%m-%d")
+        except ValueError as error:
+            raise ValueError(f"Fecha invalida en fila {index}: {clean['fecha']}") from error
+        if clean["hora"] not in {"08:00", "20:00"}:
+            raise ValueError(f"Hora invalida en fila {index}: {clean['hora']}")
+        slot = (clean["fecha"], clean["hora"])
+        if slot in seen_slots:
+            raise ValueError(f"Horario duplicado en fila {index}: {clean['fecha']} {clean['hora']}")
+        seen_slots.add(slot)
+        if state == "aprobada" and (not clean["copy"] or not clean["imagen_archivo"]):
+            raise ValueError(f"La fila aprobada {index} necesita copy y medio.")
         if clean["imagen_archivo"] and not clean["imagen_archivo"].startswith(("http://", "https://")):
             suffix = Path(clean["imagen_archivo"]).suffix.lower()
             if suffix and suffix not in ALLOWED_EXTENSIONS:

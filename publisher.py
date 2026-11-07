@@ -1,4 +1,4 @@
-import os
+﻿import os
 import io
 import base64
 import requests
@@ -425,8 +425,8 @@ def cargar_publicacion_programada():
             continue
 
         estado = (fila.get("estado") or "").strip().lower()
-        if estado not in {"lista", "programada", "ready"}:
-            print(f"[Calendario] Publicacion {fecha_objetivo} {hora_objetivo} esta en estado '{estado or 'sin estado'}'. No se publicara fallback automatico.")
+        if estado != "aprobada":
+            print(f"[Calendario] Publicacion {fecha_objetivo} {hora_objetivo} esta en estado '{estado or 'sin estado'}'. Solo se publica el estado 'aprobada'.")
             return {
                 "skip": True,
                 "fecha": fecha_objetivo,
@@ -447,12 +447,57 @@ def cargar_publicacion_programada():
             "asset_url": asset_url,
             "imagen_archivo": asset_archivo,
             "imagen_url": asset_url if asset_type == "image" else None,
+            "facebook_estado": (fila.get("facebook_estado") or "pendiente").strip().lower(),
+            "instagram_estado": (fila.get("instagram_estado") or "pendiente").strip().lower(),
         }
-        print(f"[Calendario] Publicacion programada encontrada: {fecha_objetivo} {hora_objetivo}")
+        if not publicacion["copy"] or not asset_archivo:
+            print(f"[Calendario] Publicacion aprobada incompleta para {fecha_objetivo} {hora_objetivo}: requiere copy y medio.")
+            return {"skip": True, "fecha": fecha_objetivo, "hora": hora_objetivo, "estado": "incompleta"}
+        print(f"[Calendario] Publicacion aprobada encontrada: {fecha_objetivo} {hora_objetivo}")
         return publicacion
 
-    print(f"[Calendario] No hay publicacion lista para {fecha_objetivo} {hora_objetivo}. Se usara el flujo automatico.")
-    return None
+    print(f"[Calendario] No existe publicacion aprobada para {fecha_objetivo} {hora_objetivo}. No se publicara contenido automatico.")
+    return {"skip": True, "fecha": fecha_objetivo, "hora": hora_objetivo, "estado": "sin_fila"}
+
+def actualizar_estado_canal(fecha, hora, canal, exitoso):
+    """Persiste el resultado de cada canal para aislar reintentos y evitar duplicados."""
+    try:
+        with open(CALENDARIO_PUBLICACIONES, "r", encoding="utf-8-sig", newline="") as archivo:
+            lector = csv.DictReader(archivo)
+            filas = list(lector)
+            campos = list(lector.fieldnames or [])
+    except Exception as error:
+        print(f"[Calendario] No se pudo leer para actualizar estados: {error}")
+        return False
+
+    for campo in ("facebook_estado", "instagram_estado", "whatsapp_estado"):
+        if campo not in campos:
+            campos.append(campo)
+
+    encontrado = False
+    for fila in filas:
+        if (fila.get("fecha") or "").strip() == fecha and (fila.get("hora") or "").strip() == hora:
+            fila[f"{canal}_estado"] = "publicada" if exitoso else "error"
+            facebook_ok = (fila.get("facebook_estado") or "").strip().lower() == "publicada"
+            instagram_ok = (fila.get("instagram_estado") or "").strip().lower() == "publicada"
+            if facebook_ok and instagram_ok:
+                fila["estado"] = "publicada"
+            encontrado = True
+            break
+
+    if not encontrado:
+        print(f"[Calendario] No se encontro {fecha} {hora} para actualizar {canal}.")
+        return False
+
+    try:
+        with open(CALENDARIO_PUBLICACIONES, "w", encoding="utf-8", newline="") as archivo:
+            escritor = csv.DictWriter(archivo, fieldnames=campos)
+            escritor.writeheader()
+            escritor.writerows(filas)
+        return True
+    except Exception as error:
+        print(f"[Calendario] No se pudo guardar el estado de {canal}: {error}")
+        return False
 
 def get_webhook_url():
     url = os.environ.get("MAKE_WEBHOOK_URL")
@@ -1004,7 +1049,7 @@ def asset_publico_o_respaldo(asset_url, asset_type="image"):
     print("[Video] No se enviara fallback de imagen porque la publicacion fue programada como video.")
     return None
 
-def send_to_make(webhook_url, network, text, image_url=None, asset_url=None, asset_type="image"):
+def send_to_make(webhook_url, network, text, image_url=None, asset_url=None, asset_type="image", external_id=None):
     print(f"Enviando post para {network} a Make.com...")
 
     if image_url and not asset_url:
@@ -1031,7 +1076,9 @@ def send_to_make(webhook_url, network, text, image_url=None, asset_url=None, ass
         "tipo": asset_type,
         "media_type": asset_type,
         "is_image": is_image,
-        "is_video": is_video
+        "is_video": is_video,
+        "external_id": external_id,
+        "idempotency_key": external_id,
     }
     
     if asset_url:
@@ -1199,153 +1246,65 @@ def send_to_whatsapp_import(config, post_index, text, image_url=None, asset_url=
         print(response.text)
 
 def main():
-    # Fix para imprimir emojis en consola de Windows
     if sys.platform == "win32":
-        sys.stdout.reconfigure(encoding='utf-8')
-        
-    print("Iniciando Publicador de MEGAGYM (via Make.com + IA)...")
-    
-    # 1. Setup IA
-    modelo_gemini = setup_gemini()
-    cliente_openai = setup_openai()
-    memoria_marca = get_memory_context()
-    webhook_url = get_webhook_url()
-    whatsapp_import_config = get_whatsapp_import_config()
-    drive_service, drive_folder_id = setup_drive()
+        sys.stdout.reconfigure(encoding="utf-8")
 
-    # Cargar historial de fotos usadas
-    historial, ids_usados = cargar_historial()
-
-    # 2. Elegir Temas del Día (2 publicaciones, fechas especiales + categorías)
-    publicacion_programada = cargar_publicacion_programada()
-    if publicacion_programada and publicacion_programada.get("skip"):
-        print("[Calendario] Ejecucion omitida para evitar una publicacion no planificada.")
+    print("Iniciando Publicador aprobado de MEGAGYM...")
+    publicacion = cargar_publicacion_programada()
+    if not publicacion or publicacion.get("skip"):
+        print("[Calendario] No hay una publicacion aprobada y completa para este horario.")
         return
 
-    if publicacion_programada:
-        publicaciones_del_dia = [publicacion_programada]
-    else:
-        ahora_lima = datetime.now(ZoneInfo("America/Lima"))
-        publicaciones_del_dia = []
-        for tema in seleccionar_temas_del_dia():
-            publicaciones_del_dia.append({
-                "tema": tema,
-                "copy": "",
-                "asset_archivo": "",
-                "asset_type": "image",
-                "asset_url": None,
-                "imagen_archivo": "",
-                "imagen_url": None,
-                "fecha": ahora_lima.date().isoformat(),
-                "hora": slot_publicacion_actual(ahora_lima),
-            })
-    print(f"\n[INFO] Publicaciones a procesar: {[p['tema'] for p in publicaciones_del_dia]}")
+    fecha = publicacion["fecha"]
+    hora = publicacion["hora"]
+    texto = publicacion["copy"]
+    tema = publicacion["tema"]
+    asset_type = publicacion["asset_type"]
+    asset_url = publicacion["asset_url"]
 
-    for i, publicacion in enumerate(publicaciones_del_dia, 1):
-        tema_dia = publicacion["tema"]
-        print(f"\n{'='*50}")
-        print(f"[PUBLICACION {i} de {len(publicaciones_del_dia)}] Tema: {tema_dia}")
-        print(f"{'='*50}")
+    if not validar_asset_publico(asset_url, asset_type):
+        print("[Calendario] El medio aprobado no es accesible. No se publicara ningun canal.")
+        return
 
-        ig_text = publicacion.get("copy") or generar_post_con_ia(modelo_gemini, memoria_marca, tema=tema_dia)
+    webhook_url = get_webhook_url()
+    resultados = {}
+    canales = (
+        ("facebook", publicacion.get("facebook_estado")),
+        ("instagram", publicacion.get("instagram_estado")),
+    )
 
-        print("\n---------------- POST GENERADO ---------------")
-        print(ig_text)
-        print("----------------------------------------------\n")
-
-        # 3. Seleccionar asset (video programado o imagen con fallback actual)
-        imagen_resultado = None
-        asset_type = publicacion.get("asset_type") or detectar_tipo_asset(publicacion.get("asset_archivo") or publicacion.get("imagen_archivo"))
-        asset_principal = publicacion.get("asset_url") or publicacion.get("imagen_url")
-        imagen_principal = asset_principal if asset_type == "image" else None
-        if asset_principal:
-            print(f"[Calendario] Usando {asset_type} planificado: {publicacion.get('asset_archivo') or publicacion.get('imagen_archivo')}")
-
-        if asset_type == "image" and not imagen_principal and drive_service:
-            imagen_resultado = seleccionar_foto_drive(modelo_gemini, tema_dia, drive_service, drive_folder_id, ids_usados)
-
-        if asset_type == "image" and not imagen_principal and not imagen_resultado:
-            imagen_resultado = seleccionar_imagen_fotorreal(modelo_gemini, tema_dia, ids_usados)
-
-        if imagen_resultado:
-            imagen_url_original, foto_id, foto_nombre = imagen_resultado[:3]
-            foto_descripcion = imagen_resultado[3] if len(imagen_resultado) > 3 else None
-            historial = guardar_historial(historial, foto_id, foto_nombre, foto_descripcion)
-            ids_usados.add(foto_id)  # Evitar repetir en la misma ejecución (2 posts/día)
-            ids_usados.add(foto_nombre)
-            foto_clave = clave_archivo(foto_nombre)
-            if foto_clave:
-                ids_usados.add(foto_clave)
-            foto_firma = firma_visual(foto_descripcion, foto_nombre)
-            if foto_firma:
-                ids_usados.add(foto_firma)
-
-            # Si la imagen viene de Drive, descargarla y subirla a GitHub
-            # (Instagram no acepta URLs de Drive directamente)
-            if 'lh3.googleusercontent.com' in imagen_url_original:
-                print("[Drive→GitHub] Descargando imagen de Drive para publicar via GitHub...")
-                bytes_imagen = descargar_foto_drive(drive_service, foto_id)
-                if bytes_imagen:
-                    imagen_principal = subir_imagen_a_github(bytes_imagen, foto_nombre)
-                    if imagen_principal:
-                        print("[CDN] Esperando 20 segundos para propagación de GitHub CDN...")
-                        time.sleep(20)
-                    else:
-                        print("[Fallback] GitHub falló. Se omitirá la imagen generada por IA.")
-                        imagen_principal = None
-                else:
-                    print("[Fallback] Descarga de Drive falló. Se omitirá la imagen generada por IA.")
-                    imagen_principal = None
-            else:
-                imagen_principal = imagen_url_original
-            asset_principal = imagen_principal
-        elif asset_type == "image" and not imagen_principal:
-            if PERMITIR_IMAGENES_IA:
-                imagen_principal = generar_imagen_chatgpt(cliente_openai, tema_dia)
-                asset_principal = imagen_principal
-            else:
-                print("[Imagen] No se encontró imagen adecuada y la generación con IA está desactivada.")
-                imagen_principal = None
-                asset_principal = None
-
-        asset_programado_url = publicacion.get("asset_url") or publicacion.get("imagen_url")
-        asset_principal = asset_publico_o_respaldo(asset_principal, asset_type)
-        if not asset_principal:
-            print(f"[{asset_type.capitalize()}] Publicacion omitida porque no hay asset valido para enviar.")
+    for indice, (canal, estado_actual) in enumerate(canales):
+        if estado_actual == "publicada":
+            print(f"[{canal.capitalize()}] Ya figura como publicada; se omite para evitar duplicados.")
+            resultados[canal] = True
             continue
 
-        if asset_programado_url and asset_principal == asset_programado_url:
-            historial = guardar_historial(
-                historial,
-                f"calendario:{publicacion.get('asset_archivo') or publicacion.get('imagen_archivo')}",
-                publicacion.get("asset_archivo") or publicacion.get("imagen_archivo"),
-                tema_dia,
-            )
-        print(f"URL de {asset_type} final a publicar: {asset_principal}")
+        if indice > 0:
+            print("[Make] Esperando 3 segundos antes del siguiente canal...")
+            time.sleep(3)
 
-        print(f"\n--- Enviando Post {i} a Facebook ---")
-        send_to_make(webhook_url, "facebook", ig_text, asset_url=asset_principal, asset_type=asset_type)
-
-        print("\n[Esperando 3 segundos para que Make procese el post...]")
-        time.sleep(3)
-
-        print(f"\n--- Enviando Post {i} a Instagram ---")
-        send_to_make(webhook_url, "instagram", ig_text, asset_url=asset_principal, asset_type=asset_type)
-
-        print(f"\n--- Enviando Post {i} a WhatsApp ---")
-        send_to_whatsapp_import(
-            whatsapp_import_config,
-            i,
-            ig_text,
-            asset_url=asset_principal,
+        external_id = f"megagym:{fecha}:{hora}:{canal}"
+        exitoso = send_to_make(
+            webhook_url,
+            canal,
+            texto,
+            asset_url=asset_url,
             asset_type=asset_type,
-            source_date=publicacion.get("fecha"),
-            source_time=publicacion.get("hora"),
+            external_id=external_id,
+        )
+        resultados[canal] = exitoso
+        actualizar_estado_canal(fecha, hora, canal, exitoso)
+
+    if any(resultados.values()):
+        historial, _ = cargar_historial()
+        guardar_historial(
+            historial,
+            f"calendario:{publicacion.get('asset_archivo')}",
+            publicacion.get("asset_archivo"),
+            tema,
         )
 
-        if i < len(publicaciones_del_dia):
-            print("\n[Esperando 10 segundos antes de la siguiente publicación...]")
-            time.sleep(10)
+    print(f"[Resultado] Facebook={resultados.get('facebook')} Instagram={resultados.get('instagram')}")
 
 if __name__ == '__main__':
     main()
