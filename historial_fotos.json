@@ -523,5 +523,12 @@
     "fecha": "2026-11-07",
     "clave": "file00000000c8fc720ea57411b6c719027d",
     "firma": "desayunos|altos|proteina|musculoso|nutricion|flyer|musculoso|posa|entre|cuatro"
+  },
+  {
+    "id": "calendario:2026-11-08_0800.png",
+    "nombre": "2026-11-08_0800.png",
+    "fecha": "2026-11-08",
+    "clave": "202611080800",
+    "firma": "cierra|semana|cuidando|progreso"
   }
 ]
